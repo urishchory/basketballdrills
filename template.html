@@ -314,14 +314,86 @@
   .card {
     display: flex;
     flex-direction: column;
-    gap: .65rem;
     background: var(--surface);
     border: 1px solid var(--line);
     border-radius: var(--r);
-    padding: 1rem 1.05rem 1.05rem;
+    overflow: hidden;
     box-shadow: var(--shadow);
     transition: opacity .15s ease, border-color .15s ease;
   }
+  /* padding lives on the body so a poster can bleed to the card edges */
+  .card__body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: .65rem;
+    padding: 1rem 1.05rem 1.05rem;
+  }
+
+  /* ---- poster cover: the clip's core message + a theme motif ---- */
+  .poster {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 130px;
+    padding: 1.3rem 1.15rem;
+    background: color-mix(in srgb, var(--c) 12%, var(--surface));
+    border-bottom: 1px solid color-mix(in srgb, var(--c) 26%, var(--line));
+  }
+  .poster__art {
+    position: absolute;
+    right: -12px;
+    top: 50%;
+    width: 128px;
+    height: 128px;
+    transform: translateY(-50%);
+    color: var(--c);
+    opacity: .24;
+    pointer-events: none;
+  }
+  .poster__art svg { display: block; width: 100%; height: 100%; }
+  .poster__art svg [stroke] { stroke-linecap: round; stroke-linejoin: round; }
+  .poster__msg {
+    position: relative;
+    margin: 0;
+    max-width: 76%;
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.28;
+    letter-spacing: -.015em;
+    color: var(--c);
+    text-wrap: balance;
+  }
+
+  /* motif animations — each loops slowly enough to read as ambient */
+  @keyframes m-ripple {
+    0%   { r: 10; opacity: .9; }
+    100% { r: 46; opacity: 0; }
+  }
+  @keyframes m-rise    { from { transform: scaleY(.15); } to { transform: scaleY(1); } }
+  @keyframes m-draw    { from { stroke-dashoffset: 200; } to { stroke-dashoffset: 0; } }
+  @keyframes m-travel  { from { offset-distance: 0%; }   to { offset-distance: 100%; } }
+  @keyframes m-settle  { 0%, 100% { transform: rotate(-12deg); } 50% { transform: rotate(0deg); } }
+  @keyframes m-breathe { 0%, 100% { transform: scale(.9); opacity: .55; } 50% { transform: scale(1.06); opacity: 1; } }
+  @keyframes m-reach   { 0% { transform: scaleX(.2); } 60%, 100% { transform: scaleX(1); } }
+
+  .m-rip            { animation: m-ripple 3.6s ease-out infinite; }
+  .m-rip--2         { animation-delay: 1.2s; }
+  .m-rip--3         { animation-delay: 2.4s; }
+  .m-bar            { transform-origin: 50% 78px; animation: m-rise 2.8s ease-out infinite alternate; }
+  .m-bar:nth-child(2) { animation-delay: .18s; }
+  .m-bar:nth-child(3) { animation-delay: .36s; }
+  .m-bar:nth-child(4) { animation-delay: .54s; }
+  .m-bar:nth-child(5) { animation-delay: .72s; }
+  .m-path           { stroke-dasharray: 200; animation: m-draw 4s ease-in-out infinite alternate; }
+  .m-pulse          { offset-path: path("M 24 30 L 76 44 L 30 72 L 76 30"); animation: m-travel 4.5s linear infinite; }
+  .m-tilt           { transform-origin: 50px 50px; animation: m-settle 5s ease-in-out infinite; }
+  .m-arc            { transform-origin: 50px 62px; animation: m-breathe 4.5s ease-in-out infinite; }
+  .m-arc--2         { animation-delay: .5s; }
+  .m-ray            { transform-origin: 50px 50px; animation: m-reach 3.4s ease-in-out infinite alternate; }
+  .m-ray--2         { animation-delay: .3s; }
+  .m-ray--3         { animation-delay: .6s; }
+
   .card:hover { border-color: color-mix(in srgb, var(--c) 50%, var(--line)); }
   .card[data-status="Not For Us"] { opacity: .5; }
   .card[data-status="Not For Us"]:hover { opacity: 1; }
@@ -529,6 +601,76 @@
   </main>
 </div>
 
+<!-- Theme motifs. Cloned per card, so the CSS animations above apply normally;
+     a <use> shadow tree could not be reached by outer stylesheets. -->
+<template id="motif-mind-emotion">
+  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+    <circle class="m-rip" cx="50" cy="50" r="10"/>
+    <circle class="m-rip m-rip--2" cx="50" cy="50" r="10"/>
+    <circle class="m-rip m-rip--3" cx="50" cy="50" r="10"/>
+    <circle cx="50" cy="50" r="6" fill="currentColor" stroke="none"/>
+  </svg>
+</template>
+
+<template id="motif-work-ethic">
+  <svg viewBox="0 0 100 100" fill="currentColor" aria-hidden="true">
+    <rect class="m-bar" x="14" y="38" width="11" height="40" rx="2"/>
+    <rect class="m-bar" x="31" y="38" width="11" height="40" rx="2"/>
+    <rect class="m-bar" x="48" y="38" width="11" height="40" rx="2"/>
+    <rect class="m-bar" x="65" y="38" width="11" height="40" rx="2"/>
+    <rect class="m-bar" x="82" y="38" width="11" height="40" rx="2"/>
+  </svg>
+</template>
+
+<template id="motif-confidence">
+  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+    <path class="m-path" d="M 12 84 Q 40 14 76 36"/>
+    <line x1="64" y1="30" x2="92" y2="30"/>
+    <circle cx="78" cy="40" r="7"/>
+  </svg>
+</template>
+
+<template id="motif-losing-failure">
+  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+    <polyline class="m-path" points="10,36 30,36 46,76 62,76 90,22"/>
+  </svg>
+</template>
+
+<template id="motif-team-trust">
+  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+    <path d="M 24 30 L 76 44 L 30 72 L 76 30" stroke-opacity=".5"/>
+    <circle cx="24" cy="30" r="7"/>
+    <circle cx="76" cy="44" r="7"/>
+    <circle cx="30" cy="72" r="7"/>
+    <circle cx="76" cy="30" r="7"/>
+    <circle class="m-pulse" r="4.5" fill="currentColor" stroke="none"/>
+  </svg>
+</template>
+
+<template id="motif-coaching">
+  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+    <circle cx="50" cy="50" r="9" fill="currentColor" stroke="none"/>
+    <line class="m-ray" x1="50" y1="50" x2="90" y2="24"/>
+    <line class="m-ray m-ray--2" x1="50" y1="50" x2="92" y2="50"/>
+    <line class="m-ray m-ray--3" x1="50" y1="50" x2="90" y2="76"/>
+  </svg>
+</template>
+
+<template id="motif-role-attitude">
+  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+    <rect x="26" y="26" width="48" height="48" rx="6" stroke-opacity=".35"/>
+    <rect class="m-tilt" x="26" y="26" width="48" height="48" rx="6"/>
+  </svg>
+</template>
+
+<template id="motif-parents-education">
+  <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+    <path class="m-arc" d="M 14 66 A 36 36 0 0 1 86 66"/>
+    <path class="m-arc m-arc--2" d="M 32 66 A 18 18 0 0 1 68 66"/>
+    <circle cx="50" cy="78" r="5" fill="currentColor" stroke="none"/>
+  </svg>
+</template>
+
 <script id="data" type="application/json">__DATA__</script>
 <script>
   (function () {
@@ -595,7 +737,7 @@
     }
 
     function haystack(it) {
-      return [it.title, it.summary, it.category, it.type, it.source, it.notes, (it.tags || []).join(' ')]
+      return [it.title, it.message, it.summary, it.category, it.type, it.source, it.notes, (it.tags || []).join(' ')]
         .filter(Boolean).join(' ').toLowerCase();
     }
 
@@ -606,26 +748,46 @@
       return n;
     }
 
+    function slug(s) {
+      return String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+    }
+
+    // Items carrying a `message` get a poster cover; the drill library has none
+    // and renders exactly as before.
+    function poster(it) {
+      var p = el('div', 'poster');
+      var art = el('div', 'poster__art');
+      var tpl = document.getElementById('motif-' + slug(it.category));
+      if (tpl) art.appendChild(tpl.content.cloneNode(true));
+      p.appendChild(art);
+      p.appendChild(el('p', 'poster__msg', it.message));
+      return p;
+    }
+
     function card(it) {
       var a = el('article', 'card');
       a.setAttribute('data-cat', it.category);
       a.setAttribute('data-status', it.status);
 
+      if (it.message) a.appendChild(poster(it));
+
+      var b = el('div', 'card__body');
+
       var head = el('div', 'card__head');
       head.appendChild(el('span', 'tag-cat', it.category));
       head.appendChild(el('span', 'status', it.status));
-      a.appendChild(head);
+      b.appendChild(head);
 
-      a.appendChild(el('h2', 'card__title', it.title));
-      if (it.summary) a.appendChild(el('p', 'card__summary', it.summary));
+      b.appendChild(el('h2', 'card__title', it.title));
+      if (it.summary) b.appendChild(el('p', 'card__summary', it.summary));
 
       if (it.tags && it.tags.length) {
         var ul = el('ul', 'tags');
         it.tags.forEach(function (t) { ul.appendChild(el('li', null, t)); });
-        a.appendChild(ul);
+        b.appendChild(ul);
       }
 
-      if (it.notes) a.appendChild(el('p', 'card__notes', it.notes));
+      if (it.notes) b.appendChild(el('p', 'card__notes', it.notes));
 
       var foot = el('div', 'card__foot');
       var m = el('div', 'meta');
@@ -645,7 +807,8 @@
         foot.appendChild(el('span', 'noclip', 'no clip'));
       }
 
-      a.appendChild(foot);
+      b.appendChild(foot);
+      a.appendChild(b);
       return a;
     }
 
