@@ -332,14 +332,43 @@
 
   /* ---- poster cover: the clip's core message + a theme motif ---- */
   .poster {
+    --poster-bg: color-mix(in srgb, var(--c) 12%, var(--surface));
     position: relative;
     display: flex;
     align-items: center;
     min-height: 130px;
     padding: 1.3rem 1.15rem;
-    background: color-mix(in srgb, var(--c) 12%, var(--surface));
+    background: var(--poster-bg);
     border-bottom: 1px solid color-mix(in srgb, var(--c) 26%, var(--line));
   }
+
+  /* ---- photo variant: a licensed portrait instead of the motif ---- */
+  .poster--photo { min-height: 172px; }
+  .poster__photo { position: absolute; inset: 0 0 0 32%; z-index: 1; }
+  .poster__photo img {
+    width: 100%; height: 100%; display: block;
+    object-fit: cover;
+    /* per-photo object-position is set inline — a face is rarely dead centre */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 36%);
+            mask-image: linear-gradient(to right, transparent 0%, #000 36%);
+  }
+  /* Keeps the message readable wherever the photo happens to be bright. */
+  .poster__scrim {
+    position: absolute; inset: 0; z-index: 2; pointer-events: none;
+    background: linear-gradient(to right,
+      var(--poster-bg) 24%,
+      color-mix(in srgb, var(--poster-bg) 60%, transparent) 48%,
+      transparent 70%);
+  }
+  .poster--photo .poster__msg { max-width: 62%; }
+  /* The CC licences require this to be visible. Small is fine, hidden is not. */
+  .poster__credit {
+    position: absolute; right: .6rem; bottom: .35rem; z-index: 4; margin: 0;
+    font-family: var(--font-data);
+    font-size: .54rem; letter-spacing: .04em;
+    color: var(--muted);
+  }
+  .poster__credit a { color: inherit; text-underline-offset: 2px; }
   .poster__art {
     position: absolute;
     right: -12px;
@@ -756,11 +785,44 @@
     // and renders exactly as before.
     function poster(it) {
       var p = el('div', 'poster');
-      var art = el('div', 'poster__art');
-      var tpl = document.getElementById('motif-' + slug(it.category));
-      if (tpl) art.appendChild(tpl.content.cloneNode(true));
-      p.appendChild(art);
+
+      if (it.photo) {
+        // A licensed photograph, displayed unmodified — the fade and the scrim
+        // are CSS layers, so the file stays as published and the licence's
+        // ShareAlike clause has nothing to attach to.
+        p.className = 'poster poster--photo';
+        var wrap = el('div', 'poster__photo');
+        var img = document.createElement('img');
+        img.src = it.photo.file;
+        img.alt = it.photo.alt || '';
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        if (it.photo.position) img.style.objectPosition = it.photo.position;
+        wrap.appendChild(img);
+        p.appendChild(wrap);
+        p.appendChild(el('div', 'poster__scrim'));
+      } else {
+        var art = el('div', 'poster__art');
+        var tpl = document.getElementById('motif-' + slug(it.category));
+        if (tpl) art.appendChild(tpl.content.cloneNode(true));
+        p.appendChild(art);
+      }
+
       p.appendChild(el('p', 'poster__msg', it.message));
+
+      if (it.photo && it.photo.credit) {
+        var c = el('p', 'poster__credit');
+        c.appendChild(document.createTextNode(it.photo.credit));
+        if (it.photo.licence_url) {
+          c.appendChild(document.createTextNode(' · '));
+          var a = el('a', null, 'licence');
+          a.href = it.photo.licence_url;
+          a.target = '_blank';
+          a.rel = 'noopener noreferrer';
+          c.appendChild(a);
+        }
+        p.appendChild(c);
+      }
       return p;
     }
 

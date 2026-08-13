@@ -123,7 +123,14 @@
       "players": null,
       "status": "To Try",
       "added": "2025-06-22",
-      "notes": "Drive title: מייקל ג'ורדן - החשיבות של הצד המנטלי והקושי שבו"
+      "notes": "Drive title: מייקל ג'ורדן - החשיבות של הצד המנטלי והקושי שבו",
+      "photo": {
+        "file": "img/michael-jordan-1985-by-uncredited-public-domain.jpg",
+        "alt": "Michael Jordan dunking at the 1985 slam dunk contest.",
+        "credit": "Photo: Uncredited · Public domain",
+        "licence_url": "https://en.wikipedia.org/wiki/Public_domain",
+        "position": "62% 20%"
+      }
     },
     {
       "id": "m-12iTHlRC",
@@ -257,7 +264,14 @@
       "players": null,
       "status": "To Try",
       "added": "2025-06-14",
-      "notes": "Drive title: סאן אנטוניו גרג פופוביץ - אמירת אמת לשחקנים כי הם בעלי מסוגלות להתמודד"
+      "notes": "Drive title: סאן אנטוניו גרג פופוביץ - אמירת אמת לשחקנים כי הם בעלי מסוגלות להתמודד",
+      "photo": {
+        "file": "img/gregg-popovich-by-mike-cc-by-sa-2-0.jpg",
+        "alt": "Gregg Popovich standing on the sideline during a game.",
+        "credit": "Photo: Mike · CC BY-SA 2.0",
+        "licence_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+        "position": "48% 10%"
+      }
     },
     {
       "id": "m-1EicPQDP",
@@ -506,7 +520,14 @@
       "players": null,
       "status": "To Try",
       "added": "2025-06-09",
-      "notes": "Drive title: יאניס - צעדים בדרך להצלחה"
+      "notes": "Drive title: יאניס - צעדים בדרך להצלחה",
+      "photo": {
+        "file": "img/giannis-antetokounmpo-by-keith-allison-cc-by-sa-2-0.jpg",
+        "alt": "Giannis Antetokounmpo in a Milwaukee Bucks jersey.",
+        "credit": "Photo: Keith Allison · CC BY-SA 2.0",
+        "licence_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+        "position": "52% 6%"
+      }
     },
     {
       "id": "m-1yvW-88l",
@@ -526,7 +547,14 @@
       "players": null,
       "status": "To Try",
       "added": "2025-04-03",
-      "notes": "Drive title: פפ גווארדיולה - נקסט פליי מנטליטי"
+      "notes": "Drive title: פפ גווארדיולה - נקסט פליי מנטליטי",
+      "photo": {
+        "file": "img/pep-guardiola-by-steffen-prodorf-crop-by-arsenalghanapartey-cc-by-sa-4-0.jpg",
+        "alt": "Pep Guardiola watching from the touchline.",
+        "credit": "Photo: Steffen Prößdorf · CC BY-SA 4.0",
+        "licence_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "position": "52% 5%"
+      }
     },
     {
       "id": "m-1uO84sqY",
@@ -584,7 +612,14 @@
       "players": null,
       "status": "To Try",
       "added": "2025-03-02",
-      "notes": "Drive title: קלופ ערכים-video-export-2025-02-03"
+      "notes": "Drive title: קלופ ערכים-video-export-2025-02-03",
+      "photo": {
+        "file": "img/jurgen-klopp-by-paul-robinson-cc-by-sa-2-0.jpg",
+        "alt": "Jürgen Klopp on the pitch in a Liverpool coat.",
+        "credit": "Photo: Paul Robinson · CC BY-SA 2.0",
+        "licence_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+        "position": "50% 6%"
+      }
     },
     {
       "id": "m-1zAL_FVO",
@@ -793,7 +828,14 @@
       "players": null,
       "status": "To Try",
       "added": "2023-10-29",
-      "notes": "Drive title: סטף קארי - התמודדות עם לחץ דרך משהו טוב"
+      "notes": "Drive title: סטף קארי - התמודדות עם לחץ דרך משהו טוב",
+      "photo": {
+        "file": "img/stephen-curry-by-clement-bardot-cc-by-sa-4-0.jpg",
+        "alt": "Stephen Curry in a Team USA jersey at the 2024 Olympic Games.",
+        "credit": "Photo: Clément Bardot · CC BY-SA 4.0",
+        "licence_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "position": "50% 12%"
+      }
     },
     {
       "id": "m-1L87Rigw",
