@@ -1,0 +1,671 @@
+<meta charset="utf-8">
+<title>Drill Library</title>
+<style>
+  :root {
+    --bg: #EDEEE9;
+    --surface: #FFFFFF;
+    --surface-2: #E4E6DF;
+    --line: #D2D7CE;
+    --line-soft: #E1E4DC;
+    --text: #16201D;
+    --muted: #5E6C66;
+    --accent: #B8451A;
+    --accent-ink: #FFFFFF;
+    --s-try: #8A6D0E;
+    --s-good: #1F7D50;
+    --s-no: #7C736B;
+
+    --font-ui: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif;
+    --font-data: "Cascadia Mono", Consolas, ui-monospace, "SF Mono", Menlo, monospace;
+
+    --r: 10px;
+    --shadow: 0 1px 2px rgba(22, 32, 29, .06), 0 6px 18px -12px rgba(22, 32, 29, .28);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #131A19;
+      --surface: #1B2523;
+      --surface-2: #222E2B;
+      --line: #33423E;
+      --line-soft: #283532;
+      --text: #E8EDE9;
+      --muted: #94A39D;
+      --accent: #E4622E;
+      --accent-ink: #14100D;
+      --s-try: #DDBB44;
+      --s-good: #55C08C;
+      --s-no: #8D847C;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .35), 0 8px 22px -14px rgba(0, 0, 0, .8);
+    }
+  }
+
+  :root[data-theme="light"] {
+    --bg: #EDEEE9;
+    --surface: #FFFFFF;
+    --surface-2: #E4E6DF;
+    --line: #D2D7CE;
+    --line-soft: #E1E4DC;
+    --text: #16201D;
+    --muted: #5E6C66;
+    --accent: #B8451A;
+    --accent-ink: #FFFFFF;
+    --s-try: #8A6D0E;
+    --s-good: #1F7D50;
+    --s-no: #7C736B;
+    --shadow: 0 1px 2px rgba(22, 32, 29, .06), 0 6px 18px -12px rgba(22, 32, 29, .28);
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #131A19;
+    --surface: #1B2523;
+    --surface-2: #222E2B;
+    --line: #33423E;
+    --line-soft: #283532;
+    --text: #E8EDE9;
+    --muted: #94A39D;
+    --accent: #E4622E;
+    --accent-ink: #14100D;
+    --s-try: #DDBB44;
+    --s-good: #55C08C;
+    --s-no: #8D847C;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .35), 0 8px 22px -14px rgba(0, 0, 0, .8);
+  }
+
+  * { box-sizing: border-box; }
+
+  .app {
+    font-family: var(--font-ui);
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 0 0 4rem;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+  }
+
+  /* ---- masthead: half-court arc as the one flourish ---- */
+  .masthead {
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--line);
+    background: var(--surface);
+  }
+  .masthead::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -200px;
+    width: 340px;
+    height: 340px;
+    transform: translateX(-50%);
+    border: 1.5px solid var(--line);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .masthead__inner {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: .75rem 1.5rem;
+    padding-top: 1.9rem;
+    padding-bottom: 1.9rem;
+  }
+  .brand h1 {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -.01em;
+    text-wrap: balance;
+  }
+  .brand p {
+    margin: .35rem 0 0;
+    color: var(--muted);
+    font-size: .9rem;
+  }
+  .tally {
+    font-family: var(--font-data);
+    font-variant-numeric: tabular-nums;
+    font-size: .72rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+    text-align: right;
+  }
+  .tally b {
+    color: var(--text);
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    display: block;
+  }
+
+  /* ---- controls ---- */
+  .controls {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: color-mix(in srgb, var(--bg) 92%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .controls__inner {
+    display: flex;
+    flex-direction: column;
+    gap: .55rem;
+    padding-top: .85rem;
+    padding-bottom: .85rem;
+  }
+
+  .search {
+    display: flex;
+    align-items: center;
+    gap: .55rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    padding: 0 .8rem;
+    margin-bottom: .25rem;
+  }
+  .search:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent);
+  }
+  .search svg { flex: none; width: 16px; height: 16px; stroke: var(--muted); }
+  .search input {
+    flex: 1;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 1rem;
+    padding: .68rem 0;
+    min-width: 0;
+  }
+  .search input::placeholder { color: var(--muted); }
+
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .38rem;
+  }
+  .filters__label {
+    font-family: var(--font-data);
+    font-size: .64rem;
+    letter-spacing: .11em;
+    text-transform: uppercase;
+    color: var(--muted);
+    width: 5.2rem;
+    flex: none;
+  }
+
+  .chip {
+    font: inherit;
+    font-size: .81rem;
+    line-height: 1;
+    padding: .42rem .66rem;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--muted);
+    cursor: pointer;
+    transition: background .12s ease, color .12s ease, border-color .12s ease;
+  }
+  .chip:hover { border-color: color-mix(in srgb, var(--c, var(--text)) 45%, var(--line)); color: var(--text); }
+  .chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .chip[aria-pressed="true"] {
+    color: var(--c, var(--text));
+    border-color: color-mix(in srgb, var(--c, var(--text)) 55%, transparent);
+    background: color-mix(in srgb, var(--c, var(--text)) 15%, var(--surface));
+    font-weight: 600;
+  }
+  .chip--reset { margin-left: auto; color: var(--accent); border-color: transparent; background: transparent; }
+  .chip--reset:hover { background: color-mix(in srgb, var(--accent) 12%, transparent); border-color: transparent; }
+
+  /* ---- category hues: one --c drives chip + card marker ---- */
+  [data-cat="Warm-Up"]          { --c: #64720F; }
+  [data-cat="Ball Handling"]    { --c: #6B4CA0; }
+  [data-cat="Finishing"]        { --c: #9A6613; }
+  [data-cat="Shooting"]         { --c: #A83E52; }
+  [data-cat="Footwork & Moves"] { --c: #1F7D6B; }
+  [data-cat="Defense"]          { --c: #2C6DA8; }
+  [data-cat="Team Play"]        { --c: #4A5A8C; }
+  [data-cat="Athleticism"]      { --c: #6E675C; }
+  /* Film Room categories */
+  [data-cat="Losing & Failure"]    { --c: #8C3B3B; }
+  [data-cat="Work Ethic"]          { --c: #8A5A12; }
+  [data-cat="Mind & Emotion"]      { --c: #4A5FA8; }
+  [data-cat="Confidence"]          { --c: #2E7D5B; }
+  [data-cat="Team & Trust"]        { --c: #6B4CA0; }
+  [data-cat="Coaching"]            { --c: #2C6DA8; }
+  [data-cat="Role & Attitude"]     { --c: #A83E52; }
+  [data-cat="Parents & Education"] { --c: #64720F; }
+
+  @media (prefers-color-scheme: dark) {
+    [data-cat="Warm-Up"]          { --c: #B9CC63; }
+    [data-cat="Ball Handling"]    { --c: #B79AE0; }
+    [data-cat="Finishing"]        { --c: #E0A44A; }
+    [data-cat="Shooting"]         { --c: #E08C9A; }
+    [data-cat="Footwork & Moves"] { --c: #5FBFAE; }
+    [data-cat="Defense"]          { --c: #7FB3E0; }
+    [data-cat="Team Play"]        { --c: #9AA8D6; }
+    [data-cat="Athleticism"]      { --c: #ADA79C; }
+    [data-cat="Losing & Failure"]    { --c: #E09595; }
+    [data-cat="Work Ethic"]          { --c: #DFAE5C; }
+    [data-cat="Mind & Emotion"]      { --c: #93A7E0; }
+    [data-cat="Confidence"]          { --c: #6FC49B; }
+    [data-cat="Team & Trust"]        { --c: #B79AE0; }
+    [data-cat="Coaching"]            { --c: #7FB3E0; }
+    [data-cat="Role & Attitude"]     { --c: #E08C9A; }
+    [data-cat="Parents & Education"] { --c: #B9CC63; }
+  }
+  :root[data-theme="light"] [data-cat="Warm-Up"]          { --c: #64720F; }
+  :root[data-theme="light"] [data-cat="Ball Handling"]    { --c: #6B4CA0; }
+  :root[data-theme="light"] [data-cat="Finishing"]        { --c: #9A6613; }
+  :root[data-theme="light"] [data-cat="Shooting"]         { --c: #A83E52; }
+  :root[data-theme="light"] [data-cat="Footwork & Moves"] { --c: #1F7D6B; }
+  :root[data-theme="light"] [data-cat="Defense"]          { --c: #2C6DA8; }
+  :root[data-theme="light"] [data-cat="Team Play"]        { --c: #4A5A8C; }
+  :root[data-theme="light"] [data-cat="Athleticism"]      { --c: #6E675C; }
+  :root[data-theme="light"] [data-cat="Losing & Failure"]    { --c: #8C3B3B; }
+  :root[data-theme="light"] [data-cat="Work Ethic"]          { --c: #8A5A12; }
+  :root[data-theme="light"] [data-cat="Mind & Emotion"]      { --c: #4A5FA8; }
+  :root[data-theme="light"] [data-cat="Confidence"]          { --c: #2E7D5B; }
+  :root[data-theme="light"] [data-cat="Team & Trust"]        { --c: #6B4CA0; }
+  :root[data-theme="light"] [data-cat="Coaching"]            { --c: #2C6DA8; }
+  :root[data-theme="light"] [data-cat="Role & Attitude"]     { --c: #A83E52; }
+  :root[data-theme="light"] [data-cat="Parents & Education"] { --c: #64720F; }
+  :root[data-theme="dark"] [data-cat="Warm-Up"]          { --c: #B9CC63; }
+  :root[data-theme="dark"] [data-cat="Ball Handling"]    { --c: #B79AE0; }
+  :root[data-theme="dark"] [data-cat="Finishing"]        { --c: #E0A44A; }
+  :root[data-theme="dark"] [data-cat="Shooting"]         { --c: #E08C9A; }
+  :root[data-theme="dark"] [data-cat="Footwork & Moves"] { --c: #5FBFAE; }
+  :root[data-theme="dark"] [data-cat="Defense"]          { --c: #7FB3E0; }
+  :root[data-theme="dark"] [data-cat="Team Play"]        { --c: #9AA8D6; }
+  :root[data-theme="dark"] [data-cat="Athleticism"]      { --c: #ADA79C; }
+  :root[data-theme="dark"] [data-cat="Losing & Failure"]    { --c: #E09595; }
+  :root[data-theme="dark"] [data-cat="Work Ethic"]          { --c: #DFAE5C; }
+  :root[data-theme="dark"] [data-cat="Mind & Emotion"]      { --c: #93A7E0; }
+  :root[data-theme="dark"] [data-cat="Confidence"]          { --c: #6FC49B; }
+  :root[data-theme="dark"] [data-cat="Team & Trust"]        { --c: #B79AE0; }
+  :root[data-theme="dark"] [data-cat="Coaching"]            { --c: #7FB3E0; }
+  :root[data-theme="dark"] [data-cat="Role & Attitude"]     { --c: #E08C9A; }
+  :root[data-theme="dark"] [data-cat="Parents & Education"] { --c: #B9CC63; }
+
+  /* ---- grid ---- */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1rem;
+    padding-top: 1.4rem;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: .65rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    padding: 1rem 1.05rem 1.05rem;
+    box-shadow: var(--shadow);
+    transition: opacity .15s ease, border-color .15s ease;
+  }
+  .card:hover { border-color: color-mix(in srgb, var(--c) 50%, var(--line)); }
+  .card[data-status="Not For Us"] { opacity: .5; }
+  .card[data-status="Not For Us"]:hover { opacity: 1; }
+
+  .card__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .6rem;
+  }
+  .tag-cat {
+    font-size: .73rem;
+    font-weight: 600;
+    line-height: 1;
+    padding: .34rem .58rem;
+    border-radius: 5px;
+    color: var(--c);
+    background: color-mix(in srgb, var(--c) 14%, transparent);
+    white-space: nowrap;
+  }
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: .38rem;
+    font-size: .73rem;
+    color: var(--sc);
+    white-space: nowrap;
+  }
+  .status::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--sc);
+    flex: none;
+  }
+  [data-status="To Try"]     { --sc: var(--s-try); }
+  [data-status="Works Well"] { --sc: var(--s-good); }
+  [data-status="Not For Us"] { --sc: var(--s-no); }
+
+  .card__title {
+    margin: 0;
+    font-size: 1.06rem;
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: -.005em;
+    text-wrap: balance;
+  }
+  .card__summary {
+    margin: 0;
+    font-size: .89rem;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+  .card__notes {
+    margin: 0;
+    font-size: .81rem;
+    line-height: 1.55;
+    color: var(--muted);
+    border-left: 2px solid color-mix(in srgb, var(--c) 40%, var(--line));
+    padding-left: .6rem;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .3rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .tags li {
+    font-size: .73rem;
+    color: var(--muted);
+    background: var(--surface-2);
+    border-radius: 4px;
+    padding: .24rem .46rem;
+    line-height: 1.2;
+  }
+
+  .card__foot {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: .6rem;
+    margin-top: auto;
+    padding-top: .8rem;
+    border-top: 1px solid var(--line-soft);
+  }
+  .meta {
+    font-family: var(--font-data);
+    font-size: .68rem;
+    letter-spacing: .05em;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+    display: flex;
+    flex-direction: column;
+    gap: .22rem;
+    min-width: 0;
+  }
+  .meta .kind { text-transform: uppercase; letter-spacing: .09em; }
+  .meta .src {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .open {
+    flex: none;
+    font: inherit;
+    font-size: .81rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--accent);
+    border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+    border-radius: 7px;
+    padding: .42rem .7rem;
+    transition: background .12s ease, color .12s ease;
+  }
+  .open:hover { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  .open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .noclip {
+    flex: none;
+    font-family: var(--font-data);
+    font-size: .66rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px dashed var(--line);
+    border-radius: 7px;
+    padding: .42rem .6rem;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--muted);
+    padding: 4rem 1rem;
+    font-size: .95rem;
+  }
+  .empty[hidden] { display: none; }
+
+  .foot-note {
+    margin-top: 2.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--line);
+    font-family: var(--font-data);
+    font-size: .68rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem 1.2rem;
+    justify-content: space-between;
+  }
+
+  @media (max-width: 700px) {
+    .masthead__inner { padding-top: 1.4rem; padding-bottom: 1.4rem; }
+    .brand h1 { font-size: 1.32rem; }
+    .grid { grid-template-columns: 1fr; padding-top: 1.1rem; }
+    .filters__label { width: 100%; margin-bottom: .1rem; }
+    .chip--reset { margin-left: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+
+<div class="app">
+  <header class="masthead">
+    <div class="wrap masthead__inner">
+      <div class="brand">
+        <h1>Drill Library</h1>
+        <p>Practice material, small-sided games and teaching clips</p>
+      </div>
+      <div class="tally">
+        <b id="tally-num">0</b>
+        showing
+      </div>
+    </div>
+  </header>
+
+  <div class="controls">
+    <div class="wrap controls__inner">
+      <label class="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path>
+        </svg>
+        <input id="q" type="search" autocomplete="off">
+      </label>
+
+      <div class="filters" id="cats"><span class="filters__label"></span></div>
+      <div class="filters" id="types"><span class="filters__label"></span></div>
+      <div class="filters" id="stats"><span class="filters__label"></span></div>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <div class="grid" id="grid"></div>
+    <p class="empty" id="empty" hidden>Nothing matches those filters.</p>
+    <div class="foot-note">
+      <span>Updated 2026-08-06</span>
+      <span>86 entries</span>
+    </div>
+  </main>
+</div>
+
+<script id="data" type="application/json">{"meta": {"title": "Drill Library", "subtitle": "Practice material, small-sided games and teaching clips", "updated": "2026-08-06", "categories": ["Warm-Up", "Ball Handling", "Finishing", "Shooting", "Footwork & Moves", "Defense", "Team Play", "Athleticism"], "types": ["Drill", "Small-Sided Game", "Film Clip", "Concept"], "statuses": ["To Try", "Works Well", "Not For Us"]}, "items": [{"id": "chair-1v1", "url": null, "source": null, "title": "1v1 Around the Chair", "summary": "Offense starts by circling a chair, so the rep begins with the defender already in a live stance. Simple way to open practice with a contested first step.", "category": "Warm-Up", "type": "Small-Sided Game", "tags": ["1v1", "first step", "no equipment"], "players": "2", "status": "To Try", "added": "2026-08-06", "notes": "From your doc — no clip attached."}, {"id": "1v2-cone-touch", "url": null, "source": null, "title": "1v2 — Back to Basket, First to Touch the Cone", "summary": "Two defenders, one attacker with his back to the basket. Whoever touches the cone first earns the advantage, so the read happens before the catch.", "category": "Warm-Up", "type": "Small-Sided Game", "tags": ["1v2", "back to basket", "reaction"], "players": "3", "status": "To Try", "added": "2026-08-06", "notes": "From your doc — no clip attached."}, {"id": "line-foot-1v1", "url": null, "source": null, "title": "Line Foot 1v1", "summary": "The defender may not move his foot until the attacker leaves. Builds a genuine closing-distance problem instead of a static stance.", "category": "Warm-Up", "type": "Small-Sided Game", "tags": ["1v1", "constraint", "closeout"], "players": "2", "status": "To Try", "added": "2026-08-06", "notes": "From your doc — no clip attached."}, {"id": "1838301825813914085", "url": "https://x.com/transformbball/status/1838301825813914085", "source": "transformbball", "title": "Chameleon 1v1 — Three Starting Conditions", "summary": "One game, three reads depending on where it starts: (a) close to the rim with the back to the basket, (b) close to the rim off the shoulder — can also start from the dribble with a hand down, (c) far from the rim playing advantage-or-clock.", "category": "Warm-Up", "type": "Small-Sided Game", "tags": ["1v1", "variations", "advantage or clock", "back to basket"], "players": "2", "status": "To Try", "added": "2026-08-06", "notes": "X link — caption could not be pulled; described from your notes."}, {"id": "Cy1U08bulTS", "url": "https://www.instagram.com/reel/Cy1U08bulTS/", "source": "oneyharrison", "title": "Feel Hand 1v1 — Close the Gap, Attack the Rib Cage", "summary": "Starts tight with the defender holding the advantage. The attacker veers into the defender on the drive, which improves both the driving angle and the finishing angle.", "category": "Finishing", "type": "Drill", "tags": ["feel hand", "contact", "driving angles", "1v1"], "players": "2", "status": "To Try", "added": "2026-08-06", "notes": "Your framing is the intel/feel hand; the source frames it as closing the gap into the rib cage. Same rep, two coaching cues."}, {"id": "C0h-DuvPdsP", "url": "https://www.instagram.com/reel/C0h-DuvPdsP/", "source": "hoopin_mitch", "title": "Mikan Drill With a Partner", "summary": "Mikan with a live second player added, so the touch work happens under interference instead of unopposed.", "category": "Finishing", "type": "Drill", "tags": ["mikan", "touch", "both hands"], "players": "2", "status": "To Try", "added": "2026-08-06", "notes": ""}, {"id": "CxAr1s4NPOG", "url": "https://www.instagram.com/reel/CxAr1s4NPOG/", "source": "the.secret.trainer", "title": "1v1 Off a Chair Jump", "summary": "Finishing in a confined space where the player has to invent the solution. Constrained area plus live defense is what produces the unexpected finishes.", "category": "Finishing", "type": "Small-Sided Game", "tags": ["creativity", "confined space", "1v1"], "players": "2", "status": "To Try", "added": "2026-08-06", "notes": ""}, {"id": "C-F1NTHx-zi", "url": "https://www.instagram.com/reel/C-F1NTHx-zi/", "source": "coachjoshfan", "title": "1v1 From a Disadvantage — Finishing", "summary": "Offense starts behind, so every finish is contested from a trailing position. Sold as a defensive-effort drill as much as a finishing one.", "category": "Finishing", "type": "Small-Sided Game", "tags": ["disadvantage", "contested finish", "effort"], "players": "2", "status": "To Try", "added": "2026-08-06", "notes": ""}, {"id": "DAEflWkyiD0", "url": "https://www.instagram.com/reel/DAEflWkyiD0/", "source": "coachjoshfan", "title": "Nuisance Race 1v1 — Puzzle Per Rep", "summary": "Each rep is a small problem to solve, and the rules change to steer the focus: off hand only, must initiate contact before the finish, finish on the opposite side from where you started, or vary the starting position. Players can also be told to strip or block each other.", "category": "Warm-Up", "type": "Small-Sided Game", "tags": ["constraints", "off hand", "contact", "problem solving"], "players": "2", "status": "To Try", "added": "2026-08-06", "notes": "The source calls this his go-to offseason warm-up. The constraint list is the valuable part."}, {"id": "C_TbPJANual", "url": "https://www.instagram.com/reel/C_TbPJANual/", "source": "the.secret.trainer", "title": "Floater 1v1 — Defender Touches the Baseline", "summary": "Offense starts on either wing with the ball, defense starts on the smiley. Defense moves first and touches the baseline; offense responds and must attack middle toward the free-throw line, finishing with an open-hand floater off either foot or off two. Defense contests.", "category": "Finishing", "type": "Small-Sided Game", "tags": ["floater", "middle drive", "reaction"], "players": "2", "status": "To Try", "added": "2026-08-06", "notes": "You flagged this as good floater work — the source built the whole rule set around exactly that."}, {"id": "C_i8QwpNx8Q", "url": "https://www.instagram.com/reel/C_i8QwpNx8Q/", "source": "the.secret.trainer", "title": "Make It Take It 1v1", "summary": "Fast-paced finishing game — scorer keeps the ball, so runs of possession go to whoever is finishing.", "category": "Finishing", "type": "Small-Sided Game", "tags": ["make it take it", "pace", "competitive"], "players": "2", "status": "To Try", "added": "2026-08-06", "notes": ""}, {"id": "C_v2Rm-tb55", "url": "https://www.instagram.com/reel/C_v2Rm-tb55/", "source": "the.secret.trainer", "title": "Take the Ball — Finishing Warm-Up", "summary": "Both players stand close to the basket, one holding the ball. The other works to take it; whoever wins it finishes, the loser plays defense. Switch sides and holder every rep, one point per make, live offensive rebound, first to five.", "category": "Warm-Up", "type": "Small-Sided Game", "tags": ["physicality", "competitive", "first to 5"], "players": "2", "status": "To Try", "added": "2026-08-06", "notes": "You noted it also works from the dribble and with two players a side."}, {"id": "DAYrTSLN8XP", "url": "https://www.instagram.com/reel/DAYrTSLN8XP/", "source": "the.secret.trainer", "title": "Rock, Paper, Scissors Finishing", "summary": "Two players face each other side-on to the basket in the midrange, with a third holding a ball slightly behind. They play rock-paper-scissors; the winner takes the ball and attacks with a two-dribble maximum.", "category": "Warm-Up", "type": "Small-Sided Game", "tags": ["reaction", "midrange", "two dribble limit", "fun"], "players": "3", "status": "To Try", "added": "2026-08-06", "notes": ""}, {"id": "C-JkZkTNLxj", "url": "https://www.instagram.com/reel/C-JkZkTNLxj/", "source": "cramer_basketball", "title": "Transition 1v1 — Defender Picks the Angle", "summary": "The offensive player gets an advantage turning the corner while the defender chooses an angle that gives him a chance at a stop. Difficulty is tuned by adjusting the starting gap.", "category": "Team Play", "type": "Small-Sided Game", "tags": ["transition", "angles", "small sided games"], "players": "2", "status": "To Try", "added": "2026-08-06", "notes": ""}, {"id": "DA_N2whNy_f", "url": "https://www.instagram.com/reel/DA_N2whNy_f/", "source": "europrobasket", "title": "Shoulder Ball 1v1 — Reaction Start", "summary": "Reaction-based start built around agility and split-second decisions rather than a scripted first move.", "category": "Warm-Up", "type": "Small-Sided Game", "tags": ["reaction", "agility", "1v1"], "players": "2", "status": "To Try", "added": "2026-08-06", "notes": ""}, {"id": "1837780353785667661", "url": "https://x.com/transformbball/status/1837780353785667661", "source": "transformbball", "title": "Tag With a Flag in the Shorts", "summary": "Tag game where a cloth tucked into the shorts is the target. Gets change of direction and evasion in before anyone touches a ball.", "category": "Warm-Up", "type": "Drill", "tags": ["tag game", "change of direction", "no ball", "youth"], "players": "6+", "status": "To Try", "added": "2026-08-06", "notes": "X link — caption could not be pulled; described from your notes."}, {"id": "1811828005074854170", "url": "https://x.com/transformbball/status/1811828005074854170", "source": "transformbball", "title": "Ball Control Warm-Up — Goalkeeper Variation", "summary": "Ball-control warm-up borrowed from goalkeeper training. Handling under unfamiliar demands rather than standard stationary dribbling.", "category": "Ball Handling", "type": "Drill", "tags": ["ball control", "cross-sport", "warm-up"], "players": "2+", "status": "To Try", "added": "2026-08-06", "notes": "X link — caption could not be pulled; described from your notes."}, {"id": "1828208483449139529", "url": "https://x.com/BucketsBBALL1/status/1828208483449139529", "source": "BucketsBBALL1", "title": "Run Around the Cone — Special Situation Starter", "summary": "Players run around a cone (or around the coach) to start the possession, which scrambles the matchup and creates a live special-situation start.", "category": "Team Play", "type": "Small-Sided Game", "tags": ["special situations", "scramble", "transition"], "players": "6+", "status": "To Try", "added": "2026-08-06", "notes": "Appeared twice in your doc (warm-up games and small-sided games) — merged here."}, {"id": "C1w0mbbsCoT", "url": "https://www.instagram.com/reel/C1w0mbbsCoT/", "source": null, "title": "Stairs for Teaching Footwork", "summary": "Uses a set of stairs as the constraint for teaching footwork patterns — the step height forces the sequencing you want.", "category": "Footwork & Moves", "type": "Drill", "tags": ["footwork", "stairs", "teaching progression"], "players": "1", "status": "To Try", "added": "2026-08-06", "notes": "Caption blocked — described from your notes."}, {"id": "1722313628743831596", "url": "https://twitter.com/IowaSkillsAcad/status/1722313628743831596", "source": "IowaSkillsAcad", "title": "Crossover — Teaching Progression", "summary": "Staged breakdown for teaching the crossover, built as a progression rather than a single demonstration.", "category": "Ball Handling", "type": "Drill", "tags": ["crossover", "teaching progression", "breakdown"], "players": "1", "status": "To Try", "added": "2026-08-06", "notes": "Second link in your doc for the same idea: https://www.facebook.com/reel/713070230868678"}, {"id": "CxlJRfoxWZ8", "url": "https://www.instagram.com/reel/CxlJRfoxWZ8/", "source": "jlawbball", "title": "Euro Step — Single-Leg Stability", "summary": "Balance work isolating each leg separately so the player can absorb and redirect on either foot in a live scoring situation.", "category": "Footwork & Moves", "type": "Drill", "tags": ["euro step", "balance", "single leg", "stability"], "players": "1", "status": "To Try", "added": "2026-08-06", "notes": "Source demos it with Hailey Van Lith."}, {"id": "C-aAa54gaVB", "url": "https://www.instagram.com/reel/C-aAa54gaVB/", "source": "overtime.hk", "title": "Cone Slides for a Low Dribble", "summary": "Cone slides force the low body position most players can't reach on their own. One rep under the cone teaches the shoulder drop that years of unconstrained reps won't.", "category": "Ball Handling", "type": "Drill", "tags": ["low dribble", "cone", "body position", "shoulder drop"], "players": "1", "status": "To Try", "added": "2026-08-06", "notes": "Strong argument in the caption for constraint over instruction."}, {"id": "C9ue30Yp3-u", "url": "https://www.instagram.com/reel/C9ue30Yp3-u/", "source": "chrisjohnsonhoops", "title": "Ball Control Against Contact", "summary": "Handling drill built to beat defenders who hand check or play physical. Also works as a 1v1 start.", "category": "Ball Handling", "type": "Drill", "tags": ["contact", "hand check", "physicality"], "players": "2", "status": "To Try", "added": "2026-08-06", "notes": "Demoed with Tyrese Maxey."}, {"id": "DAHjnbkpoUZ", "url": "https://www.instagram.com/reel/DAHjnbkpoUZ/", "source": "ndo.fitnesss", "title": "Punch — Breakdown", "summary": "Punch move broken into teachable pieces, run with a U14/U16 group.", "category": "Footwork & Moves", "type": "Drill", "tags": ["punch", "breakdown", "U14", "U16"], "players": "1", "status": "To Try", "added": "2026-08-06", "notes": "You noted the step communication in this one is clean."}, {"id": "DABCc7hxtb8", "url": "https://www.instagram.com/reel/DABCc7hxtb8/", "source": "thescoringfactory", "title": "Pro Hoop Finish — Jump Over the Cone", "summary": "Footwork and coordination drill with a lot of moving pieces at once. Explicitly flagged by the source as not for beginners.", "category": "Finishing", "type": "Drill", "tags": ["coordination", "cone", "advanced"], "players": "1", "status": "To Try", "added": "2026-08-06", "notes": "Check the level before running this with a young group."}, {"id": "DAePZ-LN2Jr", "url": "https://www.instagram.com/reel/DAePZ-LN2Jr/", "source": null, "title": "Between the Legs — Teaching Progression", "summary": "Staged teaching of the between-the-legs dribble.", "category": "Ball Handling", "type": "Drill", "tags": ["between the legs", "teaching progression"], "players": "1", "status": "To Try", "added": "2026-08-06", "notes": "Caption blocked — described from your notes."}, {"id": "1801691207321719115", "url": "https://x.com/CourtsideVault/status/1801691207321719115", "source": "CourtsideVault", "title": "Krzyzewski — Defensive Slides Into Closeout", "summary": "Coach K drill chaining defensive slides straight into the closeout, so the recovery is trained as one continuous action.", "category": "Defense", "type": "Drill", "tags": ["slides", "closeout", "recovery", "Krzyzewski"], "players": "1+", "status": "To Try", "added": "2026-08-06", "notes": "You marked this one as excellent. X link — caption could not be pulled."}, {"id": "fb-265108109516663", "url": "https://www.facebook.com/reel/265108109516663", "source": "Facebook", "title": "Defensive Slides + Nail Dribble (Cross Step)", "summary": "Slides paired with a nail dribble, teaching the cross step as the recovery tool when the slide alone won't cover the ground.", "category": "Defense", "type": "Drill", "tags": ["slides", "cross step", "nail", "recovery"], "players": "2", "status": "To Try", "added": "2026-08-06", "notes": "Appeared twice in your doc (defense and teaching clips) — merged here. Facebook caption could not be pulled."}, {"id": "DAboQsoSdqm", "url": "https://www.instagram.com/reel/DAboQsoSdqm/", "source": "pat.haggerty4", "title": "Red Zone Defense — Wall-Ups and Verticals", "summary": "LSU practicing defense without fouling: wall-ups and verticality, drilled on day one of practice so the habit is set before the season.", "category": "Defense", "type": "Drill", "tags": ["verticality", "wall up", "no fouls", "1v1", "paint"], "players": "2", "status": "To Try", "added": "2026-08-06", "notes": "Good fit for your red-zone framing — contest hard without reaching."}, {"id": "C8eIK9UPtCh", "url": "https://www.instagram.com/reel/C8eIK9UPtCh/", "source": "goldenlights_takayuki.maejima", "title": "Aggressiveness Drills", "summary": "Contact-heavy sequence for raising the aggression level of a group that plays too passively.", "category": "Defense", "type": "Drill", "tags": ["aggression", "contact", "toughness"], "players": "2+", "status": "To Try", "added": "2026-08-06", "notes": "Source posted it without a real caption — described from your notes."}, {"id": "Cr8hEqAgxUt", "url": "https://www.instagram.com/reel/Cr8hEqAgxUt/", "source": null, "title": "Advantage or Clock — With the Nudge", "summary": "The core advantage-or-clock game with the nudge used to set the starting advantage. In 2v2 add the principle of filling one pass away from the ball, and advance if you didn't get the pass.", "category": "Team Play", "type": "Small-Sided Game", "tags": ["advantage or clock", "nudge", "spacing", "2v2"], "players": "2-4", "status": "To Try", "added": "2026-08-06", "notes": "Caption blocked — described from your notes. This is your base game; several others are variations of it."}, {"id": "fb-404400599021622", "url": "https://www.facebook.com/watch/?v=404400599021622", "source": "Facebook", "title": "Hot Potato", "summary": "In 2v2 add an attacker in a reaction position. Can start from a guard spot with a player ready weak-side — if he closes too far and doesn't space, he runs.", "category": "Team Play", "type": "Small-Sided Game", "tags": ["hot potato", "spacing", "2v2", "reaction"], "players": "4", "status": "To Try", "added": "2026-08-06", "notes": "Facebook caption could not be pulled — described from your notes."}, {"id": "1837501990500270457", "url": "https://x.com/transformbball/status/1837501990500270457", "source": "transformbball", "title": "1v1 With One in the Middle", "summary": "In 2v2 the extra player sits one position away from the ball, working advantage-or-clock plus the rule that if you didn't get the pass, you advance.", "category": "Team Play", "type": "Small-Sided Game", "tags": ["advantage or clock", "2v2", "spacing", "off ball"], "players": "3-4", "status": "To Try", "added": "2026-08-06", "notes": "X link — caption could not be pulled; described from your notes."}, {"id": "C7v4uCFMQlU", "url": "https://www.instagram.com/reel/C7v4uCFMQlU/", "source": "hoopslabglobal", "title": "Body Fakes 1v1 — Mastering the Hesi", "summary": "Two parts: hesitation without the dribble, then hesitation with a dribble progression. Built to keep defenders guessing rather than to drill a fixed move.", "category": "Footwork & Moves", "type": "Drill", "tags": ["hesitation", "body fake", "1v1", "progression"], "players": "2", "status": "To Try", "added": "2026-08-06", "notes": ""}, {"id": "fb-3668603846718866", "url": "https://www.facebook.com/reel/3668603846718866", "source": "Facebook", "title": "1v1 — Five Situations", "summary": "Five distinct 1v1 starting situations run as one block, so players face the whole range instead of one repeated look.", "category": "Team Play", "type": "Small-Sided Game", "tags": ["1v1", "variations", "situations"], "players": "2", "status": "To Try", "added": "2026-08-06", "notes": "Facebook caption could not be pulled — described from your notes."}, {"id": "1836395478050623607", "url": "https://x.com/transformbball/status/1836395478050623607", "source": "transformbball", "title": "High Five — Off-Ball Movement", "summary": "Off-ball movement game where help is only legal after the pass. In 2v2 add a help defender who is allowed to arrive.", "category": "Team Play", "type": "Small-Sided Game", "tags": ["off ball", "help timing", "special situations", "2v2"], "players": "4", "status": "To Try", "added": "2026-08-06", "notes": "Appeared twice in your doc (1v1 games and small-sided games) — merged here. X caption could not be pulled."}, {"id": "CtcpnUVNbqh", "url": "https://www.instagram.com/reel/CtcpnUVNbqh/", "source": "hoopin_mitch", "title": "2v1 From Varied Starts", "summary": "2v1 launched from several different starting positions so the read changes each rep.", "category": "Team Play", "type": "Small-Sided Game", "tags": ["2v1", "advantage", "decision making"], "players": "3", "status": "To Try", "added": "2026-08-06", "notes": ""}, {"id": "C_jpYDHNDtW", "url": "https://www.instagram.com/p/C_jpYDHNDtW/", "source": "hoopin_mitch", "title": "1v1 — Touch the Line", "summary": "A line touch sets the starting advantage. Framed around the idea that a made layup can still be a defensive win if the contest was right.", "category": "Defense", "type": "Small-Sided Game", "tags": ["1v1", "contest", "recovery"], "players": "2", "status": "To Try", "added": "2026-08-06", "notes": "Useful cue for players who judge defense only by whether the shot went in."}, {"id": "C_1Q9Acy607", "url": "https://www.instagram.com/reel/C_1Q9Acy607/", "source": "jrr_hoops", "title": "Villanova 1v1 — Must Finish Off Two Feet", "summary": "1v1 variation with a hard constraint: every finish must come off a two-foot stop. Named Villanova by the source for exactly that scoring-off-two habit.", "category": "Finishing", "type": "Small-Sided Game", "tags": ["two feet", "jump stop", "constraint", "1v1"], "players": "2", "status": "To Try", "added": "2026-08-06", "notes": ""}, {"id": "C_hXFkNxJfu", "url": "https://www.instagram.com/reel/C_hXFkNxJfu/", "source": "folsomlakewbb", "title": "Handoff 1v1 to 2v1", "summary": "Two teams line up on one wing. Defense starts with the ball and hands it off so offense attacks middle, into a 2v1 with a wing and a corner player. The lone defender chooses: stop the ball, take away the wing, or take away the corner. Offense scores points for baskets, defense for stops. Roughly 2:30 per side, then switch offense/defense and switch sides of the court.", "category": "Team Play", "type": "Small-Sided Game", "tags": ["2v1", "handoff", "patience", "ball movement", "competitive"], "players": "8+", "status": "To Try", "added": "2026-08-06", "notes": "The source builds up to it: first handoff 1v1 alone for cutting the angle and finishes, then the same offensive setup with a coach on dummy D to teach the reads, jump stops, correct-hand passing and cut timing."}, {"id": "DAlUyomRKgr", "url": "https://www.instagram.com/p/DAlUyomRKgr/", "source": "byanymeansbasketball", "title": "1v1 Lateral Slides, Defender Facing the Basket", "summary": "Defensive-side player development — the defender starts facing the basket and has to reorient while sliding. The source treats this side of the ball as a genuine separator.", "category": "Defense", "type": "Drill", "tags": ["lateral slides", "orientation", "player development"], "players": "2", "status": "To Try", "added": "2026-08-06", "notes": ""}, {"id": "DAqiCeXSYPO", "url": "https://www.instagram.com/p/DAqiCeXSYPO/", "source": "byanymeansbasketball", "title": "Start Leaning on the Defender, Hands in the Shoulder Pocket", "summary": "The rep starts from contact. Getting the feet behind you and using that to create an explosive first step and separation is what makes attacking off the dribble easier.", "category": "Footwork & Moves", "type": "Drill", "tags": ["contact start", "first step", "separation", "shoulder pocket"], "players": "2", "status": "To Try", "added": "2026-08-06", "notes": ""}, {"id": "C_-zCjbvpNr", "url": "https://www.instagram.com/reel/C_-zCjbvpNr/", "source": "jon.basketball", "title": "1v1 for Off-Ball Movement — Cut or Backdoor", "summary": "Reading the moment to cut: front cut or backdoor. Offense stays calm and cuts to the rim when the defender touches the cone; the defense is trying to touch and recover.", "category": "Team Play", "type": "Small-Sided Game", "tags": ["off ball", "backdoor", "cutting", "reads"], "players": "2", "status": "To Try", "added": "2026-08-06", "notes": "You rated this one highly for off-ball work. Source caption is in Spanish."}, {"id": "C5i8g6IOWqm", "url": "https://www.instagram.com/reel/C5i8g6IOWqm/", "source": "primehoopss", "title": "4v4 — Help the Helper", "summary": "Man-to-man rotation game. Also teaches the offensive side of a collapsed defense — what's open once help commits. The source teaches man-to-man exclusively on the argument that youth players need to think as they play.", "category": "Team Play", "type": "Small-Sided Game", "tags": ["help the helper", "rotations", "man to man", "4v4"], "players": "8", "status": "To Try", "added": "2026-08-06", "notes": "Your doc also lists this clip under shooting fixes (knees too far forward/back) — that's a mislink, this clip is about defense."}, {"id": "C9kQ4vTMS1L", "url": "https://www.instagram.com/reel/C9kQ4vTMS1L/", "source": "pgc_coaching", "title": "Three-Point Line as the Backdoor Trigger", "summary": "Iowa uses the three-point line itself as the cue for backdoor cuts — a positional trigger players can read without a call.", "category": "Team Play", "type": "Film Clip", "tags": ["backdoor", "reads", "triggers", "cutting"], "players": "—", "status": "To Try", "added": "2026-08-06", "notes": "Good one to send players before teaching the concept live."}, {"id": "fb-1040358160796268", "url": "https://www.facebook.com/reel/1040358160796268", "source": "Facebook", "title": "Hand Down on the Get-Off — Kyrie", "summary": "Kyrie examples of dropping the hand as he comes out of the stance to clear the defender's reach.", "category": "Footwork & Moves", "type": "Film Clip", "tags": ["hand down", "get off", "Kyrie Irving"], "players": "—", "status": "To Try", "added": "2026-08-06", "notes": "Facebook caption could not be pulled — described from your notes."}, {"id": "Cxvo_Bhu9bZ", "url": "https://www.instagram.com/reel/Cxvo_Bhu9bZ/", "source": null, "title": "VEER Finish", "summary": "The veer finish — angling the body away from the help while keeping the driving line.", "category": "Finishing", "type": "Film Clip", "tags": ["veer", "finishing angles"], "players": "—", "status": "To Try", "added": "2026-08-06", "notes": "Caption blocked. You flagged a second, better link: https://www.youtube.com/watch?v=--M5yBFwIaA"}, {"id": "CyTZCwyOCWs", "url": "https://www.instagram.com/reel/CyTZCwyOCWs/", "source": null, "title": "Dribble Aggressiveness — Take the Defender's Hand Down", "summary": "Attacking the defender's active hand rather than avoiding it.", "category": "Ball Handling", "type": "Film Clip", "tags": ["aggression", "hand down", "contact"], "players": "—", "status": "To Try", "added": "2026-08-06", "notes": "Caption blocked — described from your notes."}, {"id": "C0t18zwOlZj", "url": "https://www.instagram.com/reel/C0t18zwOlZj/", "source": "dvelupsportselite", "title": "Stay Low and Keep Going — Kyrie", "summary": "Stay low and use the shoulder to protect the ball. Contact is what makes players lose balance or lose the ball, and core strength is the fix.", "category": "Ball Handling", "type": "Film Clip", "tags": ["stay low", "shoulder", "core strength", "Kyrie Irving"], "players": "—", "status": "To Try", "added": "2026-08-06", "notes": ""}, {"id": "CyjH283O555", "url": "https://www.instagram.com/reel/CyjH283O555/", "source": null, "title": "Slow Step", "summary": "The slow step — changing tempo to freeze the defender before accelerating.", "category": "Footwork & Moves", "type": "Film Clip", "tags": ["slow step", "change of pace"], "players": "—", "status": "To Try", "added": "2026-08-06", "notes": "Caption blocked — described from your notes."}, {"id": "Cxir9kkx_N0", "url": "https://www.instagram.com/reel/Cxir9kkx_N0/", "source": "skilled.game", "title": "Feel Hand — Shoulder Bumps vs Forearm", "summary": "Two different tools for two different jobs: shoulder bumps to create contact and buy extra space, the forearm to keep a defender off your inside hip. Know what you're trying to accomplish, then pick the technique — and don't shy away from contact when it's needed.", "category": "Footwork & Moves", "type": "Film Clip", "tags": ["feel hand", "shoulder bump", "forearm", "contact"], "players": "—", "status": "To Try", "added": "2026-08-06", "notes": ""}, {"id": "DAGdDrRxAcS", "url": "https://www.instagram.com/reel/DAGdDrRxAcS/", "source": "daybyday.basketball", "title": "Feel Hand — Trae Young", "summary": "Trae Young's off arm as the reference example for handling ball pressure.", "category": "Footwork & Moves", "type": "Film Clip", "tags": ["feel hand", "off arm", "ball pressure", "Trae Young"], "players": "—", "status": "To Try", "added": "2026-08-06", "notes": "Third clip in your feel-hand set, alongside oneyharrison and skilled.game."}, {"id": "CzJtP-3Ot4D", "url": "https://www.instagram.com/reel/CzJtP-3Ot4D/", "source": "oneyharrison", "title": "Spin Move — Spin Out", "summary": "A midrange option for when the defender beats you to the spot and cuts off the driving angle.", "category": "Footwork & Moves", "type": "Film Clip", "tags": ["spin", "midrange", "counter"], "players": "—", "status": "To Try", "added": "2026-08-06", "notes": ""}, {"id": "fb-1016846899643325", "url": "https://www.facebook.com/reel/1016846899643325", "source": "Facebook", "title": "Swing Step", "summary": "The swing step as a way to change the attack angle out of a live dribble.", "category": "Footwork & Moves", "type": "Film Clip", "tags": ["swing step", "footwork"], "players": "—", "status": "To Try", "added": "2026-08-06", "notes": "Facebook caption could not be pulled — described from your notes."}, {"id": "1823049758102929787", "url": "https://x.com/HoopMixOnly/status/1823049758102929787", "source": "HoopMixOnly", "title": "Varying Release Heights", "summary": "Different shot heights as a tool against different contests, rather than one fixed release.", "category": "Shooting", "type": "Film Clip", "tags": ["release height", "contested shooting"], "players": "—", "status": "To Try", "added": "2026-08-06", "notes": "X link — caption could not be pulled; described from your notes."}, {"id": "C8YdG_gshox", "url": "https://www.instagram.com/reel/C8YdG_gshox/", "source": null, "title": "Flat Palm Finish", "summary": "Finishing with a flat palm rather than a cupped hand, for control on the touch around the rim.", "category": "Finishing", "type": "Film Clip", "tags": ["flat palm", "touch", "finishing"], "players": "—", "status": "To Try", "added": "2026-08-06", "notes": "Caption blocked — described from your notes."}, {"id": "C285K_kAHMp", "url": "https://www.instagram.com/reel/C285K_kAHMp/", "source": null, "title": "Dynamism in Fakes", "summary": "Example of what makes a fake actually move a defender — the speed and commitment of the shift, not the shape of the move.", "category": "Footwork & Moves", "type": "Film Clip", "tags": ["fakes", "dynamism", "deception"], "players": "—", "status": "To Try", "added": "2026-08-06", "notes": "Caption blocked — described from your notes."}, {"id": "yt-bqh9mSO18Yw", "url": "https://youtu.be/bqh9mSO18Yw", "source": "YouTube", "title": "Punch Dribble — Explained", "summary": "Full explanation of the punch dribble, longer format than the reels.", "category": "Ball Handling", "type": "Concept", "tags": ["punch dribble", "long form", "explainer"], "players": "—", "status": "To Try", "added": "2026-08-06", "notes": "You listed a second explainer too: https://www.youtube.com/watch?v=7Wi6cUyAOCc"}, {"id": "C2TfOgrNhFK", "url": "https://www.instagram.com/reel/C2TfOgrNhFK/", "source": "pattherocskillsacademy", "title": "Two-Foot Jump Stop Finishes", "summary": "The jump-stop finish as a fundamental. Kept deliberately simple — Jamal Crawford is the reference for how many baskets come off this one skill.", "category": "Finishing", "type": "Film Clip", "tags": ["jump stop", "two feet", "fundamentals"], "players": "—", "status": "To Try", "added": "2026-08-06", "notes": "Pairs directly with the Villanova 1v1 game."}, {"id": "C2qAl7VAe76", "url": "https://www.instagram.com/reel/C2qAl7VAe76/", "source": null, "title": "Steal and Go — The Point Guard's View", "summary": "What the ball handler sees in the moment the turnover happens and the break starts.", "category": "Team Play", "type": "Film Clip", "tags": ["transition", "point guard", "vision"], "players": "—", "status": "To Try", "added": "2026-08-06", "notes": "Caption blocked — described from your notes."}, {"id": "C2Z8VfVOXl7", "url": "https://www.instagram.com/reel/C2Z8VfVOXl7/", "source": "the_basketball_film_room", "title": "Every Shot, Find a Body", "summary": "Every great defensive team boxes out possession after possession. It takes no talent — only effort and discipline.", "category": "Defense", "type": "Film Clip", "tags": ["box out", "rebounding", "effort", "discipline"], "players": "—", "status": "To Try", "added": "2026-08-06", "notes": "Your doc also lists this clip as a baseline out-of-bounds play for end-of-game — that's a mislink, this clip is about boxing out."}, {"id": "C2SL3VauAJ_", "url": "https://www.instagram.com/reel/C2SL3VauAJ_/", "source": "the_basketball_film_room", "title": "Help the Helper — Game Examples", "summary": "Great defense needs all five working together. Any time someone is beaten off the dribble it triggers a rotation, and helping the helper is how the defense recovers and gets the stop.", "category": "Defense", "type": "Film Clip", "tags": ["help the helper", "rotations", "team defense"], "players": "—", "status": "To Try", "added": "2026-08-06", "notes": "Send this before running the 4v4 help-the-helper game."}, {"id": "Cz9G1tquso7", "url": "https://www.instagram.com/reel/Cz9G1tquso7/", "source": "hennen_workouts", "title": "Guarding a Big in the Post", "summary": "Realistic post defense — low leverage with a small arm bar or shoulder check. Called out as one of the most under-taught skills in the game.", "category": "Defense", "type": "Film Clip", "tags": ["post defense", "leverage", "arm bar"], "players": "—", "status": "To Try", "added": "2026-08-06", "notes": ""}, {"id": "fb-879027116990274", "url": "https://www.facebook.com/reel/879027116990274", "source": "Facebook", "title": "Hip Swivel / Chair Shooting Without Legs", "summary": "Hip swivel work, and the seated variation — shooting from a chair with no leg drive — as the fix for players whose rhythm is off.", "category": "Shooting", "type": "Drill", "tags": ["hip swivel", "rhythm", "chair drill", "shooting fix"], "players": "1", "status": "To Try", "added": "2026-08-06", "notes": "Appeared twice in your doc (teaching clips and shooting fixes) — merged here. Facebook caption could not be pulled."}, {"id": "CxRWvdLP3ft", "url": "https://www.instagram.com/reel/CxRWvdLP3ft/", "source": "nice_shoes_wholesale", "title": "Crossover — Shifting Defensive Balance", "summary": "Using footwork to tip the defender's balance is what makes beating him easier — the crossover finishes a job the feet already started.", "category": "Ball Handling", "type": "Film Clip", "tags": ["crossover", "balance", "footwork"], "players": "—", "status": "To Try", "added": "2026-08-06", "notes": ""}, {"id": "C6-J7tCRV_S", "url": "https://www.instagram.com/reel/C6-J7tCRV_S/", "source": "dabblyducks", "title": "Floater", "summary": "Floater as the fix for players who keep getting layups blocked.", "category": "Finishing", "type": "Film Clip", "tags": ["floater", "layup package"], "players": "—", "status": "To Try", "added": "2026-08-06", "notes": ""}, {"id": "C-6brtUviWk", "url": "https://www.instagram.com/reel/C-6brtUviWk/", "source": "howtomakethenba", "title": "Closeout — Take Away the Three", "summary": "The intent of this closeout style is to take away the three and stop the shooter from shooting at all. If he does shoot, be in position for a strong contest. The perfect closeout takes away the three and still stays in front once the ball goes to the floor.", "category": "Defense", "type": "Film Clip", "tags": ["closeout", "contest", "take away the three"], "players": "—", "status": "To Try", "added": "2026-08-06", "notes": ""}, {"id": "C9SSs-hgDq2", "url": "https://www.instagram.com/reel/C9SSs-hgDq2/", "source": "peter.danyliv", "title": "Closeouts — Sprint and Stop, Don't Chop", "summary": "Direct argument against chopping the feet on a closeout. Strides shorten as you get closer, but that isn't chopping — in game clips every player sprints and stops. Chopping feet is what gets players burned.", "category": "Defense", "type": "Film Clip", "tags": ["closeout", "sprint and stop", "coaching debate"], "players": "—", "status": "To Try", "added": "2026-08-06", "notes": "Worth watching alongside the howtomakethenba closeout clips — they agree on intent, this one is sharper on the footwork."}, {"id": "C-vM2EVRWHJ", "url": "https://www.instagram.com/reel/C-vM2EVRWHJ/", "source": "goodvibez_hoops", "title": "Jaylen Brown — Step Throughs and Pivots", "summary": "Step-through and pivot examples from Jaylen Brown.", "category": "Footwork & Moves", "type": "Film Clip", "tags": ["step through", "pivot", "Jaylen Brown"], "players": "—", "status": "To Try", "added": "2026-08-06", "notes": "Your doc labels this Jrue Holiday defensive slides, but the clip is Jaylen Brown footwork. Filed by what the clip actually shows."}, {"id": "C-gayvRSQNL", "url": "https://www.instagram.com/reel/C-gayvRSQNL/", "source": "howtomakethenba", "title": "Closeout Footwork — Jrue Holiday", "summary": "Closeout defense as the most misunderstood part of defending. Elite defensive teams have players who sprint into the closeout to force a hard contest or put the ball on the floor. Jrue Holiday and Derrick White are the reference examples.", "category": "Defense", "type": "Film Clip", "tags": ["closeout", "Jrue Holiday", "team defense"], "players": "—", "status": "To Try", "added": "2026-08-06", "notes": ""}, {"id": "1818700881820315740", "url": "https://x.com/CoachRoryP/status/1818700881820315740", "source": "CoachRoryP", "title": "Attacking a Pick and Roll With Force", "summary": "Driving through the pick-and-roll coverage rather than around it.", "category": "Team Play", "type": "Film Clip", "tags": ["pick and roll", "downhill", "force"], "players": "—", "status": "To Try", "added": "2026-08-06", "notes": "X link — caption could not be pulled; described from your notes."}, {"id": "C7cgdKwyzpe", "url": "https://www.instagram.com/reel/C7cgdKwyzpe/", "source": "r2bball", "title": "Pinoy Step", "summary": "Fake the shot or the pass on the first step. As the defender is on his way down, take the second step to score or drop the pass.", "category": "Footwork & Moves", "type": "Film Clip", "tags": ["pinoy step", "shot fake", "two step"], "players": "—", "status": "To Try", "added": "2026-08-06", "notes": ""}, {"id": "C80ITmmS7Tk", "url": "https://www.instagram.com/reel/C80ITmmS7Tk/", "source": "goodvibez_hoops", "title": "Darius Garland — Dynamic Fakes", "summary": "Garland as the reference for shiftiness at the guard position.", "category": "Footwork & Moves", "type": "Film Clip", "tags": ["fakes", "shiftiness", "Darius Garland"], "players": "—", "status": "To Try", "added": "2026-08-06", "notes": "You flagged the feet specifically — that's where the shift starts."}, {"id": "DAkC9kXyc98", "url": "https://www.instagram.com/reel/DAkC9kXyc98/", "source": "david.avak", "title": "Spin Through — Kobe", "summary": "A footwork concept the source calls a spin through. People often call it a reverse pivot, but that name misses what the move is actually doing.", "category": "Footwork & Moves", "type": "Film Clip", "tags": ["spin through", "reverse pivot", "two feet", "Kobe Bryant"], "players": "—", "status": "To Try", "added": "2026-08-06", "notes": ""}, {"id": "C_yRLBixW0d", "url": "https://www.instagram.com/reel/C_yRLBixW0d/", "source": "goodvibez_hoops", "title": "Rocker Step — Jimmy Butler", "summary": "Rocker step — the rip out and back — with Jimmy Butler as the reference.", "category": "Footwork & Moves", "type": "Film Clip", "tags": ["rocker step", "triple threat", "Jimmy Butler"], "players": "—", "status": "To Try", "added": "2026-08-06", "notes": "Age-restricted on Instagram — caption could not be pulled."}, {"id": "DAHFRFVsY1_", "url": "https://www.instagram.com/reel/DAHFRFVsY1_/", "source": "isoscoring", "title": "Jab Cross From Triple Threat — Kyrie", "summary": "One dribble out of the triple threat. Body squared to the basket, chest down, ball shielded before the jab. On the jab cross he shows the ball just outside his free foot to sell the baseline rip, then crosses back with a subtle step-back for separation.", "category": "Footwork & Moves", "type": "Film Clip", "tags": ["jab cross", "triple threat", "separation", "Kyrie Irving"], "players": "—", "status": "To Try", "added": "2026-08-06", "notes": "You filed this as pendulum grip — the source breaks down the jab cross mechanics in detail."}, {"id": "DAW3AUmSmsQ", "url": "https://www.instagram.com/reel/DAW3AUmSmsQ/", "source": "goodvibez_hoops", "title": "Using Contact — Deni Avdija", "summary": "Avdija's bump finishes from the 23/24 season.", "category": "Finishing", "type": "Film Clip", "tags": ["contact", "bump finish", "Deni Avdija"], "players": "—", "status": "To Try", "added": "2026-08-06", "notes": ""}, {"id": "fb-237488929313198", "url": "https://www.facebook.com/reel/237488929313198", "source": "Facebook", "title": "Off-Ball Movement", "summary": "Movement without the ball — spacing, timing and when to cut.", "category": "Team Play", "type": "Film Clip", "tags": ["off ball", "movement", "spacing"], "players": "—", "status": "To Try", "added": "2026-08-06", "notes": "Facebook caption could not be pulled — described from your notes."}, {"id": "CtXdB9gg2Kb", "url": "https://www.instagram.com/reel/CtXdB9gg2Kb/", "source": null, "title": "Shooting Fix — Taking the Ball Back on the Lift", "summary": "For shooters who drift the ball backward as they go into the lift.", "category": "Shooting", "type": "Drill", "tags": ["shooting fix", "lift", "ball path"], "players": "1", "status": "To Try", "added": "2026-08-06", "notes": "Caption blocked — described from your notes."}, {"id": "C10oOBsNtU1", "url": "https://www.instagram.com/p/C10oOBsNtU1/", "source": "shootersxshoot70", "title": "Shooting Rhythm — In & Ups", "summary": "Warm-up sequence the source argues belongs in every player's routine. Keep your existing form shooting, but add intentionality: five makes from five spots at about 4 to 7 feet, at an easy distance. Sequencing is the hardest thing for players to find, and this is the exercise for it.", "category": "Shooting", "type": "Drill", "tags": ["rhythm", "sequencing", "form shooting", "warm-up routine"], "players": "1", "status": "To Try", "added": "2026-08-06", "notes": "Part of a 13-day series on body positioning, coordination, flow, rhythm, biomechanics and footwork."}, {"id": "C-aloFGtEv_", "url": "https://www.instagram.com/reel/C-aloFGtEv_/", "source": "the.secret.trainer", "title": "Two Cones — Defender Under, Shooter Between", "summary": "Shooting on the move: the defender goes under low while the attacker works between the two cones.", "category": "Shooting", "type": "Drill", "tags": ["shooting on the move", "cones", "contested"], "players": "2", "status": "To Try", "added": "2026-08-06", "notes": ""}, {"id": "C6y35F3NShT", "url": "https://www.instagram.com/reel/C6y35F3NShT/", "source": "hoopin_mitch", "title": "Quick Release Shooting", "summary": "Shooting drill built for speed of release rather than volume.", "category": "Shooting", "type": "Drill", "tags": ["quick release", "pace"], "players": "1-2", "status": "To Try", "added": "2026-08-06", "notes": ""}, {"id": "DAWcYgRt9VE", "url": "https://www.instagram.com/reel/DAWcYgRt9VE/", "source": "the.secret.trainer", "title": "Position Swaps — Spin Out Contested Shooting", "summary": "Players swap positions into a contested shot. Works off the pass and off the dribble.", "category": "Shooting", "type": "Drill", "tags": ["contested shooting", "position swap", "off the pass"], "players": "2+", "status": "To Try", "added": "2026-08-06", "notes": ""}, {"id": "1814354739724734547", "url": "https://x.com/TheHoopHerald/status/1814354739724734547", "source": "TheHoopHerald", "title": "Baseline Out of Bounds — End of Game", "summary": "A baseline out-of-bounds set for closing out a game.", "category": "Team Play", "type": "Concept", "tags": ["BLOB", "end of game", "special situations", "set play"], "players": "5", "status": "To Try", "added": "2026-08-06", "notes": "X link — caption could not be pulled; described from your notes. This is the only genuine BLOB in your doc — the other entry pointed at a boxing-out clip."}, {"id": "C1zaiWiOD4T", "url": "https://www.instagram.com/reel/C1zaiWiOD4T/", "source": "danmartell", "title": "The 1-3-1 Rule — Teaching Players to Find Answers", "summary": "A method for teaching players to solve problems on their own before bringing them to you.", "category": "Team Play", "type": "Concept", "tags": ["1-3-1 rule", "player ownership", "coaching method", "education"], "players": "—", "status": "To Try", "added": "2026-08-06", "notes": "Not a basketball source — general leadership content, but it maps cleanly onto a squad."}, {"id": "Cv5sK-wp54x", "url": "https://www.instagram.com/reel/Cv5sK-wp54x/", "source": "plyomorph", "title": "Jump and First Step Development", "summary": "Plyometric work for vertical jump and first-step explosiveness. No equipment needed.", "category": "Athleticism", "type": "Drill", "tags": ["plyometrics", "vertical", "first step", "no equipment"], "players": "1+", "status": "To Try", "added": "2026-08-06", "notes": ""}]}</script>
+<script>
+  (function () {
+    var DB = JSON.parse(document.getElementById('data').textContent);
+    var items = DB.items;
+    var meta = DB.meta;
+
+    var grid = document.getElementById('grid');
+    var empty = document.getElementById('empty');
+    var q = document.getElementById('q');
+    var tally = document.getElementById('tally-num');
+
+    var state = { text: '', category: null, type: null, status: null };
+
+    function chip(value, group, cat) {
+      var b = document.createElement('button');
+      b.className = 'chip';
+      b.type = 'button';
+      b.textContent = value;
+      b.setAttribute('aria-pressed', 'false');
+      if (cat) b.setAttribute('data-cat', cat);
+      b.dataset.group = group;
+      b.dataset.value = value;
+      b.addEventListener('click', function () {
+        state[group] = state[group] === value ? null : value;
+        syncChips();
+        render();
+      });
+      return b;
+    }
+
+    // כותרות שורות הסינון מגיעות מ-meta.labels, עם ברירת מחדל לספריית התרגילים
+    var labels = meta.labels || {};
+    q.placeholder = labels.search || 'Search drills, tags, sources…';
+
+    var catBox = document.getElementById('cats');
+    catBox.firstElementChild.textContent = labels.category || 'Focus';
+    meta.categories.forEach(function (c) { catBox.appendChild(chip(c, 'category', c)); });
+
+    var typeBox = document.getElementById('types');
+    typeBox.firstElementChild.textContent = labels.type || 'Format';
+    meta.types.forEach(function (t) { typeBox.appendChild(chip(t, 'type', null)); });
+
+    var statBox = document.getElementById('stats');
+    statBox.firstElementChild.textContent = labels.status || 'Status';
+    meta.statuses.forEach(function (s) { statBox.appendChild(chip(s, 'status', null)); });
+
+    var reset = document.createElement('button');
+    reset.type = 'button';
+    reset.className = 'chip chip--reset';
+    reset.textContent = 'Clear filters';
+    reset.addEventListener('click', function () {
+      state = { text: '', category: null, type: null, status: null };
+      q.value = '';
+      syncChips();
+      render();
+    });
+    statBox.appendChild(reset);
+
+    function syncChips() {
+      document.querySelectorAll('.chip[data-group]').forEach(function (b) {
+        b.setAttribute('aria-pressed', String(state[b.dataset.group] === b.dataset.value));
+      });
+    }
+
+    function haystack(it) {
+      return [it.title, it.summary, it.category, it.type, it.source, it.notes, (it.tags || []).join(' ')]
+        .filter(Boolean).join(' ').toLowerCase();
+    }
+
+    function el(tag, cls, text) {
+      var n = document.createElement(tag);
+      if (cls) n.className = cls;
+      if (text != null) n.textContent = text;
+      return n;
+    }
+
+    function card(it) {
+      var a = el('article', 'card');
+      a.setAttribute('data-cat', it.category);
+      a.setAttribute('data-status', it.status);
+
+      var head = el('div', 'card__head');
+      head.appendChild(el('span', 'tag-cat', it.category));
+      head.appendChild(el('span', 'status', it.status));
+      a.appendChild(head);
+
+      a.appendChild(el('h2', 'card__title', it.title));
+      if (it.summary) a.appendChild(el('p', 'card__summary', it.summary));
+
+      if (it.tags && it.tags.length) {
+        var ul = el('ul', 'tags');
+        it.tags.forEach(function (t) { ul.appendChild(el('li', null, t)); });
+        a.appendChild(ul);
+      }
+
+      if (it.notes) a.appendChild(el('p', 'card__notes', it.notes));
+
+      var foot = el('div', 'card__foot');
+      var m = el('div', 'meta');
+      var kind = [it.type, it.players && it.players !== '—' ? it.players + ' players' : null]
+        .filter(Boolean).join(' · ');
+      m.appendChild(el('span', 'kind', kind));
+      if (it.source) m.appendChild(el('span', 'src', '@' + it.source));
+      foot.appendChild(m);
+
+      if (it.url) {
+        var link = el('a', 'open', 'Watch');
+        link.href = it.url;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        foot.appendChild(link);
+      } else {
+        foot.appendChild(el('span', 'noclip', 'no clip'));
+      }
+
+      a.appendChild(foot);
+      return a;
+    }
+
+    function render() {
+      var t = state.text.trim().toLowerCase();
+      var out = items.filter(function (it) {
+        if (state.category && it.category !== state.category) return false;
+        if (state.type && it.type !== state.type) return false;
+        if (state.status && it.status !== state.status) return false;
+        if (t && haystack(it).indexOf(t) === -1) return false;
+        return true;
+      });
+
+      grid.textContent = '';
+      out.forEach(function (it) { grid.appendChild(card(it)); });
+      empty.hidden = out.length > 0;
+      tally.textContent = out.length;
+    }
+
+    q.addEventListener('input', function () { state.text = q.value; render(); });
+    render();
+  })();
+</script>

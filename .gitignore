@@ -1,0 +1,15 @@
+# One-off working files from the Google Doc import
+_source_doc.md
+_extract.py
+_links.json
+_captions.json
+
+# Superseded output folder — the site is built into docs/ for GitHub Pages
+dist/
+
+# Drive-backed side pages. Kept local, not published:
+#   - their links need a Google login, so they are useless to a public visitor
+#   - mental.json contains a third party's email address in one note
+fundamentals.json
+mental.json
+docs/mental.html
