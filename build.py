@@ -46,7 +46,7 @@ def build(source: str, output: str) -> None:
 
     DIST.mkdir(exist_ok=True)
     (DIST / output).write_text(html, encoding="utf-8")
-    print(f"built dist/{output} - {len(items)} entries")
+    print(f"built {DIST.name}/{output} - {len(items)} entries")
 
 
 def main() -> None:

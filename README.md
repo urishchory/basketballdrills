@@ -1,27 +1,38 @@
 # Drill Library
 
-A searchable index of basketball drills, small-sided games and teaching clips
-collected from Instagram. Built as a single self-contained HTML page so it loads
-fast on a phone at the side of the court.
+A coach's searchable index of basketball material — drills collected from
+Instagram, plus a room of mental-side talks. Each page is one self-contained
+HTML file with no dependencies, so it loads fast on a phone at the side of the
+court.
 
-**Live site:** https://urishchory.github.io/basketballdrills/
+## Pages
+
+| Page | What's on it |
+| --- | --- |
+| [Drill Library](https://urishchory.github.io/basketballdrills/) | 86 drills, small-sided games and teaching clips from Instagram. |
+| [Mental Film Room](https://urishchory.github.io/basketballdrills/mental.html) | 114 talks and interviews, grouped by theme and audience. |
+
+The Mental Film Room links point at private Google Drive files. They open for
+the folder's owner; anyone else gets a permission request unless the Drive
+sharing settings are changed.
 
 ## How it works
 
-Three files, one command.
+One template, one build script, one JSON file per page.
 
 | File | Role |
 | --- | --- |
-| `library.json` | The data. This is the source of truth — every drill lives here. |
-| `template.html` | The page design and the search/filter behaviour. |
-| `build.py` | Injects the data into the template and writes `docs/index.html`. |
+| `library.json` | The drill data. This is the source of truth — every drill lives here. |
+| `mental.json` | The mental-clips data, same shape. |
+| `template.html` | The page design and the search/filter behaviour, shared by both pages. |
+| `build.py` | Injects each JSON into the template and writes the pages into `docs/`. |
 
 ```bash
 python build.py
 ```
 
-GitHub Pages serves the `docs/` folder, so pushing a rebuilt `docs/index.html`
-publishes the change.
+GitHub Pages serves the `docs/` folder, so committing the rebuilt pages and
+pushing publishes the change.
 
 ## Adding a drill
 
