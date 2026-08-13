@@ -7,9 +7,5 @@ _captions.json
 # Superseded output folder — the site is built into docs/ for GitHub Pages
 dist/
 
-# Drive-backed side pages. Kept local, not published:
-#   - their links need a Google login, so they are useless to a public visitor
-#   - mental.json contains a third party's email address in one note
+# Fundamentals film room is on hold; the data stays local for now
 fundamentals.json
-mental.json
-docs/mental.html
