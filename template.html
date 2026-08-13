@@ -342,8 +342,18 @@
     border-bottom: 1px solid color-mix(in srgb, var(--c) 26%, var(--line));
   }
 
-  /* ---- photo variant: a licensed portrait instead of the motif ---- */
-  .poster--photo { min-height: 172px; }
+  /* ---- photo variant: a licensed portrait instead of the motif ----
+     A photograph needs a dark ground and light type. The category tint is too
+     close in value to a bright press photo, and the message disappears into
+     the subject's shoulder. Fixed colours here rather than themed ones, so the
+     scrim has something predictable to fade into in both light and dark. */
+  .poster--photo {
+    --poster-bg: #17211F;
+    min-height: 176px;
+    color: #EEF2ED;
+  }
+  .poster--photo .poster__msg { color: #EEF2ED; }
+  .poster--photo .poster__credit { color: rgba(238, 242, 237, .55); }
   .poster__photo { position: absolute; inset: 0 0 0 32%; z-index: 1; }
   .poster__photo img {
     width: 100%; height: 100%; display: block;
@@ -356,11 +366,11 @@
   .poster__scrim {
     position: absolute; inset: 0; z-index: 2; pointer-events: none;
     background: linear-gradient(to right,
-      var(--poster-bg) 24%,
-      color-mix(in srgb, var(--poster-bg) 60%, transparent) 48%,
-      transparent 70%);
+      var(--poster-bg) 30%,
+      color-mix(in srgb, var(--poster-bg) 72%, transparent) 50%,
+      transparent 74%);
   }
-  .poster--photo .poster__msg { max-width: 62%; }
+  .poster--photo .poster__msg { max-width: 56%; }
   /* The CC licences require this to be visible. Small is fine, hidden is not. */
   .poster__credit {
     position: absolute; right: .6rem; bottom: .35rem; z-index: 4; margin: 0;
