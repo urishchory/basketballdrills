@@ -48,7 +48,14 @@
       "players": null,
       "status": "To Try",
       "added": "2026-05-07",
-      "notes": "Drive title: עותק של סטף קארי - התמודדות עם לחץ דרך משהו טוב. Owned by another Drive user, not by you — same file as your own copy."
+      "notes": "Drive title: עותק של סטף קארי - התמודדות עם לחץ דרך משהו טוב. Owned by another Drive user, not by you — same file as your own copy.",
+      "photo": {
+        "file": "img/stephen-curry-by-clement-bardot-cc-by-sa-4-0.jpg",
+        "alt": "Stephen Curry in a Team USA jersey at the 2024 Olympic Games.",
+        "credit": "Photo: Clément Bardot · CC BY-SA 4.0",
+        "licence_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "position": "50% 12%"
+      }
     },
     {
       "id": "m-1vBENlde",
@@ -105,7 +112,14 @@
       "players": null,
       "status": "To Try",
       "added": "2025-06-23",
-      "notes": "Drive title: מייקל ג'ורדן מסביר להורים - לא אוהד, אוהב"
+      "notes": "Drive title: מייקל ג'ורדן מסביר להורים - לא אוהד, אוהב",
+      "photo": {
+        "file": "img/michael-jordan-1985-by-uncredited-public-domain.jpg",
+        "alt": "Michael Jordan dunking at the 1985 slam dunk contest.",
+        "credit": "Photo: Uncredited · Public domain",
+        "licence_url": "https://en.wikipedia.org/wiki/Public_domain",
+        "position": "62% 20%"
+      }
     },
     {
       "id": "m-1-ZFExj0",
@@ -149,7 +163,14 @@
       "players": null,
       "status": "To Try",
       "added": "2025-06-22",
-      "notes": "Drive title: מייקל ג'ורדן - התמודדות כשהוא לא טוב (הגישה המקצוענית)"
+      "notes": "Drive title: מייקל ג'ורדן - התמודדות כשהוא לא טוב (הגישה המקצוענית)",
+      "photo": {
+        "file": "img/michael-jordan-1985-by-uncredited-public-domain.jpg",
+        "alt": "Michael Jordan dunking at the 1985 slam dunk contest.",
+        "credit": "Photo: Uncredited · Public domain",
+        "licence_url": "https://en.wikipedia.org/wiki/Public_domain",
+        "position": "62% 20%"
+      }
     },
     {
       "id": "m-1OpIbczh",
@@ -329,7 +350,14 @@
       "players": null,
       "status": "To Try",
       "added": "2025-06-12",
-      "notes": "Drive title: יורגן קלופ - לנצח זה רק חלק מהעניין - Made with Clipchamp (2) (1)-video-export… — three versions of this clip exist, keep one."
+      "notes": "Drive title: יורגן קלופ - לנצח זה רק חלק מהעניין - Made with Clipchamp (2) (1)-video-export… — three versions of this clip exist, keep one.",
+      "photo": {
+        "file": "img/jurgen-klopp-by-paul-robinson-cc-by-sa-2-0.jpg",
+        "alt": "Jürgen Klopp on the pitch in a Liverpool coat.",
+        "credit": "Photo: Paul Robinson · CC BY-SA 2.0",
+        "licence_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+        "position": "50% 6%"
+      }
     },
     {
       "id": "m-1eAj2O7",
@@ -368,7 +396,14 @@
       "players": null,
       "status": "To Try",
       "added": "2025-06-11",
-      "notes": "Drive title: יורגן קלופ - לנצח זה רק חלק מהעניין"
+      "notes": "Drive title: יורגן קלופ - לנצח זה רק חלק מהעניין",
+      "photo": {
+        "file": "img/jurgen-klopp-by-paul-robinson-cc-by-sa-2-0.jpg",
+        "alt": "Jürgen Klopp on the pitch in a Liverpool coat.",
+        "credit": "Photo: Paul Robinson · CC BY-SA 2.0",
+        "licence_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+        "position": "50% 6%"
+      }
     },
     {
       "id": "m-1AJa1dQY",
@@ -445,7 +480,14 @@
       "players": null,
       "status": "To Try",
       "added": "2025-06-11",
-      "notes": "Drive title: מייקל ג'ורדן - יצר תחרותי זאת קללה (מתורגם)"
+      "notes": "Drive title: מייקל ג'ורדן - יצר תחרותי זאת קללה (מתורגם)",
+      "photo": {
+        "file": "img/michael-jordan-1985-by-uncredited-public-domain.jpg",
+        "alt": "Michael Jordan dunking at the 1985 slam dunk contest.",
+        "credit": "Photo: Uncredited · Public domain",
+        "licence_url": "https://en.wikipedia.org/wiki/Public_domain",
+        "position": "62% 20%"
+      }
     },
     {
       "id": "m-1TJ0P0JK",
@@ -593,7 +635,14 @@
       "players": null,
       "status": "To Try",
       "added": "2025-03-02",
-      "notes": "Drive title: יורגן קלופ - לנצח זה רק חלק מהעניין - Made with Clipchamp (2)"
+      "notes": "Drive title: יורגן קלופ - לנצח זה רק חלק מהעניין - Made with Clipchamp (2)",
+      "photo": {
+        "file": "img/jurgen-klopp-by-paul-robinson-cc-by-sa-2-0.jpg",
+        "alt": "Jürgen Klopp on the pitch in a Liverpool coat.",
+        "credit": "Photo: Paul Robinson · CC BY-SA 2.0",
+        "licence_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+        "position": "50% 6%"
+      }
     },
     {
       "id": "m-1e8TvgPF",
@@ -695,7 +744,14 @@
       "players": null,
       "status": "To Try",
       "added": "2023-12-28",
-      "notes": "Drive title: סטף קארי - טיפים על קליעה נכונה (יציבות). This one arguably belongs in the fundamentals collection, not here."
+      "notes": "Drive title: סטף קארי - טיפים על קליעה נכונה (יציבות). This one arguably belongs in the fundamentals collection, not here.",
+      "photo": {
+        "file": "img/stephen-curry-by-clement-bardot-cc-by-sa-4-0.jpg",
+        "alt": "Stephen Curry in a Team USA jersey at the 2024 Olympic Games.",
+        "credit": "Photo: Clément Bardot · CC BY-SA 4.0",
+        "licence_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "position": "50% 12%"
+      }
     },
     {
       "id": "m-18PQftIC",
@@ -733,7 +789,14 @@
       "players": null,
       "status": "To Try",
       "added": "2023-10-29",
-      "notes": "Drive title: יאניס - תהיה ילד (סקרנות). Your most recently opened clip in this folder."
+      "notes": "Drive title: יאניס - תהיה ילד (סקרנות). Your most recently opened clip in this folder.",
+      "photo": {
+        "file": "img/giannis-antetokounmpo-by-keith-allison-cc-by-sa-2-0.jpg",
+        "alt": "Giannis Antetokounmpo in a Milwaukee Bucks jersey.",
+        "credit": "Photo: Keith Allison · CC BY-SA 2.0",
+        "licence_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+        "position": "52% 6%"
+      }
     },
     {
       "id": "m-1_inRigP",
@@ -809,7 +872,14 @@
       "players": null,
       "status": "To Try",
       "added": "2023-10-29",
-      "notes": "Drive title: יאניס - כתיבה של מחשבות במחברת"
+      "notes": "Drive title: יאניס - כתיבה של מחשבות במחברת",
+      "photo": {
+        "file": "img/giannis-antetokounmpo-by-keith-allison-cc-by-sa-2-0.jpg",
+        "alt": "Giannis Antetokounmpo in a Milwaukee Bucks jersey.",
+        "credit": "Photo: Keith Allison · CC BY-SA 2.0",
+        "licence_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+        "position": "52% 6%"
+      }
     },
     {
       "id": "m-1Pj0Oh3u",
@@ -931,7 +1001,14 @@
       "players": null,
       "status": "To Try",
       "added": "2023-10-29",
-      "notes": "Drive title: גרג פופוביץ - התמודדות עם הפסד (כנות)"
+      "notes": "Drive title: גרג פופוביץ - התמודדות עם הפסד (כנות)",
+      "photo": {
+        "file": "img/gregg-popovich-by-mike-cc-by-sa-2-0.jpg",
+        "alt": "Gregg Popovich standing on the sideline during a game.",
+        "credit": "Photo: Mike · CC BY-SA 2.0",
+        "licence_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+        "position": "48% 10%"
+      }
     },
     {
       "id": "m-1tGb1D28",
@@ -1028,7 +1105,14 @@
       "players": null,
       "status": "To Try",
       "added": "2023-10-29",
-      "notes": "Drive title: סטף קארי - קצב"
+      "notes": "Drive title: סטף קארי - קצב",
+      "photo": {
+        "file": "img/stephen-curry-by-clement-bardot-cc-by-sa-4-0.jpg",
+        "alt": "Stephen Curry in a Team USA jersey at the 2024 Olympic Games.",
+        "credit": "Photo: Clément Bardot · CC BY-SA 4.0",
+        "licence_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "position": "50% 12%"
+      }
     },
     {
       "id": "m-1IZ8U65j",
@@ -1235,7 +1319,14 @@
       "players": null,
       "status": "To Try",
       "added": "2023-10-29",
-      "notes": "Drive title: סטף קארי - תקשורת זה הדבר הכי חשוב"
+      "notes": "Drive title: סטף קארי - תקשורת זה הדבר הכי חשוב",
+      "photo": {
+        "file": "img/stephen-curry-by-clement-bardot-cc-by-sa-4-0.jpg",
+        "alt": "Stephen Curry in a Team USA jersey at the 2024 Olympic Games.",
+        "credit": "Photo: Clément Bardot · CC BY-SA 4.0",
+        "licence_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "position": "50% 12%"
+      }
     },
     {
       "id": "m-1kyyXuLW",
@@ -1254,7 +1345,14 @@
       "players": null,
       "status": "To Try",
       "added": "2023-10-29",
-      "notes": "Drive title: פפ גווארדיולה - כיף כמו ילדים"
+      "notes": "Drive title: פפ גווארדיולה - כיף כמו ילדים",
+      "photo": {
+        "file": "img/pep-guardiola-by-steffen-prodorf-crop-by-arsenalghanapartey-cc-by-sa-4-0.jpg",
+        "alt": "Pep Guardiola watching from the touchline.",
+        "credit": "Photo: Steffen Prößdorf · CC BY-SA 4.0",
+        "licence_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "position": "52% 5%"
+      }
     },
     {
       "id": "m-1JuQed9l",
@@ -1273,7 +1371,14 @@
       "players": null,
       "status": "To Try",
       "added": "2023-10-29",
-      "notes": "Drive title: גרג פופוביץ' - מאמן הוא כמו אבא"
+      "notes": "Drive title: גרג פופוביץ' - מאמן הוא כמו אבא",
+      "photo": {
+        "file": "img/gregg-popovich-by-mike-cc-by-sa-2-0.jpg",
+        "alt": "Gregg Popovich standing on the sideline during a game.",
+        "credit": "Photo: Mike · CC BY-SA 2.0",
+        "licence_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+        "position": "48% 10%"
+      }
     },
     {
       "id": "m-1zyH5he6",
@@ -1524,7 +1629,14 @@
       "players": null,
       "status": "To Try",
       "added": "2023-10-29",
-      "notes": "Drive title: סטף קארי - ההצלחה אינה מקרית (קצר). Related to the untitled \"הצלחה היא לא מקרית\" clip — check whether they're the same source."
+      "notes": "Drive title: סטף קארי - ההצלחה אינה מקרית (קצר). Related to the untitled \"הצלחה היא לא מקרית\" clip — check whether they're the same source.",
+      "photo": {
+        "file": "img/stephen-curry-by-clement-bardot-cc-by-sa-4-0.jpg",
+        "alt": "Stephen Curry in a Team USA jersey at the 2024 Olympic Games.",
+        "credit": "Photo: Clément Bardot · CC BY-SA 4.0",
+        "licence_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "position": "50% 12%"
+      }
     },
     {
       "id": "m-1waQvWfm",
@@ -1793,7 +1905,14 @@
       "players": null,
       "status": "To Try",
       "added": "2023-10-29",
-      "notes": "Drive title: סטף קארי מתעצבן על שחקנים ולומד"
+      "notes": "Drive title: סטף קארי מתעצבן על שחקנים ולומד",
+      "photo": {
+        "file": "img/stephen-curry-by-clement-bardot-cc-by-sa-4-0.jpg",
+        "alt": "Stephen Curry in a Team USA jersey at the 2024 Olympic Games.",
+        "credit": "Photo: Clément Bardot · CC BY-SA 4.0",
+        "licence_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "position": "50% 12%"
+      }
     },
     {
       "id": "m-1uDaPxPH",
@@ -1963,7 +2082,14 @@
       "players": null,
       "status": "To Try",
       "added": "2023-10-29",
-      "notes": "Drive title: מייקל ג'ורדן - כישלון"
+      "notes": "Drive title: מייקל ג'ורדן - כישלון",
+      "photo": {
+        "file": "img/michael-jordan-1985-by-uncredited-public-domain.jpg",
+        "alt": "Michael Jordan dunking at the 1985 slam dunk contest.",
+        "credit": "Photo: Uncredited · Public domain",
+        "licence_url": "https://en.wikipedia.org/wiki/Public_domain",
+        "position": "62% 20%"
+      }
     },
     {
       "id": "m-1LhzHyEt",
@@ -2170,7 +2296,14 @@
       "players": null,
       "status": "To Try",
       "added": "2023-10-29",
-      "notes": "Drive title: מייקל ג'ורדן - אולי"
+      "notes": "Drive title: מייקל ג'ורדן - אולי",
+      "photo": {
+        "file": "img/michael-jordan-1985-by-uncredited-public-domain.jpg",
+        "alt": "Michael Jordan dunking at the 1985 slam dunk contest.",
+        "credit": "Photo: Uncredited · Public domain",
+        "licence_url": "https://en.wikipedia.org/wiki/Public_domain",
+        "position": "62% 20%"
+      }
     },
     {
       "id": "m-1-DihXN",
@@ -2189,7 +2322,14 @@
       "players": null,
       "status": "To Try",
       "added": "2023-10-29",
-      "notes": "Drive title: מייקל ג'ורדן - אולי אתם ממציאים תירוצים"
+      "notes": "Drive title: מייקל ג'ורדן - אולי אתם ממציאים תירוצים",
+      "photo": {
+        "file": "img/michael-jordan-1985-by-uncredited-public-domain.jpg",
+        "alt": "Michael Jordan dunking at the 1985 slam dunk contest.",
+        "credit": "Photo: Uncredited · Public domain",
+        "licence_url": "https://en.wikipedia.org/wiki/Public_domain",
+        "position": "62% 20%"
+      }
     },
     {
       "id": "m-1y5eMSbs",
@@ -2208,7 +2348,14 @@
       "players": null,
       "status": "To Try",
       "added": "2023-10-29",
-      "notes": "Drive title: מייקל ג'ורדן - ספורט הוא כלי חינוכי"
+      "notes": "Drive title: מייקל ג'ורדן - ספורט הוא כלי חינוכי",
+      "photo": {
+        "file": "img/michael-jordan-1985-by-uncredited-public-domain.jpg",
+        "alt": "Michael Jordan dunking at the 1985 slam dunk contest.",
+        "credit": "Photo: Uncredited · Public domain",
+        "licence_url": "https://en.wikipedia.org/wiki/Public_domain",
+        "position": "62% 20%"
+      }
     },
     {
       "id": "m-12ZLRoxn",
