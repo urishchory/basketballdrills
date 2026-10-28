@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Basketball 360° · סילבוס</title>
+<meta name="description" content="הסילבוס של Basketball 360°: 4 שלבים, 36 שבועות, 72 שיעורים, וחוט מנטלי של כ־55 שעות שמסתיים בתעודת מאמן מנטלי ממכללת שיאים.">
+<meta property="og:title" content="BASKETBALL 360° · הסילבוס">
+<meta property="og:description" content="36 שבועות, שבוע אחרי שבוע. תעודת מאמן מנטלי ממכללת שיאים בסוף הקורס. נפתח ב־17 בינואר 2027.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Karantina:wght@400;700&family=Assistant:wght@400;600;700;800&display=swap">
+<style>
+/* Same system as the course page: a coach's clipboard, court-dark header, red as the only accent. Weeks read as a timeline down the page. */
+:root{
+  --ink:#15171c; --paper:#f6f5f2; --panel:#ffffff; --line:#d9d6cf; --muted:#5d6068;
+  --red:#d6282f; --red-ink:#ffffff; --court:#1d2230; --court-line:#f6f5f2;
+  --display:"Karantina","Assistant",system-ui,sans-serif;
+  --body:"Assistant","Segoe UI",Arial,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ink:#eeece8;--paper:#121419;--panel:#1b1e25;--line:#2e323c;--muted:#a3a6ad;--red:#ec4148;--red-ink:#ffffff;--court:#0b0d12;--court-line:#eeece8;color-scheme:dark}}
+:root[data-theme="dark"]{--ink:#eeece8;--paper:#121419;--panel:#1b1e25;--line:#2e323c;--muted:#a3a6ad;--red:#ec4148;--red-ink:#ffffff;--court:#0b0d12;--court-line:#eeece8;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.6}
+.wrap{max-width:960px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{text-wrap:balance;margin:0}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.eyebrow{font-size:.8rem;font-weight:800;letter-spacing:.12em;color:var(--red)}
+.lede{color:var(--muted);max-width:62ch}
+
+.hero{background:var(--court);color:var(--court-line)}
+.hero .wrap{padding-block:40px 36px;display:grid;gap:14px}
+.back{font-size:.95rem;opacity:.8;text-decoration:none}
+.back:hover{opacity:1;text-decoration:underline}
+.brand{font-family:var(--display);font-weight:700;font-size:clamp(3rem,10vw,5.5rem);line-height:.85;direction:ltr;text-align:right}
+.brand span{color:var(--red)}
+.hero h1{font-size:clamp(1.5rem,4vw,2.1rem);font-weight:800;line-height:1.2}
+.hero .lede{color:inherit;opacity:.82}
+.nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.nav a{border:1px solid currentColor;border-radius:99px;padding:4px 14px;text-decoration:none;font-weight:700;font-size:.95rem}
+.nav a:hover{background:var(--court-line);color:var(--court)}
+
+section{padding-block:56px;border-top:1px solid var(--line)}
+section .head{display:grid;gap:8px;margin-bottom:24px}
+h2{font-family:var(--display);font-weight:700;font-size:clamp(2.4rem,6vw,3.2rem);line-height:1}
+
+.cert{background:var(--court);color:var(--court-line);border-radius:10px;padding:26px;display:grid;gap:18px}
+.cert h3{font-size:1.4rem}
+.req{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 24px;margin:0;padding:0;list-style:none}
+.req li{border-top:2px solid var(--red);padding-top:8px;font-size:1rem}
+.req b{display:block;font-family:var(--display);font-size:2rem;line-height:1;font-variant-numeric:tabular-nums}
+@media (max-width:700px){.req{grid-template-columns:1fr 1fr}}
+.cert small{opacity:.75;font-size:.9rem}
+
+.weeks{display:block;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--panel)}
+.wk{display:grid;grid-template-columns:4.5rem minmax(0,1fr) minmax(0,1fr) minmax(0,1.1fr);gap:4px 18px;padding:14px 18px;border-top:1px solid var(--line);align-items:start}
+.wk:first-child{border-top:0}
+.wk .n{font-family:var(--display);font-size:1.9rem;line-height:1;font-variant-numeric:tabular-nums;color:var(--muted)}
+.wk .l{font-weight:700;line-height:1.4}
+.wk .t{color:var(--muted);font-size:.95rem;line-height:1.45}
+.wk .t::before{content:"משימה: ";font-weight:700;color:var(--ink)}
+.wk.m{background:linear-gradient(to left,color-mix(in srgb,var(--red) 7%,transparent),transparent 60%)}
+.wk.m .n{color:var(--red)}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--red);margin-inline-start:6px;vertical-align:middle}
+.wk.wkhead{background:var(--paper);font-size:.8rem;font-weight:800;letter-spacing:.06em;color:var(--muted);padding-block:10px}
+@media (max-width:760px){
+  .wk{grid-template-columns:3rem minmax(0,1fr)}
+  .wk .l,.wk .t{grid-column:2}
+  .wk.wkhead{display:none}
+}
+.legend{font-size:.95rem;color:var(--muted);margin-top:10px}
+.videos{margin-top:14px;font-size:.98rem;color:var(--muted)}
+.videos b{color:var(--ink)}
+
+.plans{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin:0;padding:0;list-style:none;counter-reset:p}
+.plans li{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px 14px;font-weight:700;counter-increment:p}
+.plans li::before{content:counter(p);font-family:var(--display);color:var(--red);font-size:1.6rem;line-height:1;margin-inline-end:8px}
+.plans small{display:block;color:var(--muted);font-weight:400;font-size:.85rem}
+
+.cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn{display:inline-flex;align-items:center;min-height:48px;padding:0 22px;border-radius:6px;font-weight:800;text-decoration:none;background:var(--red);color:var(--red-ink)}
+.btn.ghost{background:transparent;color:var(--ink);border:2px solid currentColor}
+footer{padding-block:26px;font-size:.9rem;color:var(--muted);border-top:1px solid var(--line)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <a class="back" href="./">→ חזרה לדף הקורס</a>
+    <div class="brand" aria-label="Basketball 360 מעלות">BASKETBALL 360<span>°</span></div>
+    <h1>הסילבוס, שבוע אחרי שבוע</h1>
+    <p class="lede">4 שלבים, 36 שבועות, 72 שיעורים של 15 דקות. בכל חודש מפגש קבוצתי פרונטלי ומפגש אישי בזום. חוט מנטלי עובר לאורך כל הקורס ומסתיים בתעודת מאמן מנטלי ממכללת שיאים.</p>
+    <nav class="nav" aria-label="קפיצה לשלב">
+      <a href="#cert">התעודה</a><a href="#s1">שלב 1</a><a href="#s2">שלב 2</a><a href="#s3">שלב 3</a><a href="#s4">שלב 4</a><a href="#plans">עבודה מעשית</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section id="cert">
+    <div class="wrap">
+      <div class="cert">
+        <span class="eyebrow">החוט המנטלי</span>
+        <h3>תעודת מאמן מנטלי ממכללת שיאים – בסוף הקורס</h3>
+        <p>12 השיעורים של שלב 1 הם הלב, ועוד שיעור מנטלי אחד בחודש בשלבים 2–4 (מסומנים בנקודה אדומה). התעודה מבוססת על מה שעשית עם השחקנים שלך, לא רק על מה שלמדת.</p>
+        <ul class="req">
+          <li><b>~55</b>שעות הכשרה מנטלית</li>
+          <li><b>~20</b>שעות עבודה מעשית עם השחקנים שלך</li>
+          <li><b>7</b>מערכי שיעור שמעבירים לקבוצה</li>
+          <li><b>3</b>מקרי שחקן מתועדים</li>
+          <li><b>80%</b>נוכחות במפגשים</li>
+          <li><b>1</b>מבחן סיום מנטלי</li>
+        </ul>
+        <small>ההכשרה היא לאימון מנטלי בספורט, לא לטיפול פסיכולוגי. דרישות התעודה הסופיות נקבעות עם מכללת שיאים.</small>
+      </div>
+    </div>
+  </section>
+
+  <section id="s1">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">שלב 1 · שבועות 1–6</span>
+        <h2>המאמן: האני מאמין המנטלי</h2>
+        <p class="lede">כל השלב מנטלי. בסופו כותבים את שני הפרקים הראשונים של ספר המועדון: חזון וערכים, וזהות המאמן.</p>
+      </div>
+      <div class="weeks">
+        <div class="wk wkhead"><span>שבוע</span><span>שיעור א</span><span>שיעור ב</span><span>משימה</span></div>
+        <div class="wk m"><span class="n">1</span><span class="l">המאמן כמחנך: למה אתה מאמן</span><span class="l">ערכים מול מטרות: מטרה היא מקום, ערך הוא כיוון</span><span class="t">לכתוב את ה"למה" שלך ושלושה ערכי קבוצה</span></div>
+        <div class="wk m"><span class="n">2</span><span class="l">מערכים לקודי תקשורת</span><span class="l">ערכים בשיטת המשחק ובאימון</span><span class="t">שלושה קודי תקשורת לקבוצה שלך</span></div>
+        <div class="wk m"><span class="n">3</span><span class="l">מסוגלות: Growth Mindset</span><span class="l">נוירופלסטיות ואפקט פיגמליון</span><span class="t">שבוע של משוב על מאמץ ולא על כישרון – לתעד 3 מקרים</span></div>
+        <div class="wk m"><span class="n">4</span><span class="l">מוטיבציה פנימית וחיצונית</span><span class="l">למה ילדים פורשים מספורט</span><span class="t">מפת מוטיבציה של 3 שחקנים</span></div>
+        <div class="wk m"><span class="n">5</span><span class="l">היסוד המנטלי: מנטליות נלמדת כמו יסוד</span><span class="l">קודי תזכורת: משפט קצר שחוזר על עצמו</span><span class="t">לבחור 3 קודים לעונה ולהתחיל להשתמש בהם</span></div>
+        <div class="wk m"><span class="n">6</span><span class="l">דיבור עצמי וניהול מחשבות</span><span class="l">פרשנות מחדש אחרי כישלון</span><span class="t">טיוטת האני מאמין המנטלי שלך</span></div>
+      </div>
+      <p class="videos"><b>מה רואים בשלב:</b> סיימון סינק (Start with Why), בראד סטיבנס על Growth Mindset, שחקני סן אנטוניו על פופוביץ', קובי בראיינט אחרי ההפסד לבוסטון, פסק הזמן של סטיב קר עם סטף קארי, וסרטוני קודי התזכורת שלנו מראיונות NBA ו־WNBA.</p>
+    </div>
+  </section>
+
+  <section id="s2">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">שלב 2 · שבועות 7–18</span>
+        <h2>מהפילוסופיה למגרש</h2>
+        <p class="lede">מתרגמים את האני מאמין לעקרונות משחק ולמערך אימון. כאן מתחילים להעביר מערכי שיעור לשחקנים.</p>
+      </div>
+      <div class="weeks">
+        <div class="wk wkhead"><span>שבוע</span><span>שיעור א</span><span>שיעור ב</span><span>משימה</span></div>
+        <div class="wk"><span class="n">7</span><span class="l">מפילוסופיה לעקרונות משחק</span><span class="l">עקרונות התקפה</span><span class="t">פרק בספר: פילוסופיית התקפה</span></div>
+        <div class="wk"><span class="n">8</span><span class="l">עקרונות הגנה</span><span class="l">שפה משותפת על המגרש</span><span class="t">פרק בספר: פילוסופיית הגנה</span></div>
+        <div class="wk"><span class="n">9</span><span class="l">אימון יעיל: זמן למידה אמיתי</span><span class="l">עקומת השכחה ושיפורים מזעריים</span><span class="t">למדוד זמן למידה פעיל באימון שלך</span></div>
+        <div class="wk"><span class="n">10</span><span class="l">גישת ההגבלות (CLA)</span><span class="l">משחקונים עם כוונה</span><span class="t">לבנות משחקון אחד לכל עיקרון</span></div>
+        <div class="wk m"><span class="n">11<i class="dot" aria-label="שיעור מנטלי"></i></span><span class="l">כלים מנטליים בתוך תרגיל: לחץ, קו עונשין</span><span class="l">GRIT ואימון עם כוונה</span><span class="t">מערך שיעור לשחקנים: "לעשות למרות"</span></div>
+        <div class="wk"><span class="n">12</span><span class="l">משוב שמשנה התנהגות</span><span class="l">וידאו ככלי לימוד</span><span class="t">לצלם אימון ולנתח את המשוב שלך</span></div>
+        <div class="wk"><span class="n">13</span><span class="l">פיתוח שחקן לטווח ארוך (LTAD)</span><span class="l">עומסים ומניעת פציעות</span><span class="t">מפת גילאים במועדון שלך</span></div>
+        <div class="wk"><span class="n">14</span><span class="l">תוכנית פיתוח לפי גילאים</span><span class="l">תוכנית שנתית</span><span class="t">פרק בספר: פיתוח שחקנים רב־שנתי</span></div>
+        <div class="wk m"><span class="n">15<i class="dot" aria-label="שיעור מנטלי"></i></span><span class="l">ביטחון אחרי ספסל או כישלון</span><span class="l">חמשת השלבים של קובי</span><span class="t">מערך שיעור + מקרה שחקן ראשון</span></div>
+        <div class="wk"><span class="n">16</span><span class="l">אימון של מקצוענים</span><span class="l">לקיחת אחריות: "אני המאמן"</span><span class="t">שני מערכי שיעור לשחקנים</span></div>
+        <div class="wk"><span class="n">17</span><span class="l">פסקי זמן וניהול משחק</span><span class="l">שיחות אישיות עם שחקנים</span><span class="t">שיחה אישית מתועדת עם שחקן</span></div>
+        <div class="wk"><span class="n">18</span><span class="l">סיכום שלב: מערך אימון מלא</span><span class="l">הצגה לעמיתים</span><span class="t">פרק בספר: מתודולוגיית אימון</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="s3">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">שלב 3 · שבועות 19–24</span>
+        <h2>ניהול מקצועי וקהילה</h2>
+        <p class="lede">הפילוסופיה עוברת מהמאמן למועדון: מאמנים, הורים וקהילה סביב אותם ערכים.</p>
+      </div>
+      <div class="weeks">
+        <div class="wk wkhead"><span>שבוע</span><span>שיעור א</span><span>שיעור ב</span><span>משימה</span></div>
+        <div class="wk"><span class="n">19</span><span class="l">מבנה מחלקה מקצועית</span><span class="l">להעביר פילוסופיה למאמנים שתחתיך</span><span class="t">פרק בספר: מבנה המחלקה</span></div>
+        <div class="wk"><span class="n">20</span><span class="l">המאמן כמגשר</span><span class="l">משולש הורה–מאמן–ילד</span><span class="t">שיחת הורים מתועדת</span></div>
+        <div class="wk m"><span class="n">21<i class="dot" aria-label="שיעור מנטלי"></i></span><span class="l">הורים והלחץ על הילד</span><span class="l">סימולציה: שיחת הורה קשה</span><span class="t">מקרה שחקן שני (עם ההורים)</span></div>
+        <div class="wk"><span class="n">22</span><span class="l">הצוות המנצח</span><span class="l">תרבות מועדון ומוגנות</span><span class="t">פרק בספר: תרבות מועדון ומוגנות</span></div>
+        <div class="wk"><span class="n">23</span><span class="l">מועדון כקהילה</span><span class="l">חניכת מאמנים צעירים</span><span class="t">מערך שיעור לשחקנים: "רשימת משהו טוב"</span></div>
+        <div class="wk"><span class="n">24</span><span class="l">מודל עבודה עם מאמנים והורים</span><span class="l">צפיית עמיתים: כל זוג צופה באימון של השני</span><span class="t">פרקים בספר: מאמנים, הורים וקהילה</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="s4">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">שלב 4 · שבועות 25–36</span>
+        <h2>המועדון כעסק</h2>
+        <p class="lede">תקציב, רגולציה, טכנולוגיה ופרויקט הגמר. מסתכלים למציאות בעיניים ובונים פתרונות.</p>
+      </div>
+      <div class="weeks">
+        <div class="wk wkhead"><span>שבוע</span><span>שיעור א</span><span>שיעור ב</span><span>משימה</span></div>
+        <div class="wk"><span class="n">25</span><span class="l">תקציב מועדון</span><span class="l">תזרים חודשי</span><span class="t">למלא את טמפלייט התקציב במספרים של המועדון שלך</span></div>
+        <div class="wk"><span class="n">26</span><span class="l">חוק העמותות ותקנוני איגוד</span><span class="l">עירייה ורשויות</span><span class="t">מפת בעלי עניין</span></div>
+        <div class="wk"><span class="n">27</span><span class="l">חסויות ותרומות</span><span class="l">שיווק המועדון</span><span class="t">עמוד אחד לחסות</span></div>
+        <div class="wk m"><span class="n">28<i class="dot" aria-label="שיעור מנטלי"></i></span><span class="l">חוסן של מנהל בלחץ</span><span class="l">קבלת החלטות: לחשוב מהר, לחשוב לאט</span><span class="t">מקרה שחקן שלישי + מערך שיעור: "הדמויות של יאניס"</span></div>
+        <div class="wk"><span class="n">29</span><span class="l">וידאו ונתונים</span><span class="l">AI למאמן</span><span class="t">כלי אחד שנכנס לשגרה שלך</span></div>
+        <div class="wk"><span class="n">30</span><span class="l">מדדי הצלחה ולוח בקרה</span><span class="l">שימור שחקנים כמדד</span><span class="t">פרק בספר: טכנולוגיה ומדידה</span></div>
+        <div class="wk"><span class="n">31</span><span class="l">הובלת שינוי במועדון</span><span class="l">מקרה בוחן: מועדון שעבר משבר</span><span class="t">תוכנית שינוי אחת</span></div>
+        <div class="wk"><span class="n">32</span><span class="l">השנה הראשונה כמנהל</span><span class="l">משוב עמיתים על טיוטת הספר</span><span class="t">פרק בספר: תקציב, תפעול ורגולציה</span></div>
+        <div class="wk"><span class="n">33</span><span class="l">ניהול זמן וצוות</span><span class="l">כתיבת מחשבות</span><span class="t">מערך שיעור לשחקנים: "כתיבת מחשבות"</span></div>
+        <div class="wk m"><span class="n">34<i class="dot" aria-label="שיעור מנטלי"></i></span><span class="l">המאמן כאדם: שחיקה ואיזון</span><span class="l">סיכום הכלים המנטליים</span><span class="t">מבחן סיום מנטלי</span></div>
+        <div class="wk"><span class="n">35</span><span class="l">הכנת ספר המועדון</span><span class="l">חזרה על ההצגה</span><span class="t">ספר מועדון מלא, 12 פרקים</span></div>
+        <div class="wk"><span class="n">36</span><span class="l">ועדת גמר</span><span class="l">תוכנית 90 יום וטקס תעודות</span><span class="t">הצגה בפני הוועדה</span></div>
+      </div>
+      <p class="legend"><i class="dot" aria-hidden="true"></i> שיעור מהחוט המנטלי</p>
+    </div>
+  </section>
+
+  <section id="plans">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">העבודה המעשית</span>
+        <h2>7 מערכי שיעור לקבוצה שלך</h2>
+        <p class="lede">מערכי שיעור מוכנים שמעבירים לשחקנים במהלך העונה, מתעדים, ומקבלים עליהם משוב במפגש האישי. המועדון מרוויח כבר בזמן הקורס.</p>
+      </div>
+      <ol class="plans">
+        <li>לעשות למרות<small>שבוע 11</small></li>
+        <li>חמשת השלבים של קובי<small>שבוע 15</small></li>
+        <li>אימון של מקצוענים<small>שבוע 16</small></li>
+        <li>לקיחת אחריות<small>שבוע 16</small></li>
+        <li>רשימת משהו טוב<small>שבוע 23</small></li>
+        <li>הדמויות של יאניס<small>שבוע 28</small></li>
+        <li>כתיבת מחשבות<small>שבוע 33</small></li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap cta">
+      <a class="btn" href="./#signup">אני רוצה לשמוע עוד</a>
+      <a class="btn ghost" href="./#price">מחירים ומועדים</a>
+      <p class="lede">הסילבוס עשוי להתעדכן לקראת פתיחת המחזור ב־17 בינואר 2027.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>BASKETBALL 360° · אורי שחורי ורובי בלינקו</span>
+    <a href="./">לדף הקורס</a>
+  </div>
+</footer>
+</body>
+</html>
