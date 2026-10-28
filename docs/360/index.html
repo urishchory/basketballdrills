@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Basketball 360°</title>
-<meta name="description" content="תוכנית הכשרה של 9 חודשים למאמני כדורסל: זהות מאמן, מנטליות, פילוסופיית משחק, פיתוח שחקנים וניהול מועדון. מחזור ראשון נפתח בינואר 2027.">
+<meta name="description" content="תוכנית הכשרה והעשרה של 9 חודשים למאמני כדורסל, כולל תעודת מאמן מנטלי ממכללת שיאים: מנטליות, פילוסופיית משחק, ניהול מקצועי וניהול מועדון. מחזור ראשון נפתח בינואר 2027.">
 <meta property="og:title" content="BASKETBALL 360° · להפוך ממאמן לאיש כדורסל">
-<meta property="og:description" content="9 חודשים, 12–16 מאמנים, ספר מועדון אישי. מחזור ראשון נפתח ב־17 בינואר 2027.">
+<meta property="og:description" content="תעודת מאמן מנטלי ממכללת שיאים + תמונה מלאה של עולם הכדורסל. 9 חודשים, 12–16 מאמנים. נפתח ב־17 בינואר 2027.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Karantina:wght@400;700&family=Assistant:wght@400;600;700;800&display=swap">
@@ -65,6 +65,38 @@ a{color:inherit}
 .btn-red{background:var(--red);color:var(--red-ink)}
 .btn-red:hover{filter:brightness(1.08)}
 .btn-ghost{border-color:currentColor;color:inherit;background:transparent}
+.cert-badge{display:inline-flex;align-items:center;gap:10px;justify-self:start;padding:8px 16px 8px 14px;border:1.5px solid var(--red);border-radius:99px;font-weight:800;font-size:1rem}
+.seal{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--red);color:var(--red-ink);font-size:.85rem}
+
+/* two programs in one */
+.twoin1{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.track{border-radius:8px;padding:26px;display:grid;gap:10px;align-content:start;border:1px solid var(--line);background:var(--panel)}
+.track.cert{background:var(--court);color:var(--court-line);border-color:var(--court)}
+.track .label{font-size:.8rem;font-weight:800;letter-spacing:.1em;color:var(--red)}
+.track h3{font-size:1.5rem}
+.track ul{margin:0;padding:0 1.2em 0 0;display:grid;gap:6px}
+.track.cert ul{opacity:.88}
+.track:not(.cert) ul{color:var(--muted)}
+@media (max-width:700px){.twoin1{grid-template-columns:1fr}}
+.problem{font-size:1.25rem;font-weight:700;max-width:40ch;line-height:1.5}
+.problem em{font-style:normal;color:var(--red)}
+
+/* stages */
+.stages{display:grid;gap:0;border-inline-start:3px solid var(--red);margin:0;padding:0;list-style:none}
+.stage{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:8px 32px;padding:22px 24px;border-bottom:1px solid var(--line)}
+.stage:last-child{border-bottom:0}
+.stage .wk{font-size:.8rem;font-weight:700;color:var(--red);letter-spacing:.06em;font-variant-numeric:tabular-nums}
+.stage h3{font-size:1.3rem}
+.stage p{color:var(--muted);font-size:1rem}
+.stage .out{color:var(--ink);font-weight:700;font-size:.95rem;margin-top:6px}
+@media (max-width:700px){.stage{grid-template-columns:1fr}}
+
+/* outcomes */
+.outs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.outc{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:22px;display:grid;gap:8px;align-content:start}
+.outc.main{border:2px solid var(--red)}
+.outc p{color:var(--muted);font-size:1rem}
+@media (max-width:760px){.outs{grid-template-columns:1fr}}
 .start{font-size:.95rem;opacity:.85}
 .start b{color:var(--red)}
 
@@ -85,7 +117,8 @@ a{color:inherit}
 @media (max-width:520px){.dims{grid-template-columns:1fr}}
 
 /* rhythm */
-.rhythm{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 32px}
+.rhythm{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 32px}
+@media (max-width:900px){.rhythm{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .rhythm div{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;padding-block:14px;border-top:2px solid var(--ink)}
 .rhythm .n{font-family:var(--display);font-size:2.2rem;line-height:1;font-weight:700;grid-row:span 2;min-width:3ch;font-variant-numeric:tabular-nums}
 .rhythm p{color:var(--muted);font-size:1rem}
@@ -151,12 +184,13 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
   <div class="wrap">
     <div class="brand" aria-label="Basketball 360 מעלות">BASKETBALL 360<span>°</span></div>
     <h1>להפוך ממאמן לאיש כדורסל</h1>
-    <p class="lede">מאמן טוב מנהל אימון. איש כדורסל בונה מועדון. תוכנית הכשרה של 9 חודשים למאמנים שרוצים לחבר בין הראש, המגרש והמערכת, ולצאת עם ספר מועדון משלהם.</p>
+    <p class="lede">מאמן טוב מנהל אימון. איש כדורסל בונה מועדון. 9 חודשים של הכשרה והעשרה: יוצאים עם תעודת מאמן מנטלי ממכללת שיאים, עם תמונה מלאה של עולם הכדורסל, ועם ספר מועדון משלך.</p>
+    <p class="cert-badge"><span class="seal" aria-hidden="true">✓</span> כולל תעודת הכשרה כמאמן מנטלי · מכללת שיאים</p>
     <ul class="facts">
       <li><b>9</b><small>חודשים · 36 שבועות</small></li>
       <li><b dir="ltr">12–16</b><small>מאמנים במחזור</small></li>
       <li><b>30</b><small>דקות למידה בשבוע</small></li>
-      <li><b>1</b><small>ספר מועדון אישי</small></li>
+      <li><b>2</b><small>תעודות: מנטלי + 360°</small></li>
     </ul>
     <div class="cta-row">
       <a class="btn btn-red" href="#signup">אני רוצה לשמוע עוד</a>
@@ -167,6 +201,40 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
 </header>
 
 <main>
+  <section id="why">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">למה 360°</span>
+        <p class="problem">יש קורס לאימון מנטלי, קורס לניהול מקצועי, קורס לניהול אגודה וקורס לטכנולוגיה בספורט. <em>אין קורס אחד שמחבר את כל הנקודות.</em></p>
+        <p class="lede">Basketball 360° מלמד להסתכל על כל הנושאים האלה מכל הזוויות ולבנות פתרונות שלמים למועדון. זו הכשרה מקצועית והעשרה רחבה באותה תוכנית.</p>
+      </div>
+      <div class="twoin1">
+        <div class="track cert">
+          <span class="label">הכשרה</span>
+          <h3>תעודת מאמן מנטלי ממכללת שיאים</h3>
+          <p>הקורס נפתח בחלק המנטלי, ובסופו מקבלים תעודת הכשרה שאפשר לעבוד איתה מול שחקנים באופן פרטני ומול קבוצות.</p>
+          <ul>
+            <li>ערכים וחוזקות שלך ושל השחקנים</li>
+            <li>זיהוי חסמים פנימיים כמו דיבור עצמי שלילי</li>
+            <li>כלים מנטליים שמעלים תחושת מסוגלות</li>
+            <li>להצליח למרות הקשיים, אצלך ואצל השחקנים</li>
+          </ul>
+        </div>
+        <div class="track">
+          <span class="label">העשרה</span>
+          <h3>תמונה מלאה של עולם הכדורסל</h3>
+          <p>מהפילוסופיה האישית שלך, דרך המגרש והמחלקה המקצועית, ועד התקציב והעירייה.</p>
+          <ul>
+            <li>עקרונות התקפה והגנה שנובעים מהפילוסופיה שלך</li>
+            <li>מערך אימון שתואם את הדרך שלך</li>
+            <li>מאמנים, הורים וקהילה סביב אותם ערכים</li>
+            <li>תקציב, עמותות, תקנוני איגוד וטכנולוגיה</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="who">
     <div class="wrap">
       <div class="head">
@@ -177,7 +245,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
       <div class="pairs">
         <div class="pair"><q>יש לי תרגילים, אין לי תוכנית</q><span>פילוסופיה ← מודל משחק ← תוכנית פיתוח רב־שנתית</span></div>
         <div class="pair"><q>ההורים לוחצים ואני מגיב</q><span>מודל עבודה עם הורים, קהילה ושותפים</span></div>
-        <div class="pair"><q>אין לי כלים לצד המנטלי</q><span>זהות מאמן, מנהיגות ומיומנויות מנטליות כבסיס של כל התוכנית</span></div>
+        <div class="pair"><q>אין לי כלים לצד המנטלי</q><span>הכשרה כמאמן מנטלי ממכללת שיאים, כבסיס של כל התוכנית</span></div>
         <div class="pair"><q>אני באמצע עונה, אין לי זמן לקורס</q><span>שני שיעורים של 15 דקות בשבוע ומפגש אחד בחודש</span></div>
         <div class="pair"><q>אני רוצה להוביל מחלקה, לא רק קבוצה</q><span>ניהול צוות, תקציב, רגולציה ובקרה, עם תוצר שאפשר להציג למועדון</span></div>
       </div>
@@ -188,17 +256,15 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
     <div class="wrap">
       <div class="head">
         <span class="eyebrow">התוכנית</span>
-        <h2>שש יחידות, 72 שיעורים</h2>
-        <p class="lede">כל יחידה נמשכת שישה שבועות ומסתיימת בפרק שנכנס לספר המועדון שלך.</p>
+        <h2>ארבעה שלבים, 72 שיעורים</h2>
+        <p class="lede">כל שלב נבנה על הקודם, וכל שבוע מסתיים במשימה שנכנסת לספר המועדון שלך.</p>
       </div>
-      <div class="dims">
-        <div class="dim"><span class="wk">שבועות 1–6</span><h3>זהות המאמן, מנהיגות ומיומנויות מנטליות</h3><p>מי אתה כמאמן, איך אתה מוביל, ואיך מלמדים שחקנים להתמודד עם לחץ, טעויות וביטחון.</p></div>
-        <div class="dim"><span class="wk">שבועות 7–12</span><h3>פילוסופיית משחק ומתודולוגיית הוראה</h3><p>עקרונות התקפה והגנה, משחקונים, Constraints-Led Approach ומשוב שמשנה התנהגות.</p></div>
-        <div class="dim"><span class="wk">שבועות 13–18</span><h3>תורת האימון ופיתוח שחקנים לטווח ארוך</h3><p>LTAD, עומסים, מניעת פציעות ומסלול פיתוח לפי גיל.</p></div>
-        <div class="dim"><span class="wk">שבועות 19–24</span><h3>ניהול מקצועי ותרבות מועדון</h3><p>מבנה מחלקה מקצועית, חניכת מאמנים, מוגנות ושקיפות מול הורים.</p></div>
-        <div class="dim"><span class="wk">שבועות 25–30</span><h3>ניהול ארגוני, כלכלי ורגולטורי</h3><p>תקציב מועדון, תזרים, חסויות, ביטוח ותקנוני איגוד.</p></div>
-        <div class="dim"><span class="wk">שבועות 31–36</span><h3>טכנולוגיה, מדידה והובלת שינוי</h3><p>וידאו, נתונים ולוח בקרה, ותוכנית יישום ל־90 הימים שאחרי הקורס.</p></div>
-      </div>
+      <ol class="stages">
+        <li class="stage"><div><span class="wk">שבועות 1–6 · שלב 1</span><h3>המאמן: האני מאמין המנטלי</h3></div><div><p>מזקקים את הערכים שלך כמאמן, מוצאים את החוזקות שלך ושל השחקנים, מזהים חסמים כמו דיבור עצמי שלילי, ולומדים כלים מנטליים שמעלים מסוגלות. המטרה: האמירה הייחודית שלך בכדורסל, ואיך מעבירים אותה לשחקנים, למאמנים שתחתיך ולמועדון.</p><p class="out">יוצאים עם: תעודת מאמן מנטלי ממכללת שיאים + האני מאמין שלך</p></div></li>
+        <li class="stage"><div><span class="wk">שבועות 7–18 · שלב 2</span><h3>מהפילוסופיה למגרש</h3></div><div><p>כותבים עקרונות התקפה והגנה שנובעים מהפילוסופיה שלך, לומדים למידה דרך עקרונות טכניים והקשר שלה לדיבור העצמי של השחקן, ובונים מערך אימון שמאזן בין כל מה שמאמן צריך לגעת בו.</p><p class="out">יוצאים עם: עקרונות כתובים + מבנה מערך אימון משלך</p></div></li>
+        <li class="stage"><div><span class="wk">שבועות 19–24 · שלב 3</span><h3>ניהול מקצועי וקהילה</h3></div><div><p>איך מביאים את הפילוסופיה למאמנים במועדון, כלים מעולם הגישור לבניית יחסים עם הורים ומאמנים, ואיך הופכים מועדון לקהילה שמדברת את אותם ערכים.</p><p class="out">יוצאים עם: מודל עבודה עם מאמנים והורים</p></div></li>
+        <li class="stage"><div><span class="wk">שבועות 25–36 · שלב 4</span><h3>המועדון כעסק</h3></div><div><p>תקציב, חוקי עמותות ותקנוני איגוד, יחסים עם העירייה, ופתרונות טכנולוגיים לגוף שהמשאבים שלו מוגבלים. מסתכלים למציאות בעיניים: מציגים את הבעיות ובונים פתרונות.</p><p class="out">יוצאים עם: טמפלייט תקציב שאתה מבין + ספר מועדון מלא</p></div></li>
+      </ol>
     </div>
   </section>
 
@@ -211,34 +277,26 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
       </div>
       <div class="rhythm">
         <div><span class="n" dir="ltr">2×15</span><h3>שיעורי וידאו בשבוע</h3><p>מתי שנוח לך, מהטלפון.</p></div>
-        <div><span class="n">1</span><h3>משימה יישומית בשבוע</h3><p>עושים אותה בקבוצה שלך, והיא נכנסת לספר המועדון.</p></div>
+        <div><span class="n">1</span><h3>תוכנית עבודה בכל נושא</h3><p>אחרי כל שני שיעורים כותבים תוכנית עבודה ליישום בקבוצה שלך.</p></div>
         <div><span class="n">1</span><h3>מפגש קבוצתי בחודש</h3><p>פרונטלי: מקרי בוחן, סדנאות ומשוב עמיתים.</p></div>
         <div><span class="n">1</span><h3>מפגש אישי בחודש</h3><p>בזום: מנטורינג וסקירת ההתקדמות שלך.</p></div>
+        <div><span class="n">☎</span><h3>ליווי טלפוני קבוע</h3><p>ממנהלי הקורס, לכל שאלה ותקיעה בדרך.</p></div>
+        <div><span class="n">1</span><h3>ועדת גמר</h3><p>בסוף מציגים את ספר המועדון ומקבלים את התעודות.</p></div>
       </div>
     </div>
   </section>
 
   <section id="book">
-    <div class="wrap book">
+    <div class="wrap">
       <div class="head">
-        <span class="eyebrow">התוצר</span>
-        <h2>ספר המועדון 360°</h2>
-        <p class="lede">מסמך עבודה שלך, לא תעודה במגירה. 12 פרקים שנכתבים לאורך התוכנית ומוצגים בסוף בפני ועדה. אפשר לקחת אותו לכל מועדון.</p>
+        <span class="eyebrow">עם מה יוצאים</span>
+        <h2>שלושה דברים שנשארים אצלך</h2>
       </div>
-      <ol class="chapters">
-        <li>חזון, ייעוד וערכים</li>
-        <li>זהות המאמן ומנהיגות</li>
-        <li>תרבות מועדון ומוגנות</li>
-        <li>פילוסופיית התקפה</li>
-        <li>פילוסופיית הגנה</li>
-        <li>מתודולוגיית אימון</li>
-        <li>פיתוח שחקנים רב־שנתי</li>
-        <li>מבנה המחלקה המקצועית</li>
-        <li>ניהול ופיתוח מאמנים</li>
-        <li>הורים, קהילה ושותפים</li>
-        <li>תקציב, תפעול ורגולציה</li>
-        <li>טכנולוגיה, מדידה ותוכנית יישום</li>
-      </ol>
+      <div class="outs">
+        <div class="outc main"><span class="eyebrow">הכשרה</span><h3>תעודת מאמן מנטלי</h3><p>ממכללת שיאים. לעבודה עם שחקנים באופן פרטני ומול קבוצות.</p></div>
+        <div class="outc"><span class="eyebrow">פרויקט גמר</span><h3>ספר המועדון 360°</h3><p>האני מאמין שלך בכדורסל, ב־12 פרקים. מוצג בסוף בפני ועדה, ואפשר לקחת אותו לכל מועדון.</p></div>
+        <div class="outc"><span class="eyebrow">כלי עבודה</span><h3>טמפלייט תקציב</h3><p>תקציב מועדון שאתה מבין, ושאפשר לשבץ בו את המספרים של המועדון שלך.</p></div>
+      </div>
     </div>
   </section>
 
@@ -255,7 +313,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
           <p>מאמן כדורסל נוער ואחראי התחום המנטלי בהפועל גזר ובהפועל מנשה. מלמד שחקנים ומאמנים "קודים" מנטליים מתוך ראיונות של שחקני NBA ו־WNBA.</p>
         </div>
       </div>
-      <p class="team-note">לצד אורי מלמד סגל קבוע. השמות יפורסמו כאן בקרוב.</p>
+      <p class="team-note">לצד אורי מלמד ומלווה סגל קבוע של מנהלי הקורס. השמות יפורסמו כאן בקרוב.</p>
     </div>
   </section>
 
@@ -264,7 +322,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
       <div class="head">
         <span class="eyebrow">מחיר ומועדים</span>
         <h2>פתיחה: 17 בינואר 2027</h2>
-        <p class="lede">אפשר לשלם בעד 6 תשלומים.</p>
+        <p class="lede">אפשר לשלם בעד 6 תשלומים. <a href="Basketball-360.pdf" target="_blank" rel="noopener">להורדת דף המידע (PDF)</a></p>
       </div>
       <div class="prices">
         <div class="price main"><span class="tag">עד 15.12.2026</span><h3>מחיר מוקדם</h3><span class="amt">₪3,500</span><small>כ־390 ₪ לחודש לאורך התוכנית</small></div>
@@ -279,7 +337,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
       <div class="head"><span class="eyebrow">שאלות</span><h2>מה שואלים אותנו</h2></div>
       <details><summary>כמה זמן זה לוקח בשבוע?</summary><p>שני שיעורים של 15 דקות ומשימה אחת שמבצעים בקבוצה שלך. פעם בחודש מפגש קבוצתי ופעם בחודש מפגש אישי.</p></details>
       <details><summary>זה אונליין או פרונטלי?</summary><p>שניהם. השיעורים מוקלטים, המפגש הקבוצתי החודשי פרונטלי, והמפגש האישי בזום.</p></details>
-      <details><summary>מקבלים תעודה?</summary><p>מקבלים תעודת סיום של תוכנית Basketball 360°. זו לא הסמכה רשמית של איגוד או של משרד התרבות והספורט, וגם לא הכשרה לטיפול פסיכולוגי. מה שנשאר לך ביד הוא ספר המועדון.</p></details>
+      <details><summary>איזו תעודה מקבלים?</summary><p>שתיים. בסיום החלק המנטלי מקבלים תעודת הכשרה כמאמן מנטלי ממכללת שיאים, שאפשר לעבוד איתה מול שחקנים באופן פרטני ומול קבוצות. בסיום התוכנית כולה מקבלים גם תעודת סיום של Basketball 360°. התעודה המנטלית היא הכשרה לאימון מנטלי בספורט, לא לטיפול פסיכולוגי.</p></details>
       <details><summary>מה אם פספסתי שבוע?</summary><p>השיעורים נשארים זמינים, ובמפגש האישי משלימים את מה שחסר.</p></details>
       <details><summary>המועדון שלי יכול לממן?</summary><p>כן. מועדון ששולח שני מאמנים ומעלה משלם 3,500 ₪ למאמן. השאירו פרטים ונשלח הצעה מסודרת למועדון.</p></details>
     </div>
