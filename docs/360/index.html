@@ -135,7 +135,8 @@ a{color:inherit}
 .coach{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:22px}
 .avatar{width:84px;height:84px;border-radius:50%;background:var(--court);color:var(--court-line);display:grid;place-items:center;font-family:var(--display);font-size:2.4rem;font-weight:700}
 .coach p{color:var(--muted)}
-.team-note{margin-top:14px;color:var(--muted);font-size:1rem}
+.coaches{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:760px){.coaches{grid-template-columns:1fr}}
 
 /* price */
 .prices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
@@ -304,16 +305,25 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
     <div class="wrap">
       <div class="head">
         <span class="eyebrow">מי מלמד</span>
-        <h2>הצוות</h2>
+        <h2>שני מנהלי התוכנית</h2>
+        <p class="lede">המנטלי והמקצועי מגיעים מהשטח: שניהם מאמנים, מנהלים ומלווים מאמנים ביום־יום.</p>
       </div>
-      <div class="coach">
-        <div class="avatar" aria-hidden="true">א</div>
-        <div>
-          <h3>אורי שחורי, מוביל התוכנית</h3>
-          <p>מאמן כדורסל נוער ואחראי התחום המנטלי בהפועל גזר ובהפועל מנשה. מלמד שחקנים ומאמנים "קודים" מנטליים מתוך ראיונות של שחקני NBA ו־WNBA.</p>
+      <div class="coaches">
+        <div class="coach">
+          <div class="avatar" aria-hidden="true">א</div>
+          <div>
+            <h3>אורי שחורי</h3>
+            <p>מאמן כדורסל נוער ואחראי התחום המנטלי בהפועל גזר ובהפועל מנשה. מלמד שחקנים ומאמנים "קודים" מנטליים מתוך ראיונות של שחקני NBA ו־WNBA.</p>
+          </div>
+        </div>
+        <div class="coach">
+          <div class="avatar" aria-hidden="true">ר</div>
+          <div>
+            <h3>רובי בלינקו</h3>
+            <p>אחראי תחום הכדורסל בבית ספר שיאים ומנהל מועדוני כדורסל. מביא לתוכנית את הניסיון של ניהול מועדון מבפנים.</p>
+          </div>
         </div>
       </div>
-      <p class="team-note">לצד אורי מלמד ומלווה סגל קבוע של מנהלי הקורס. השמות יפורסמו כאן בקרוב.</p>
     </div>
   </section>
 
@@ -387,7 +397,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
 
 <footer>
   <div class="wrap">
-    <span>BASKETBALL 360° · אורי שחורי</span>
+    <span>BASKETBALL 360° · אורי שחורי ורובי בלינקו</span>
     <span>מחזור ראשון · ינואר 2027</span>
   </div>
 </footer>
