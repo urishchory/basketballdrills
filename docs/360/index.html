@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Basketball 360°</title>
+<meta name="description" content="תוכנית הכשרה של 9 חודשים למאמני כדורסל: זהות מאמן, מנטליות, פילוסופיית משחק, פיתוח שחקנים וניהול מועדון. מחזור ראשון נפתח בינואר 2027.">
+<meta property="og:title" content="BASKETBALL 360° · להפוך ממאמן לאיש כדורסל">
+<meta property="og:description" content="9 חודשים, 12–16 מאמנים, ספר מועדון אישי. מחזור ראשון נפתח ב־17 בינואר 2027.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Karantina:wght@400;700&family=Assistant:wght@400;600;700;800&display=swap">
+<style>
+/* Layout: one column read like a coach's clipboard — the center circle of the court is the 360° motif; red is the only accent. */
+:root{
+  --ink:#15171c;
+  --paper:#f6f5f2;
+  --panel:#ffffff;
+  --line:#d9d6cf;
+  --muted:#5d6068;
+  --red:#d6282f;
+  --red-ink:#ffffff;
+  --court:#1d2230;
+  --court-line:#f6f5f2;
+  --display:"Karantina","Assistant",system-ui,sans-serif;
+  --body:"Assistant","Segoe UI",Arial,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ink:#eeece8;--paper:#121419;--panel:#1b1e25;--line:#2e323c;--muted:#a3a6ad;--red:#ec4148;--red-ink:#ffffff;--court:#0b0d12;--court-line:#eeece8;color-scheme:dark}}
+:root[data-theme="dark"]{--ink:#eeece8;--paper:#121419;--panel:#1b1e25;--line:#2e323c;--muted:#a3a6ad;--red:#ec4148;--red-ink:#ffffff;--court:#0b0d12;--court-line:#eeece8;color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.6}
+.wrap{max-width:960px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{text-wrap:balance;margin:0}
+h2{font-family:var(--display);font-weight:700;font-size:clamp(2.6rem,6vw,3.6rem);line-height:1;letter-spacing:.01em}
+h3{font-size:1.15rem;font-weight:800}
+p{margin:0}
+.lede{color:var(--muted);max-width:62ch}
+.eyebrow{font-size:.8rem;font-weight:800;letter-spacing:.12em;color:var(--red);text-transform:uppercase}
+section{padding-block:72px;border-top:1px solid var(--line)}
+section .head{display:grid;gap:10px;margin-bottom:32px}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+
+/* hero */
+.hero{background:var(--court);color:var(--court-line);overflow:hidden;position:relative}
+.hero .wrap{position:relative;padding-block:64px 56px;display:grid;gap:22px}
+.circle{position:absolute;inset-inline-start:-140px;top:50%;width:520px;height:520px;transform:translateY(-50%);border:3px solid var(--court-line);border-radius:50%;opacity:.12;pointer-events:none}
+.circle::after{content:"";position:absolute;inset:34%;border:3px solid var(--court-line);border-radius:50%}
+.circle::before{content:"";position:absolute;top:-3px;bottom:-3px;inset-inline-start:50%;border-inline-start:3px solid var(--court-line)}
+.brand{font-family:var(--display);font-weight:700;font-size:clamp(4rem,15vw,8.5rem);line-height:.85;letter-spacing:.01em;direction:ltr;text-align:right}
+.brand span{color:var(--red)}
+.hero h1{font-size:clamp(1.6rem,4.6vw,2.4rem);font-weight:800;line-height:1.2}
+.hero .lede{color:inherit;opacity:.82;font-size:1.1rem}
+.facts{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:6px;padding:0;list-style:none}
+.facts li{display:grid}
+.facts b{font-family:var(--display);font-size:2.4rem;line-height:1;font-weight:700}
+.facts small{font-size:.85rem;opacity:.75}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:0 24px;border-radius:6px;font:inherit;font-weight:800;text-decoration:none;cursor:pointer;border:2px solid transparent}
+.btn-red{background:var(--red);color:var(--red-ink)}
+.btn-red:hover{filter:brightness(1.08)}
+.btn-ghost{border-color:currentColor;color:inherit;background:transparent}
+.start{font-size:.95rem;opacity:.85}
+.start b{color:var(--red)}
+
+/* pains */
+.pairs{display:grid;gap:0;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--panel)}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:18px 20px;border-top:1px solid var(--line)}
+.pair:first-child{border-top:0}
+.pair q{quotes:none;font-weight:700}
+.pair span{color:var(--muted)}
+@media (max-width:640px){.pair{grid-template-columns:1fr;gap:4px}}
+
+/* dimensions */
+.dims{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;counter-reset:dim}
+.dim{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px;display:grid;gap:8px;align-content:start}
+.dim .wk{font-size:.8rem;font-weight:700;color:var(--red);letter-spacing:.06em;font-variant-numeric:tabular-nums}
+.dim p{color:var(--muted);font-size:1rem}
+@media (max-width:820px){.dims{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.dims{grid-template-columns:1fr}}
+
+/* rhythm */
+.rhythm{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 32px}
+.rhythm div{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;padding-block:14px;border-top:2px solid var(--ink)}
+.rhythm .n{font-family:var(--display);font-size:2.2rem;line-height:1;font-weight:700;grid-row:span 2;min-width:3ch;font-variant-numeric:tabular-nums}
+.rhythm p{color:var(--muted);font-size:1rem}
+@media (max-width:640px){.rhythm{grid-template-columns:1fr}}
+
+/* book */
+.book{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:32px;align-items:start}
+.chapters{columns:2;column-gap:28px;margin:0;padding:0 1.4em 0 0;font-weight:600}
+.chapters li{break-inside:avoid;padding-block:5px;border-bottom:1px dashed var(--line)}
+.chapters li::marker{color:var(--red);font-variant-numeric:tabular-nums}
+@media (max-width:760px){.book{grid-template-columns:1fr}.chapters{columns:1}}
+
+/* team */
+.coach{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:22px}
+.avatar{width:84px;height:84px;border-radius:50%;background:var(--court);color:var(--court-line);display:grid;place-items:center;font-family:var(--display);font-size:2.4rem;font-weight:700}
+.coach p{color:var(--muted)}
+.team-note{margin-top:14px;color:var(--muted);font-size:1rem}
+
+/* price */
+.prices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.price{border:1px solid var(--line);border-radius:8px;padding:22px;background:var(--panel);display:grid;gap:6px;align-content:start}
+.price.main{border:2px solid var(--red)}
+.price .amt{font-family:var(--display);font-size:3.2rem;line-height:1;font-weight:700;font-variant-numeric:tabular-nums}
+.price small{color:var(--muted);font-size:.95rem}
+.tag{justify-self:start;background:var(--red);color:var(--red-ink);font-size:.75rem;font-weight:800;padding:2px 10px;border-radius:99px}
+@media (max-width:760px){.prices{grid-template-columns:1fr}}
+
+/* faq */
+details{border-bottom:1px solid var(--line);padding-block:14px}
+summary{cursor:pointer;font-weight:800;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--red);font-size:1.4rem;line-height:1}
+details[open] summary::after{content:"−"}
+details p{color:var(--muted);margin-top:8px;max-width:65ch}
+
+/* form */
+.signup{background:var(--court);color:var(--court-line);border-top:0}
+.signup .lede{color:inherit;opacity:.8}
+form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:8px}
+.field{display:grid;gap:6px;min-width:0}
+.field.full{grid-column:1/-1}
+label,legend{font-weight:700;font-size:.95rem}
+input[type=text],input[type=tel],input[type=email],select{width:100%;min-height:48px;border-radius:6px;border:1px solid #3a4050;background:#0f1219;color:#f2f1ee;font:inherit;padding:0 14px}
+input::placeholder{color:#8b909a}
+fieldset{border:0;padding:0;margin:0;display:grid;gap:8px}
+.check{display:flex;gap:10px;align-items:flex-start;font-weight:400;font-size:1rem}
+.check input{width:20px;height:20px;margin-top:3px;accent-color:var(--red);flex:none}
+.form-actions{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.status{font-weight:700}
+.status.err{color:#ff8a8f}
+.thanks{display:grid;gap:10px;padding:28px;border:2px solid var(--red);border-radius:8px}
+.thanks h3{font-size:1.5rem}
+@media (max-width:640px){form{grid-template-columns:1fr}}
+
+footer{padding-block:28px;font-size:.9rem;color:var(--muted)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="circle" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="brand" aria-label="Basketball 360 מעלות">BASKETBALL 360<span>°</span></div>
+    <h1>להפוך ממאמן לאיש כדורסל</h1>
+    <p class="lede">מאמן טוב מנהל אימון. איש כדורסל בונה מועדון. תוכנית הכשרה של 9 חודשים למאמנים שרוצים לחבר בין הראש, המגרש והמערכת, ולצאת עם ספר מועדון משלהם.</p>
+    <ul class="facts">
+      <li><b>9</b><small>חודשים · 36 שבועות</small></li>
+      <li><b dir="ltr">12–16</b><small>מאמנים במחזור</small></li>
+      <li><b>30</b><small>דקות למידה בשבוע</small></li>
+      <li><b>1</b><small>ספר מועדון אישי</small></li>
+    </ul>
+    <div class="cta-row">
+      <a class="btn btn-red" href="#signup">אני רוצה לשמוע עוד</a>
+      <a class="btn btn-ghost" href="#signup" data-interest="kit">ערכת המאמן השבועית, חינם</a>
+    </div>
+    <p class="start">מחזור ראשון נפתח ב<b>־17 בינואר 2027</b> · מחיר מוקדם עד 15 בדצמבר</p>
+  </div>
+</header>
+
+<main>
+  <section id="who">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">למי זה מתאים</span>
+        <h2>אתה כבר יודע להעביר אימון</h2>
+        <p class="lede">התוכנית נבנתה למאמנים מנוסים, רכזים ומנהלים מקצועיים במחלקות נוער, שמרגישים שהמגרש כבר לא מספיק.</p>
+      </div>
+      <div class="pairs">
+        <div class="pair"><q>יש לי תרגילים, אין לי תוכנית</q><span>פילוסופיה ← מודל משחק ← תוכנית פיתוח רב־שנתית</span></div>
+        <div class="pair"><q>ההורים לוחצים ואני מגיב</q><span>מודל עבודה עם הורים, קהילה ושותפים</span></div>
+        <div class="pair"><q>אין לי כלים לצד המנטלי</q><span>זהות מאמן, מנהיגות ומיומנויות מנטליות כבסיס של כל התוכנית</span></div>
+        <div class="pair"><q>אני באמצע עונה, אין לי זמן לקורס</q><span>שני שיעורים של 15 דקות בשבוע ומפגש אחד בחודש</span></div>
+        <div class="pair"><q>אני רוצה להוביל מחלקה, לא רק קבוצה</q><span>ניהול צוות, תקציב, רגולציה ובקרה, עם תוצר שאפשר להציג למועדון</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="dimensions">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">התוכנית</span>
+        <h2>שש יחידות, 72 שיעורים</h2>
+        <p class="lede">כל יחידה נמשכת שישה שבועות ומסתיימת בפרק שנכנס לספר המועדון שלך.</p>
+      </div>
+      <div class="dims">
+        <div class="dim"><span class="wk">שבועות 1–6</span><h3>זהות המאמן, מנהיגות ומיומנויות מנטליות</h3><p>מי אתה כמאמן, איך אתה מוביל, ואיך מלמדים שחקנים להתמודד עם לחץ, טעויות וביטחון.</p></div>
+        <div class="dim"><span class="wk">שבועות 7–12</span><h3>פילוסופיית משחק ומתודולוגיית הוראה</h3><p>עקרונות התקפה והגנה, משחקונים, Constraints-Led Approach ומשוב שמשנה התנהגות.</p></div>
+        <div class="dim"><span class="wk">שבועות 13–18</span><h3>תורת האימון ופיתוח שחקנים לטווח ארוך</h3><p>LTAD, עומסים, מניעת פציעות ומסלול פיתוח לפי גיל.</p></div>
+        <div class="dim"><span class="wk">שבועות 19–24</span><h3>ניהול מקצועי ותרבות מועדון</h3><p>מבנה מחלקה מקצועית, חניכת מאמנים, מוגנות ושקיפות מול הורים.</p></div>
+        <div class="dim"><span class="wk">שבועות 25–30</span><h3>ניהול ארגוני, כלכלי ורגולטורי</h3><p>תקציב מועדון, תזרים, חסויות, ביטוח ותקנוני איגוד.</p></div>
+        <div class="dim"><span class="wk">שבועות 31–36</span><h3>טכנולוגיה, מדידה והובלת שינוי</h3><p>וידאו, נתונים ולוח בקרה, ותוכנית יישום ל־90 הימים שאחרי הקורס.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">איך זה עובד</span>
+        <h2>בנוי למאמן שעובד</h2>
+        <p class="lede">לומדים בקצרה, מיישמים בקבוצה שלך, מקבלים משוב ומשפרים.</p>
+      </div>
+      <div class="rhythm">
+        <div><span class="n" dir="ltr">2×15</span><h3>שיעורי וידאו בשבוע</h3><p>מתי שנוח לך, מהטלפון.</p></div>
+        <div><span class="n">1</span><h3>משימה יישומית בשבוע</h3><p>עושים אותה בקבוצה שלך, והיא נכנסת לספר המועדון.</p></div>
+        <div><span class="n">1</span><h3>מפגש קבוצתי בחודש</h3><p>פרונטלי: מקרי בוחן, סדנאות ומשוב עמיתים.</p></div>
+        <div><span class="n">1</span><h3>מפגש אישי בחודש</h3><p>בזום: מנטורינג וסקירת ההתקדמות שלך.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="book">
+    <div class="wrap book">
+      <div class="head">
+        <span class="eyebrow">התוצר</span>
+        <h2>ספר המועדון 360°</h2>
+        <p class="lede">מסמך עבודה שלך, לא תעודה במגירה. 12 פרקים שנכתבים לאורך התוכנית ומוצגים בסוף בפני ועדה. אפשר לקחת אותו לכל מועדון.</p>
+      </div>
+      <ol class="chapters">
+        <li>חזון, ייעוד וערכים</li>
+        <li>זהות המאמן ומנהיגות</li>
+        <li>תרבות מועדון ומוגנות</li>
+        <li>פילוסופיית התקפה</li>
+        <li>פילוסופיית הגנה</li>
+        <li>מתודולוגיית אימון</li>
+        <li>פיתוח שחקנים רב־שנתי</li>
+        <li>מבנה המחלקה המקצועית</li>
+        <li>ניהול ופיתוח מאמנים</li>
+        <li>הורים, קהילה ושותפים</li>
+        <li>תקציב, תפעול ורגולציה</li>
+        <li>טכנולוגיה, מדידה ותוכנית יישום</li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="team">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">מי מלמד</span>
+        <h2>הצוות</h2>
+      </div>
+      <div class="coach">
+        <div class="avatar" aria-hidden="true">א</div>
+        <div>
+          <h3>אורי שחורי, מוביל התוכנית</h3>
+          <p>מאמן כדורסל נוער ואחראי התחום המנטלי בהפועל גזר ובהפועל מנשה. מלמד שחקנים ומאמנים "קודים" מנטליים מתוך ראיונות של שחקני NBA ו־WNBA.</p>
+        </div>
+      </div>
+      <p class="team-note">לצד אורי מלמד סגל קבוע. השמות יפורסמו כאן בקרוב.</p>
+    </div>
+  </section>
+
+  <section id="price">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">מחיר ומועדים</span>
+        <h2>פתיחה: 17 בינואר 2027</h2>
+        <p class="lede">אפשר לשלם בעד 6 תשלומים.</p>
+      </div>
+      <div class="prices">
+        <div class="price main"><span class="tag">עד 15.12.2026</span><h3>מחיר מוקדם</h3><span class="amt">₪3,500</span><small>כ־390 ₪ לחודש לאורך התוכנית</small></div>
+        <div class="price"><h3>מחיר מלא</h3><span class="amt">₪4,200</span><small>ההרשמה נסגרת ב־12.1.2027</small></div>
+        <div class="price"><h3>מועדון ששולח 2 מאמנים ומעלה</h3><span class="amt">₪3,500</span><small>למאמן, בכל מועד</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <div class="head"><span class="eyebrow">שאלות</span><h2>מה שואלים אותנו</h2></div>
+      <details><summary>כמה זמן זה לוקח בשבוע?</summary><p>שני שיעורים של 15 דקות ומשימה אחת שמבצעים בקבוצה שלך. פעם בחודש מפגש קבוצתי ופעם בחודש מפגש אישי.</p></details>
+      <details><summary>זה אונליין או פרונטלי?</summary><p>שניהם. השיעורים מוקלטים, המפגש הקבוצתי החודשי פרונטלי, והמפגש האישי בזום.</p></details>
+      <details><summary>מקבלים תעודה?</summary><p>מקבלים תעודת סיום של תוכנית Basketball 360°. זו לא הסמכה רשמית של איגוד או של משרד התרבות והספורט, וגם לא הכשרה לטיפול פסיכולוגי. מה שנשאר לך ביד הוא ספר המועדון.</p></details>
+      <details><summary>מה אם פספסתי שבוע?</summary><p>השיעורים נשארים זמינים, ובמפגש האישי משלימים את מה שחסר.</p></details>
+      <details><summary>המועדון שלי יכול לממן?</summary><p>כן. מועדון ששולח שני מאמנים ומעלה משלם 3,500 ₪ למאמן. השאירו פרטים ונשלח הצעה מסודרת למועדון.</p></details>
+    </div>
+  </section>
+
+  <section id="signup" class="signup">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">השארת פרטים</span>
+        <h2>בוא נדבר</h2>
+        <p class="lede">משאירים פרטים, וחוזרים אליך תוך יומיים. בלי התחייבות.</p>
+      </div>
+      <form id="lead" novalidate>
+        <div class="field"><label for="f-name">שם מלא</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
+        <div class="field"><label for="f-phone">טלפון</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" dir="ltr" required></div>
+        <div class="field"><label for="f-email">אימייל</label><input id="f-email" name="email" type="email" autocomplete="email" dir="ltr"></div>
+        <div class="field"><label for="f-role">תפקיד</label>
+          <select id="f-role" name="role" required>
+            <option value="">בחר…</option>
+            <option>מאמן נוער</option>
+            <option>מאמן בוגרים</option>
+            <option>רכז / מנהל מחלקת נוער</option>
+            <option>מנהל מועדון</option>
+            <option>אחר</option>
+          </select></div>
+        <div class="field full"><label for="f-club">מועדון / קבוצה</label><input id="f-club" name="club" type="text" autocomplete="organization"></div>
+        <fieldset class="field full">
+          <legend>מה מעניין אותך?</legend>
+          <label class="check"><input type="checkbox" id="i-course" name="interest" value="פרטים על הקורס" checked> פרטים על Basketball 360°</label>
+          <label class="check"><input type="checkbox" id="i-kit" name="interest" value="ערכת המאמן השבועית"> ערכת המאמן השבועית בחינם (סרטון, קוד מנטלי ותרגיל של 5 דקות)</label>
+          <label class="check"><input type="checkbox" id="i-call" name="interest" value="שיחת היכרות"> שיחת היכרות של 15 דקות</label>
+          <label class="check"><input type="checkbox" id="i-club" name="interest" value="הצעה למועדון"> הצעה למועדון שלי</label>
+        </fieldset>
+        <label class="check field full"><input type="checkbox" id="f-consent" name="consent" required> אני מסכים/ה לקבל עדכונים ותוכן מקצועי בוואטסאפ ובמייל. אפשר להסיר בכל רגע.</label>
+        <div class="form-actions">
+          <button class="btn btn-red" type="submit" id="f-submit">שליחה</button>
+          <span class="status" id="f-status" role="status" aria-live="polite"></span>
+        </div>
+      </form>
+      <div class="thanks" id="thanks" hidden>
+        <h3>קיבלנו, תודה!</h3>
+        <p>נחזור אליך תוך יומיים. בינתיים, ערכת המאמן הקרובה יוצאת ביום ראשון.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>BASKETBALL 360° · אורי שחורי</span>
+    <span>מחזור ראשון · ינואר 2027</span>
+  </div>
+</footer>
+
+<script>
+/* Google Form that receives the sign-ups; its answers land in the linked Google Sheet
+   "Basketball 360° - השארת פרטים (Responses)" in Uri's Drive. */
+var FORM = {
+  action: "https://docs.google.com/forms/d/e/1FAIpQLSfNo6i3kZwn9dJKWNoNMcEagZwn-CWOYtZR5IMNumAEPQeW3w/formResponse",
+  fields: {
+    name: "entry.318087921", phone: "entry.190524253", email: "entry.1806234530", role: "entry.60408724",
+    club: "entry.176206483", interest: "entry.107210358", source: "entry.1561736449"
+  }
+};
+
+(function(){
+  var form = document.getElementById("lead");
+  var status = document.getElementById("f-status");
+  var btn = document.getElementById("f-submit");
+
+  document.querySelectorAll('[data-interest="kit"]').forEach(function(a){
+    a.addEventListener("click", function(){ document.getElementById("i-kit").checked = true; });
+  });
+
+  function source(){
+    var p = new URLSearchParams(location.search);
+    return p.get("utm_source") || p.get("src") || (document.referrer ? new URL(document.referrer).hostname : "direct");
+  }
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    status.className = "status"; status.textContent = "";
+    var el = form.elements;
+    var name = el["name"].value.trim(), phone = el["phone"].value.trim(), role = el["role"].value;
+    if (!name || !phone || !role) { status.className = "status err"; status.textContent = "חסרים שם, טלפון או תפקיד."; return; }
+    if (phone.replace(/\D/g, "").length < 9) { status.className = "status err"; status.textContent = "מספר הטלפון נראה קצר מדי."; return; }
+    if (!el["consent"].checked) { status.className = "status err"; status.textContent = "צריך לאשר קבלת עדכונים כדי שנוכל לחזור אליך."; return; }
+    if (!FORM.action) { status.className = "status err"; status.textContent = "הטופס עוד לא מחובר. נסו שוב בקרוב."; return; }
+
+    var interests = Array.prototype.map.call(form.querySelectorAll('input[name="interest"]:checked'), function(i){ return i.value; });
+    var data = new URLSearchParams();
+    var f = FORM.fields;
+    data.append(f.name, name);
+    data.append(f.phone, phone);
+    if (f.email) data.append(f.email, el["email"].value.trim());
+    data.append(f.role, role);
+    if (f.club) data.append(f.club, el["club"].value.trim());
+    if (f.interest) data.append(f.interest, interests.join(", "));
+    if (f.source) data.append(f.source, source());
+
+    btn.disabled = true; status.textContent = "שולח…";
+    fetch(FORM.action, { method: "POST", mode: "no-cors", body: data })
+      .then(function(){ form.hidden = true; document.getElementById("thanks").hidden = false; })
+      .catch(function(){ btn.disabled = false; status.className = "status err"; status.textContent = "השליחה נכשלה. בדקו את החיבור ונסו שוב."; });
+  });
+})();
+</script>
+</body>
+</html>
