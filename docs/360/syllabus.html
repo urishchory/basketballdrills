@@ -7,6 +7,9 @@
 <meta name="description" content="הסילבוס של Basketball 360°: 4 שלבים, 36 שבועות, 72 שיעורים, וחוט מנטלי של כ־55 שעות שמסתיים בתעודת מאמן מנטלי ממכללת שיאים.">
 <meta property="og:title" content="BASKETBALL 360° · הסילבוס">
 <meta property="og:description" content="36 שבועות, שבוע אחרי שבוע. תעודת מאמן מנטלי ממכללת שיאים בסוף הקורס. נפתח ב־17 בינואר 2027.">
+<link rel="icon" type="image/png" href="brand/icon-avatar-favicon.png">
+<link rel="apple-touch-icon" href="brand/icon-avatar.png">
+<meta property="og:image" content="https://urishchory.github.io/basketballdrills/360/brand/icon-avatar.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Karantina:wght@400;700&family=Assistant:wght@400;600;700;800&display=swap">
@@ -38,8 +41,8 @@ a{color:inherit}
 .hero .wrap{padding-block:40px 36px;display:grid;gap:14px}
 .back{font-size:.95rem;opacity:.8;text-decoration:none}
 .back:hover{opacity:1;text-decoration:underline}
-.brand{font-family:var(--display);font-weight:700;font-size:clamp(3rem,10vw,5.5rem);line-height:.85;direction:ltr;text-align:right}
-.brand span{color:var(--red)}
+.brand{display:block;width:clamp(240px,50vw,460px);max-width:100%;height:auto;justify-self:start}
+footer .ficon img{width:28px;height:28px;vertical-align:middle;margin-inline-end:8px}
 .hero h1{font-size:clamp(1.5rem,4vw,2.1rem);font-weight:800;line-height:1.2}
 .hero .lede{color:inherit;opacity:.82}
 .nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
@@ -95,7 +98,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
 <header class="hero">
   <div class="wrap">
     <a class="back" href="./">→ חזרה לדף הקורס</a>
-    <div class="brand" aria-label="Basketball 360 מעלות">BASKETBALL 360<span>°</span></div>
+    <img class="brand" src="brand/logo-short-light.svg" alt="Basketball 360°" width="460" height="99">
     <h1>הסילבוס, שבוע אחרי שבוע</h1>
     <p class="lede">4 שלבים, 36 שבועות, 72 שיעורים של 15 דקות. בכל חודש מפגש קבוצתי פרונטלי ומפגש אישי בזום. חוט מנטלי עובר לאורך כל הקורס ומסתיים בתעודת מאמן מנטלי ממכללת שיאים.</p>
     <nav class="nav" aria-label="קפיצה לשלב">
@@ -244,7 +247,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
 
 <footer>
   <div class="wrap">
-    <span>BASKETBALL 360° · אורי שחורי ורובי בלינקו</span>
+    <span><picture class="ficon"><source srcset="brand/icon-light.svg" media="(prefers-color-scheme: dark)"><img src="brand/icon-navy.svg" alt="" width="28" height="28"></picture>BASKETBALL 360° · אורי שחורי ורובי בלינקו</span>
     <a href="./">לדף הקורס</a>
   </div>
 </footer>
