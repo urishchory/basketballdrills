@@ -147,15 +147,12 @@ footer .ficon img{width:28px;height:28px;vertical-align:middle;margin-inline-end
 .price.main{border:2px solid var(--red)}
 .price .amt{font-family:var(--display);font-size:3.2rem;line-height:1;font-weight:700;font-variant-numeric:tabular-nums}
 .price small{color:var(--muted);font-size:.95rem}
-.offer{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:16px;margin-top:16px}
+.offer{margin-top:16px}
 .bonus{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px 22px;display:grid;gap:10px}
-.bonus ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
+.bonus ul{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 24px}
 .bonus li{font-size:1rem;color:var(--muted);line-height:1.45}
 .bonus li b{display:block;color:var(--ink)}
-.guarantee{background:var(--court);color:var(--court-line);border-radius:8px;padding:22px;display:flex;gap:14px;align-items:flex-start}
-.guarantee .seal{flex:none;width:34px;height:34px;font-size:1rem}
-.guarantee p{opacity:.85;font-size:1rem;margin-top:4px}
-@media (max-width:760px){.offer{grid-template-columns:1fr}}
+@media (max-width:760px){.bonus ul{grid-template-columns:1fr}}
 .tag{justify-self:start;background:var(--red);color:var(--red-ink);font-size:.75rem;font-weight:800;padding:2px 10px;border-radius:99px}
 @media (max-width:760px){.prices{grid-template-columns:1fr}}
 
@@ -360,10 +357,6 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
             <li><b>קבוצת הבוגרים</b>נשארים בקשר עם המחזור גם אחרי הקורס</li>
           </ul>
         </div>
-        <div class="guarantee">
-          <span class="seal" aria-hidden="true">✓</span>
-          <div><h3>ערבות חודש ראשון</h3><p>עשית את המשימות של החודש הראשון ולא קיבלת ערך? מקבלים את כל הכסף בחזרה.</p></div>
-        </div>
       </div>
     </div>
   </section>
@@ -374,7 +367,6 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
       <details><summary>כמה זמן זה לוקח בשבוע?</summary><p>שני שיעורים של 15 דקות ומשימה אחת שמבצעים בקבוצה שלך. פעם בחודש מפגש קבוצתי ופעם בחודש מפגש אישי.</p></details>
       <details><summary>זה אונליין או פרונטלי?</summary><p>שניהם. השיעורים מוקלטים, המפגש הקבוצתי החודשי פרונטלי, והמפגש האישי בזום.</p></details>
       <details><summary>איזו תעודה מקבלים?</summary><p>שתיים, שתיהן בסוף הקורס. תעודת הכשרה כמאמן מנטלי ממכללת שיאים, אחרי חוט מנטלי של כ־55 שעות לאורך הקורס, כולל עבודה מעשית עם השחקנים שלך ומבחן סיום. ותעודת סיום של Basketball 360°. התעודה המנטלית היא הכשרה לאימון מנטלי בספורט, לא לטיפול פסיכולוגי.</p></details>
-      <details><summary>מה אם זה לא מתאים לי?</summary><p>יש ערבות חודש ראשון: אם עשית את המשימות של החודש הראשון ולא קיבלת ערך, מקבלים את כל הכסף בחזרה.</p></details>
       <details><summary>מה אם פספסתי שבוע?</summary><p>השיעורים נשארים זמינים, ובמפגש האישי משלימים את מה שחסר.</p></details>
       <details><summary>המועדון שלי יכול לממן?</summary><p>כן. מועדון ששולח שני מאמנים ומעלה משלם 3,800 ₪ למאמן. השאירו פרטים ונשלח הצעה מסודרת למועדון.</p></details>
     </div>
