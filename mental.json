@@ -2,7 +2,7 @@
   "meta": {
     "title": "Mental Film Room",
     "subtitle": "Talks, interviews and moments from the Drive folder of mental clips",
-    "updated": "2026-08-09",
+    "updated": "2026-11-18",
     "labels": {
       "search": "Search speakers, situations, themes…",
       "category": "Theme",
@@ -31,6 +31,26 @@
     ]
   },
   "items": [
+    {
+      "id": "Df433yFyARK",
+      "url": "https://www.instagram.com/reel/Df433yFyARK/",
+      "source": "thegreenprint19",
+      "title": "Joe Mazzulla — Using Connection to Power the Team",
+      "message": "Connection is what powers the team.",
+      "summary": "How the Celtics head coach builds connection with his players and uses it as the engine of the team's culture.",
+      "category": "Team & Trust",
+      "type": "For Coaches",
+      "tags": [
+        "Joe Mazzulla",
+        "connection",
+        "culture",
+        "leadership"
+      ],
+      "players": null,
+      "status": "To Try",
+      "added": "2026-11-18",
+      "notes": "Written from the Instagram caption only (\"How Boston Celtics head coach Joe Mazzulla uses connection to power his team.\"); the video itself wasn't watched, so check the speaker and content. Pairs with the Tatum-on-Mazzulla clip."
+    },
     {
       "id": "m-1-egD1vP",
       "url": "https://drive.google.com/file/d/1-egD1vPHMqY-Rujt3OnPCCN399coM7S5/view",
