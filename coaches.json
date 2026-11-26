@@ -7,6 +7,7 @@
     "label": "החטיא ומוריד ראש",
     "ids": [
      "p20261126-drive-banchero",
+     "p20261126-drive-malone",
      "p20261120-002350",
      "p20261120-deni",
      "p20261111-mccain",
@@ -50,6 +51,7 @@
     "label": "יושב על הספסל / לא נבחר",
     "ids": [
      "p20261126-drive-kobeparent",
+     "p20261126-drive-malone",
      "p20261126-drive-spurs",
      "p20261126-pilot-kobe",
      "p20261120-002350",
@@ -60,7 +62,9 @@
    {
     "label": "מפחד לנסות / חוסר ביטחון",
     "ids": [
+     "p20261126-drive-gianniskid",
      "p20261126-drive-kobeloss",
+     "p20261126-drive-malone",
      "p20261120-002350",
      "p20261119-jordan-illusion",
      "p20261119-vrabel",
@@ -116,6 +120,7 @@
    }
   ],
   "codes": [
+   "Next",
    "העבר נשאר בעבר",
    "טעות אחת הופכת לשלוש",
    "החטאתי – מחזיר בהגנה",
@@ -199,6 +204,30 @@
    "added": "2026-11-26"
   },
   {
+   "id": "p20261126-drive-gianniskid",
+   "source": "studio",
+   "title": "יאניס - קובי אמר לי תהיה ילד",
+   "player": "יאניס אנטטוקומפו",
+   "sport": "כדורסל",
+   "gender": "ספורטאים",
+   "audience": [
+    "שחקנים"
+   ],
+   "code": {
+    "num": 9,
+    "name": "לא מחויבים להצליח, מחויבים לנסות",
+    "text": "מחפשים שחקנים שלא מפסיקים ללמוד"
+   },
+   "topic": "קובי אמר ליאניס 'תהיה ילד': ילד תמיד רוצה ללמוד ושואל 'למה?'",
+   "story": "",
+   "hook": "למה קובי אמר ליאניס: תהיה ילד?",
+   "lesson": "תהיו סקרנים. מאמן מחפש שחקנים",
+   "on_court": "באימון הבא: לשאול את המאמן 'למה?' על תרגיל אחד",
+   "tags": [],
+   "url": "https://drive.google.com/file/d/13KRVTVtLyVDP9_g30-ihoaLsGWBsw1HH/view",
+   "added": "2026-11-26"
+  },
+  {
    "id": "p20261126-drive-kobeloss",
    "source": "studio",
    "title": "קובי בראיינט - מה מרגישים אחרי הפסד",
@@ -244,6 +273,30 @@
    "on_court": "להורים: עוד 10 דקות של משחק אחרי יום ארוך – ניצחון קטן בדרך",
    "tags": [],
    "url": "https://drive.google.com/file/d/1MbQoVgrrKaGCSKuc3SeqLOBco1zpTVwQ/view",
+   "added": "2026-11-26"
+  },
+  {
+   "id": "p20261126-drive-malone",
+   "source": "studio",
+   "title": "מייקל מאלון - המתנה הכי גדולה למאמן",
+   "player": "מייקל מאלון",
+   "sport": "כדורסל",
+   "gender": "ספורטאים",
+   "audience": [
+    "מאמנים"
+   ],
+   "code": {
+    "num": 1,
+    "name": "Next",
+    "text": "מה ה-Next?"
+   },
+   "topic": "השחקן 0 מ-3 ומסתכל לספסל: 'תקלע כבר!' לא יעזור. המתנה הכי גדולה של מאמן היא ביטחון",
+   "story": "",
+   "hook": "השחקן שלך 0 מ-3. מה אתה צועק לו?",
+   "lesson": "מה ה-Next?",
+   "on_court": "למאמנים: תלמדו אותם לחשוב Next – שחקן שהחטיא צריך ביטחון לזרוק שוב",
+   "tags": [],
+   "url": "https://drive.google.com/file/d/13AdRwQHjNkYld9qrVbxwN_Eh-R9jnPtf/view",
    "added": "2026-11-26"
   },
   {
