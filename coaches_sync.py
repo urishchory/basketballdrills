@@ -105,7 +105,7 @@ def code_of(d, opt):
 def audience_of(pid, d):
     tag = d.get("tag") or ""
     aud = []
-    if "להורים" in (d.get("title") or ""):
+    if "להורים" in (d.get("title") or "") or tag == "הורים":
         aud.append("הורים")
     if tag == "מאמנים" or pid in COACH_VOICE:
         aud.append("מאמנים")
