@@ -7,6 +7,7 @@
     "label": "החטיא ומוריד ראש",
     "ids": [
      "p20261126-drive-banchero",
+     "p20261126-drive-gianna",
      "p20261126-drive-malone",
      "p20261120-002350",
      "p20261120-deni",
@@ -62,6 +63,7 @@
    {
     "label": "מפחד לנסות / חוסר ביטחון",
     "ids": [
+     "p20261126-drive-gianna",
      "p20261126-drive-gianniskid",
      "p20261126-drive-kobeloss",
      "p20261126-drive-malone",
@@ -103,6 +105,7 @@
     "label": "עייפים, אין מוטיבציה",
     "ids": [
      "p20261126-drive-kobeparent",
+     "p20261126-drive-murray",
      "p20261126-pilot-kobe",
      "p20261119-vrabel",
      "p20261109-curry-ankles",
@@ -180,6 +183,30 @@
    "added": "2026-11-26"
   },
   {
+   "id": "p20261126-drive-gianna",
+   "source": "studio",
+   "title": "קובי בראיינט - גם קובי צריך עזרה",
+   "player": "קובי בראיינט",
+   "sport": "כדורסל",
+   "gender": "ספורטאים",
+   "audience": [
+    "שחקנים"
+   ],
+   "code": {
+    "num": 1,
+    "name": "Next",
+    "text": "מה ה-Next?"
+   },
+   "topic": "קובי פחד לכתוב את Dear Basketball, וג'יאנה החזירה אותו לאיזון עם המשפט שהוא עצמו אומר: 'תמיד אמרת לנו ללכת על זה'",
+   "story": "",
+   "hook": "גם קובי פחד. והבת שלו עזרה לו",
+   "lesson": "כולם צריכים עזרה – גם קובי.",
+   "on_court": "באימון הבא: חבר טעה? תזכירו לו 'מה ה-Next?' – ותסכימו שיזכירו גם לכם",
+   "tags": [],
+   "url": "https://drive.google.com/file/d/1fYs4mHjYFKcZBpB8hy0vSxwHw0tgyBzy/view",
+   "added": "2026-11-26"
+  },
+  {
    "id": "p20261126-drive-giannisbook",
    "source": "studio",
    "title": "יאניס - המחברות",
@@ -225,6 +252,30 @@
    "on_court": "באימון הבא: לשאול את המאמן 'למה?' על תרגיל אחד",
    "tags": [],
    "url": "https://drive.google.com/file/d/13KRVTVtLyVDP9_g30-ihoaLsGWBsw1HH/view",
+   "added": "2026-11-26"
+  },
+  {
+   "id": "p20261126-drive-klay",
+   "source": "studio",
+   "title": "קליי תומפסון - לפחות אני כאן",
+   "player": "קליי תומפסון",
+   "sport": "כדורסל",
+   "gender": "ספורטאים",
+   "audience": [
+    "שחקנים"
+   ],
+   "code": {
+    "num": null,
+    "name": "מסרים נוספים",
+    "text": "הוקרת תודה"
+   },
+   "topic": "המשחק הראשון אחרי 941 ימים: לא קלע כמו שרצה, אבל אסיר תודה שהוא בכלל על המגרש",
+   "story": "",
+   "hook": "941 ימים בלי משחק. קליי: 'לפחות אני כאן'",
+   "lesson": "יש לנו זכות לשחק. עולים למשחק כדי ליהנות.",
+   "on_court": "במשחק הבא: לפני שעולים – להגיד תודה על עוד הזדמנות לשחק",
+   "tags": [],
+   "url": "https://drive.google.com/file/d/1Vmg78qogDJ6D3CfZHxEBNQnire6JR6Z-/view",
    "added": "2026-11-26"
   },
   {
@@ -297,6 +348,30 @@
    "on_court": "למאמנים: תלמדו אותם לחשוב Next – שחקן שהחטיא צריך ביטחון לזרוק שוב",
    "tags": [],
    "url": "https://drive.google.com/file/d/13AdRwQHjNkYld9qrVbxwN_Eh-R9jnPtf/view",
+   "added": "2026-11-26"
+  },
+  {
+   "id": "p20261126-drive-murray",
+   "source": "studio",
+   "title": "ג'מאל מארי - העבודה שאף אחד לא רואה",
+   "player": "ג'מאל מארי",
+   "sport": "כדורסל",
+   "gender": "ספורטאים",
+   "audience": [
+    "שחקנים"
+   ],
+   "code": {
+    "num": 14,
+    "name": "באנו לעבוד",
+    "text": "הפועלים של גזר – באנו לעבוד"
+   },
+   "topic": "34 דקות מדיטציה כל יום וזריקות בעיניים עצומות כשאבא מפריע: מאחורי הקליעה יש עבודה קשה שאף אחד לא רואה",
+   "story": "",
+   "hook": "זורק בעיניים עצומות. ככה מארי בנה את הקליעה שלו",
+   "lesson": "הפועלים של גזר – באנו לעבוד.",
+   "on_court": "באימון הבא: תציבו לעצמכם מטרה לעבוד קשה – זה תלוי רק בכם",
+   "tags": [],
+   "url": "https://drive.google.com/file/d/1cf8rxCs3IPLSH03y-O-xNKqnS_y_3H0k/view",
    "added": "2026-11-26"
   },
   {
