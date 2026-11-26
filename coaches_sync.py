@@ -52,6 +52,21 @@ CODES = {
 }
 OTHER_CODE = "מסרים נוספים"
 
+# "What happened?" - the coach picks the situation, the page shows the videos for it.
+# Built from the on-court trigger column of reminder-codes.md. A video matches a situation
+# when its code is in `codes` or one of `words` appears in its text.
+SITUATIONS = [
+    ("החטיא ומוריד ראש", ["Next", "העבר נשאר בעבר", "החטאתי – מחזיר בהגנה", "טעות אחת הופכת לשלוש"], ["החטא", "1 מתוך 13", "0 מתוך 18"]),
+    ("אחרי הפסד קשה", ["מותר להתאכזב"], ["הפסד", "הפסיד"]),
+    ("מאשימים אחרים", ["לקיחת אחריות"], ["מאשים", "להאשים"]),
+    ("יושב על הספסל / לא נבחר", ["מותר להתאכזב", "לעשות למרות"], ["ספסל", "לא נבחר"]),
+    ("מפחד לנסות / חוסר ביטחון", ["לא מחויבים להצליח, מחויבים לנסות", "חזרות מייצרות ביטחון"], ["ביטחון", "פחד"]),
+    ("כל אחד לעצמו", ["אין 'אני והם', יש 'אנחנו'"], ["אגו"]),
+    ("מתעסקים בשופט ובקהל", ["שולטים במה שבשליטתנו"], ["שפת גוף", "שופט"]),
+    ("עייפים, אין מוטיבציה", ["לעשות למרות", "באנו לעבוד"], ["עייף", "מוטיבציה"]),
+    ("פיגור גדול במשחק", [], ["פיגור", "0-3", "מ-3 הפסדים"]),
+]
+
 # Non-basketball and coach clips, by project id. Everything else is basketball.
 SPORT = {
     "p20261104-cooley": "הוקי קרח",
@@ -166,10 +181,21 @@ def main():
     extra_codes = [t for t, n in other.items() if n >= 2]
     used = {it["code"]["name"] for it in items}
     meta_waiting = waiting
+    situations = []
+    for label, codes, words in SITUATIONS:
+        hits = []
+        for it in items:
+            text = " ".join([it["title"], it["topic"], it["story"], it["hook"], it["lesson"], it["on_court"], it["code"]["text"]])
+            if it["code"]["name"] in codes or any(w in text for w in words):
+                hits.append(it["id"])
+        if len(hits) >= 2:
+            situations.append({"label": label, "ids": hits})
+        print(f"  {label}: {len(hits)}")
     db = {
         "meta": {
             "title": "ספריית השראה למאמנים",
             "subtitle": "סרטונים מנטליים קצרים לפי סיפור, שחקן וקוד. בחרו סרטון, הראו לקבוצה, וחזרו על הקוד באימון.",
+            "situations": situations,
             "codes": [n for n in CODES.values() if n in used] + extra_codes + ([OTHER_CODE] if OTHER_CODE in used else []),
             "audiences": ["שחקנים", "הורים", "מאמנים"],
             "updated": max((it.get("added", "") for it in items), default=""),
