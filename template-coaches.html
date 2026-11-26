@@ -78,16 +78,20 @@ details p{margin:6px 0 0}
 .acts .watch{flex:1;margin-top:0}
 .send{flex:none;display:flex;align-items:center;justify-content:center;gap:6px;font:inherit;font-weight:700;font-size:15px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:12px;padding:12px 14px;cursor:pointer}
 .send:hover{border-color:var(--red);color:var(--red-ink)}
-.player-box{position:fixed;inset:0;z-index:20;background:rgba(0,0,0,.82);display:flex;align-items:center;justify-content:center;padding:16px}
-.player-box[hidden]{display:none}
-.player-in{width:min(960px,100%);background:var(--surface);border-radius:16px;overflow:hidden}
-.player-in .frame{position:relative;aspect-ratio:16/9;background:#000}
-.player-in iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.player-bar{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:12px 14px;flex-wrap:wrap}
-.player-bar h3{margin:0;font-size:16px;line-height:1.3}
-.player-bar .code-t{font-size:14px;color:var(--red-ink);font-weight:700}
-.player-bar .btns{display:flex;gap:8px;flex:none}
-.close{font:inherit;font-size:15px;border:1px solid var(--line);background:var(--chip);color:var(--ink);border-radius:12px;padding:10px 14px;cursor:pointer}
+.media{position:relative;margin:-16px -16px 0;background:#000;border-radius:16px 16px 0 0;overflow:hidden;aspect-ratio:9/16;max-height:72vh;cursor:pointer;display:flex;justify-content:center}
+.media img,.media video{width:100%;height:100%;object-fit:contain;display:block;background:#000}
+.media .play{position:absolute;inset:0;margin:auto;width:68px;height:68px;border-radius:50%;background:var(--red);box-shadow:0 4px 18px rgba(0,0,0,.35)}
+.media .play::after{content:"";position:absolute;top:50%;left:54%;transform:translate(-50%,-50%);border-style:solid;border-width:13px 0 13px 21px;border-color:transparent transparent transparent #fff}
+.media:focus-visible{outline:3px solid var(--red);outline-offset:-3px}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;font:inherit;font-weight:700;font-size:15px;border-radius:12px;padding:12px 14px;cursor:pointer;text-decoration:none;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.btn svg{width:18px;height:18px;flex:none}
+.btn.go{flex:1;background:var(--red);border-color:var(--red);color:#fff}
+.btn.go:hover{filter:brightness(1.08)}
+.btn:not(.go):hover{border-color:var(--red);color:var(--red-ink)}
+.btn:disabled{opacity:.7;cursor:wait}
+.card.hl{outline:3px solid var(--red);outline-offset:2px}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:999px;font-size:14px;z-index:30;opacity:0;pointer-events:none;transition:.2s;max-width:calc(100% - 32px);text-align:center}
+.toast.on{opacity:1;transform:translateX(-50%)}
 .empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:40px 0}
 footer{color:var(--muted);font-size:13px;padding:0 0 32px}
 footer a{color:var(--red-ink)}
@@ -101,7 +105,7 @@ footer a{color:var(--red-ink)}
     <p class="sub">__SUBTITLE__</p>
     <ul class="how">
       <li><b>1</b> בחרו מה קרה, קוד או שחקן</li>
-      <li><b>2</b> הראו את הסרטון לקבוצה</li>
+      <li><b>2</b> הראו לקבוצה או שלחו לשחקנים</li>
       <li><b>3</b> חזרו על הקוד באימון הבא</li>
     </ul>
   </header>
@@ -119,18 +123,10 @@ footer a{color:var(--red-ink)}
 
   <div class="status"><span id="count" aria-live="polite"></span><button class="reset" id="reset" hidden>ניקוי סינון</button></div>
   <main class="grid" id="grid"></main>
-  <footer>__COUNT__ סרטונים · כל סרטון נושא קוד אחד במילים המדויקות שהשחקנים שומעים באימון. <a href="./">לספריית התרגילים</a></footer>
+  <footer>__COUNT__ סרטונים · כל סרטון נושא קוד אחד במילים המדויקות שהשחקנים שומעים באימון.</footer>
 </div>
 
-<div class="player-box" id="pbox" hidden role="dialog" aria-modal="true" aria-label="צפייה בסרטון">
-  <div class="player-in">
-    <div class="frame"><iframe id="pframe" title="סרטון" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
-    <div class="player-bar">
-      <div><h3 id="ptitle"></h3><div class="code-t" id="pcode"></div></div>
-      <div class="btns"><button class="send" id="psend">שליחה</button><button class="close" id="pclose">סגירה</button></div>
-    </div>
-  </div>
-</div>
+<div class="toast" id="toast" role="status"></div>
 <script id="data" type="application/json">__DATA__</script>
 <script>
 (function(){
@@ -139,7 +135,6 @@ footer a{color:var(--red-ink)}
   var state = {q:'', sit:'', player:'', code:'', aud:'', sport:''};
   var byId = {}; items.forEach(function(i){ byId[i.id]=i; });
   var sits = {}; (meta.situations||[]).forEach(function(s){ sits[s.label]=s.ids; });
-  var openId = '';
 
   // filters live in the URL so a coach can send a link to e.g. "?code=לקיחת אחריות"
   try {
@@ -186,14 +181,16 @@ footer a{color:var(--red-ink)}
     var tags = (it.audience||[]).map(function(a){ return '<span class="tag">'+esc(a)+'</span>'; }).join('') +
                (it.sport && it.sport!=='כדורסל' ? '<span class="tag">'+esc(it.sport)+'</span>' : '') +
                (it.tags||[]).filter(function(t){ return t!=='מחוץ לכדורסל'; }).map(function(t){ return '<span class="tag">'+esc(t)+'</span>'; }).join('');
-    return '<article class="card">'+
+    return '<article class="card" id="c-'+esc(it.id)+'" data-id="'+esc(it.id)+'">'+
+      '<div class="media" role="button" tabindex="0" aria-label="ניגון: '+esc(it.title)+'"><img src="'+esc(it.poster)+'" alt="" loading="lazy" decoding="async"><span class="play"></span></div>'+
       '<div class="top"><button class="player" data-player="'+esc(it.player)+'">'+esc(it.player)+'</button><span class="meta">'+esc(it.topic||'')+'</span></div>'+
       '<h2>'+esc(it.title)+'</h2>'+
       (it.hook ? '<p class="hook">'+esc(it.hook)+'</p>' : '')+
       '<div class="code"><span class="k">'+(c.name && c.name!==codeLine.replace(/[.\s]+$/,'') && c.name!=='מסרים נוספים' ? 'הקוד · '+esc(c.name) : 'הקוד')+'</span><span class="t">'+esc(codeLine)+'</span></div>'+
       court + story +
       '<div class="tags">'+tags+'</div>'+
-      '<div class="acts"><a class="watch" href="'+esc(it.url)+'" target="_blank" rel="noopener" data-play="'+esc(it.id)+'">▶ צפייה</a><button class="send" data-send="'+esc(it.id)+'" aria-label="שליחת הסרטון">שליחה</button></div>'+
+      '<div class="acts"><button class="btn go" data-act="share">'+ICON_SEND+'<span>'+(canShareFiles() ? 'שליחה' : 'הורדה לשליחה')+'</span></button>'+
+      '<a class="btn" data-act="dl" href="'+esc(it.video)+'" download="'+esc(it.file_name)+'" aria-label="הורדה">'+ICON_DL+'<span>הורדה</span></a></div>'+
     '</article>';
   }
 
@@ -220,7 +217,6 @@ footer a{color:var(--red-ink)}
     try {
       var sp = new URLSearchParams();
       for (var k in state) if (state[k]) sp.set(k, state[k]);
-      if (openId) sp.set('v', openId);
       var qs = sp.toString();
       history.replaceState(null,'', qs ? '?'+qs : location.pathname);
     } catch(e){}
@@ -228,49 +224,67 @@ footer a{color:var(--red-ink)}
 
   $('q').addEventListener('input', function(e){ state.q = e.target.value; render(); });
   $('player').addEventListener('change', function(e){ state.player = e.target.value; render(); });
+  $('grid').addEventListener('keydown', function(e){
+    if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('media')) { e.preventDefault(); play(e.target.closest('.card')); }
+  });
   $('grid').addEventListener('click', function(e){
-    var pl = e.target.closest('[data-play]');
-    if (pl && driveId(byId[pl.dataset.play].url)) { e.preventDefault(); openPlayer(pl.dataset.play); return; }
-    var sd = e.target.closest('[data-send]');
-    if (sd) { send(sd.dataset.send); return; }
+    var cardEl = e.target.closest('.card');
+    var act = e.target.closest('[data-act]');
+    if (cardEl && act && act.dataset.act === 'share') { send(byId[cardEl.dataset.id], act); return; }
+    if (cardEl && act && act.dataset.act === 'dl') { toast('הסרטון יורד.'); return; }
+    if (cardEl && e.target.closest('.media')) { play(cardEl); return; }
     var b = e.target.closest('.player'); if(!b) return;
     state.player = b.dataset.player; render(); window.scrollTo({top:0,behavior:'smooth'});
   });
-  function driveId(url){ var m = /\/file\/d\/([\w-]+)/.exec(url||''); return m ? m[1] : null; }
+  var files = {};
+  var ICON_SEND = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg>';
+  var ICON_DL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>';
+  function toast(msg){ var t=$('toast'); t.textContent=msg; t.classList.add('on'); clearTimeout(toast._t); toast._t=setTimeout(function(){ t.classList.remove('on'); }, 3200); }
+  function canShareFiles(){ try { return !!(navigator.canShare && navigator.canShare({files:[new File([''],'x.mp4',{type:'video/mp4'})]})); } catch(e){ return false; } }
   function pageLink(id){ return location.origin + location.pathname + '?v=' + encodeURIComponent(id); }
-  function openPlayer(id){
-    var it = byId[id]; if(!it) return;
-    openId = id;
-    $('pframe').src = 'https://drive.google.com/file/d/' + driveId(it.url) + '/preview';
-    $('ptitle').textContent = it.title;
-    $('pcode').textContent = it.code && it.code.text ? 'הקוד: ' + it.code.text : '';
-    $('psend').dataset.send = id;
-    $('pbox').hidden = false; document.body.style.overflow = 'hidden';
-    render();
+  function play(cardEl){
+    var it = byId[cardEl.dataset.id], m = cardEl.querySelector('.media');
+    if (!it || m.querySelector('video')) return;
+    document.querySelectorAll('.media video').forEach(function(v){ v.pause(); });
+    m.innerHTML = '<video src="'+esc(it.video)+'" poster="'+esc(it.poster)+'" controls playsinline autoplay preload="auto"></video>';
+    m.removeAttribute('role'); m.style.cursor = 'default';
+    var v = m.querySelector('video'); var pr = v.play(); if (pr && pr.catch) pr.catch(function(){});
   }
-  function closePlayer(){
-    $('pbox').hidden = true; $('pframe').src = 'about:blank'; document.body.style.overflow = '';
-    openId = ''; render();
+  function shareText(it){
+    return it.title + (it.code && it.code.text ? '\nהקוד: ' + it.code.text : '') + (it.on_court ? '\n' + it.on_court : '');
   }
-  function send(id){
-    var it = byId[id]; if(!it) return;
-    var link = pageLink(id);
-    var text = it.title + (it.code && it.code.text ? '\nהקוד: ' + it.code.text : '') + (it.on_court ? '\n' + it.on_court : '');
-    if (navigator.share) {
-      navigator.share({title: it.title, text: text, url: link}).catch(function(){});
-    } else {
-      window.open('https://wa.me/?text=' + encodeURIComponent(text + '\n' + link), '_blank', 'noopener');
+  function download(it){
+    var a = document.createElement('a'); a.href = it.video; a.download = it.file_name;
+    document.body.appendChild(a); a.click(); a.remove();
+    toast('הסרטון יורד. אחרי זה אפשר לצרף אותו בוואטסאפ.');
+  }
+  async function send(it, btn){
+    // on a phone the share sheet gets the video FILE plus the text (same as the fundamentals site)
+    if (!canShareFiles()) return download(it);
+    var label = btn.querySelector('span'), file = files[it.id];
+    if (!file) {
+      btn.disabled = true; label.textContent = 'מכין את הסרטון…';
+      try {
+        var r = await fetch(it.video); if (!r.ok) throw new Error(r.status);
+        file = new File([await r.blob()], it.file_name, {type:'video/mp4'}); files[it.id] = file;
+      } catch(e) { btn.disabled = false; label.textContent = 'שליחה'; return toast('הסרטון לא נטען. בדקו את החיבור ונסו שוב.'); }
+      btn.disabled = false;
     }
+    if (!navigator.canShare({files:[file]})) { label.textContent = 'שליחה'; return download(it); }
+    var text = shareText(it) + '\n' + pageLink(it.id);
+    try { await navigator.clipboard.writeText(text); } catch(e){}
+    try { await navigator.share({files:[file], text: text}); label.textContent = 'שליחה'; }
+    catch(e) { label.textContent = (e && e.name === 'NotAllowedError') ? 'מוכן · לחצו לשליחה' : 'שליחה'; }
   }
-  $('pclose').addEventListener('click', closePlayer);
-  $('psend').addEventListener('click', function(){ send(this.dataset.send); });
-  $('pbox').addEventListener('click', function(e){ if (e.target === this) closePlayer(); });
-  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !$('pbox').hidden) closePlayer(); });
 
   $('reset').addEventListener('click', function(){ state={q:'',sit:'',player:'',code:'',aud:'',sport:''}; render(); });
   var v0 = null;
   try { v0 = new URLSearchParams(location.search).get('v'); } catch(e){}
-  if (v0 && byId[v0]) openPlayer(v0); else render();
+  render();
+  if (v0 && byId[v0]) {
+    var el = document.getElementById('c-' + v0);
+    if (el) { el.classList.add('hl'); setTimeout(function(){ el.scrollIntoView({behavior:'smooth', block:'start'}); }, 50); }
+  }
 })();
 </script>
 </body>

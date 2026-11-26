@@ -9,3 +9,6 @@ dist/
 
 # Fundamentals film room is on hold; the data stays local for now
 fundamentals.json
+
+# Mental coaches site: encoded videos + Cloudflare upload folder (mental_site.py)
+site/

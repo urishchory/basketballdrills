@@ -1,4 +1,5 @@
-"""Builds docs/coaches.html (Hebrew, RTL) from coaches.json.
+"""SUPERSEDED 26/11/2026 by mental_site.py (videos hosted on the site). docs/coaches.html is now a redirect.
+Builds docs/coaches.html (Hebrew, RTL) from coaches.json.
 
 Run:  python coaches_sync.py && python build_coaches.py
 Kept apart from build.py on purpose: this page has its own Hebrew template
