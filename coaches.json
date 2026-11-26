@@ -22,6 +22,7 @@
     "label": "אחרי הפסד קשה",
     "ids": [
      "p20261126-drive-kobeloss",
+     "p20261126-drive-mcconnellbench",
      "p20261126-drive-spurs",
      "p20261126-pilot-stevens",
      "p20261124-campbell",
@@ -51,8 +52,10 @@
    {
     "label": "יושב על הספסל / לא נבחר",
     "ids": [
+     "p20261126-drive-kirel",
      "p20261126-drive-kobeparent",
      "p20261126-drive-malone",
+     "p20261126-drive-mcconnellbench",
      "p20261126-drive-spurs",
      "p20261126-pilot-kobe",
      "p20261120-002350",
@@ -65,6 +68,7 @@
     "ids": [
      "p20261126-drive-gianna",
      "p20261126-drive-gianniskid",
+     "p20261126-drive-kobefear",
      "p20261126-drive-kobeloss",
      "p20261126-drive-malone",
      "p20261120-002350",
@@ -104,7 +108,9 @@
    {
     "label": "עייפים, אין מוטיבציה",
     "ids": [
+     "p20261126-drive-kirel",
      "p20261126-drive-kobeparent",
+     "p20261126-drive-mcconnellhard",
      "p20261126-drive-murray",
      "p20261126-pilot-kobe",
      "p20261119-vrabel",
@@ -255,6 +261,32 @@
    "added": "2026-11-26"
   },
   {
+   "id": "p20261126-drive-kirel",
+   "source": "studio",
+   "title": "נועה קירל - גם לי יש את הקול הזה",
+   "player": "נועה קירל",
+   "sport": "כדורסל",
+   "gender": "ספורטאים",
+   "audience": [
+    "שחקנים"
+   ],
+   "code": {
+    "num": 6,
+    "name": "לעשות למרות",
+    "text": "לעשות למרות"
+   },
+   "topic": "גם נועה קירל שומעת בראש 'את לא מספיק טובה' – ועולה לבמה בכל זאת",
+   "story": "",
+   "hook": "גם נועה קירל שומעת בראש: 'את לא מספיק טובה'",
+   "lesson": "לעשות למרות. כל פעם כזאת – ניצחון קטן בדרך.",
+   "on_court": "באימון הבא: הקול אומר 'אני לא מספיק טוב'? תנסו את התרגיל בכל זאת",
+   "tags": [
+    "מחוץ לכדורסל"
+   ],
+   "url": "https://drive.google.com/file/d/1gWZ9un9HaEUAPR05dVioOlUXKw-AsxtB/view",
+   "added": "2026-11-26"
+  },
+  {
    "id": "p20261126-drive-klay",
    "source": "studio",
    "title": "קליי תומפסון - לפחות אני כאן",
@@ -276,6 +308,54 @@
    "on_court": "במשחק הבא: לפני שעולים – להגיד תודה על עוד הזדמנות לשחק",
    "tags": [],
    "url": "https://drive.google.com/file/d/1Vmg78qogDJ6D3CfZHxEBNQnire6JR6Z-/view",
+   "added": "2026-11-26"
+  },
+  {
+   "id": "p20261126-drive-kobefear",
+   "source": "studio",
+   "title": "קובי בראיינט - ואז מה יקרה?",
+   "player": "קובי בראיינט",
+   "sport": "כדורסל",
+   "gender": "ספורטאים",
+   "audience": [
+    "שחקנים"
+   ],
+   "code": {
+    "num": 9,
+    "name": "לא מחויבים להצליח, מחויבים לנסות",
+    "text": "אתם לא מחויבים להצליח, אתם כן מחויבים לנסות"
+   },
+   "topic": "פוחדים להחטיא? קובי מפרק את הפחד לשאלות – 'ואז מה יקרה?' – עד שמגלים שאין מה לפחד",
+   "story": "",
+   "hook": "פוחדים להחטיא? קובי: 'תפרקו את הפחד'",
+   "lesson": "אתם לא מחויבים להצליח, אתם כן מחויבים לנסות.",
+   "on_court": "באימון הבא: פוחדים מזריקה? תשאלו 'ואז מה יקרה?' – ותזרקו",
+   "tags": [],
+   "url": "https://drive.google.com/file/d/1WhPIzWaDiHnPOfLD6qV5KUQ-ROi_3zc-/view",
+   "added": "2026-11-26"
+  },
+  {
+   "id": "p20261126-drive-kobefix",
+   "source": "studio",
+   "title": "קובי בראיינט - ללמוד מתמונות",
+   "player": "קובי בראיינט",
+   "sport": "כדורסל",
+   "gender": "ספורטאים",
+   "audience": [
+    "שחקנים"
+   ],
+   "code": {
+    "num": 13,
+    "name": "השחקן הוא המאמן",
+    "text": "השחקן הוא המאמן"
+   },
+   "topic": "קובי למד כדורסל מתמונות: זווית הרגליים, הידיים בהגנה. לשאול שאלות, למצוא תשובות, ושוב",
+   "story": "",
+   "hook": "קובי למד כדורסל מתמונות. זווית הרגליים. הידיים בהגנה.",
+   "lesson": "השחקן הוא המאמן.",
+   "on_court": "באימון הבא: תצפו בשחקן אחד ותמצאו פרט קטן אחד לגנוב ממנו",
+   "tags": [],
+   "url": "https://drive.google.com/file/d/1K__i70R_pnS8Ns7sz2Ai5zKjtV-k6TDo/view",
    "added": "2026-11-26"
   },
   {
@@ -348,6 +428,54 @@
    "on_court": "למאמנים: תלמדו אותם לחשוב Next – שחקן שהחטיא צריך ביטחון לזרוק שוב",
    "tags": [],
    "url": "https://drive.google.com/file/d/13AdRwQHjNkYld9qrVbxwN_Eh-R9jnPtf/view",
+   "added": "2026-11-26"
+  },
+  {
+   "id": "p20261126-drive-mcconnellbench",
+   "source": "studio",
+   "title": "טי ג'יי מקונל - תמיד מוכן",
+   "player": "טי ג'יי מקונל",
+   "sport": "כדורסל",
+   "gender": "ספורטאים",
+   "audience": [
+    "שחקנים"
+   ],
+   "code": {
+    "num": 11,
+    "name": "מותר להתאכזב",
+    "text": "מותר להתאכזב. האופן שבו מתמודדים עם האכזבה מגדיר אותנו"
+   },
+   "topic": "ערב אחד 5 דקות, ערב אחר 28: המספר שלך יכול להיקרא בכל רגע – או בכלל לא. התפקיד הוא להיות מוכן",
+   "story": "",
+   "hook": "ערב אחד 5 דקות. ערב אחר 28. מקונל: 'תמיד להיות מוכן'",
+   "lesson": "מותר להתאכזב. האופן שבו מתמודדים",
+   "on_court": "באימון הבא: על הספסל? תהיו מוכנים – אף אחד לא יודע מתי יקראו לכם",
+   "tags": [],
+   "url": "https://drive.google.com/file/d/1RXN4gleXN_BXaNuA54evJ_VBj9tmKAeM/view",
+   "added": "2026-11-26"
+  },
+  {
+   "id": "p20261126-drive-mcconnellhard",
+   "source": "studio",
+   "title": "טי ג'יי מקונל - לשחק חזק זה כישרון",
+   "player": "טי ג'יי מקונל",
+   "sport": "כדורסל",
+   "gender": "ספורטאים",
+   "audience": [
+    "שחקנים"
+   ],
+   "code": {
+    "num": 14,
+    "name": "באנו לעבוד",
+    "text": "הפועלים של גזר – באנו לעבוד"
+   },
+   "topic": "'אם לשחק חזק לא היה כישרון, כולם היו עושים את זה': מקונל בחר כרטיס ביקור – לחץ על כל המגרש – ובנה עליו קריירה של 10 שנים",
+   "story": "",
+   "hook": "לשחק חזק זה כישרון. מקונל בנה על זה 10 שנים ב-NBA",
+   "lesson": "הפועלים של גזר – באנו לעבוד.",
+   "on_court": "באימון הבא: תבחרו כרטיס ביקור אחד – ותהיו הכי טובים בו",
+   "tags": [],
+   "url": "https://drive.google.com/file/d/1rmYOJ9xryUlW2JFQmT2FwRu8gT9-jSlz/view",
    "added": "2026-11-26"
   },
   {
