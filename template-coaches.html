@@ -268,8 +268,9 @@ footer a{color:var(--red-ink)}
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !$('pbox').hidden) closePlayer(); });
 
   $('reset').addEventListener('click', function(){ state={q:'',sit:'',player:'',code:'',aud:'',sport:''}; render(); });
-  render();
-  try { var v0 = new URLSearchParams(location.search).get('v'); if (v0 && byId[v0]) openPlayer(v0); } catch(e){}
+  var v0 = null;
+  try { v0 = new URLSearchParams(location.search).get('v'); } catch(e){}
+  if (v0 && byId[v0]) openPlayer(v0); else render();
 })();
 </script>
 </body>

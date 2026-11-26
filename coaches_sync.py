@@ -157,7 +157,7 @@ def studio_items():
             "on_court": clean(ec.get("sub")),
             "tags": tags,
             "url": drive.get("link") if drive.get("status") == "done" else None,
-            "added": (drive.get("at") or d.get("created") or "")[:10],
+            "added": (d.get("created") or drive.get("at") or "")[:10],
         })
     return items
 
