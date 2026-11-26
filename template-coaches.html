@@ -70,6 +70,11 @@ details p{margin:6px 0 0}
 .watch{margin-top:auto;display:flex;align-items:center;justify-content:center;gap:8px;background:var(--red);color:#fff;text-decoration:none;font-weight:700;border-radius:12px;padding:12px;font-size:16px}
 .watch:hover{filter:brightness(1.08)}
 .watch:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+@media (max-width:699px){
+  .controls{position:static}
+  .how{display:none}
+  header{padding-top:20px}
+}
 .row.sit{flex-wrap:wrap;overflow:visible}
 .row.sit .lbl{width:100%;font-size:15px;color:var(--ink);font-weight:700}
 .row.sit .chip{background:var(--surface);border-color:var(--line)}
