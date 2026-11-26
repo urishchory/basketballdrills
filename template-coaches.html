@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>השראה למאמנים</title>
+<title>השראה לשחקנים</title>
 <meta name="description" content="__SUBTITLE__">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -109,7 +109,7 @@ footer a{color:var(--red-ink)}
     <h1>__TITLE__</h1>
     <p class="sub">__SUBTITLE__</p>
     <ul class="how">
-      <li><b>1</b> בחרו מה קרה, קוד או שחקן</li>
+      <li><b>1</b> בחרו מה קרה, קוד או ספורטאי</li>
       <li><b>2</b> הראו לקבוצה או שלחו לשחקנים</li>
       <li><b>3</b> חזרו על הקוד באימון הבא</li>
     </ul>
@@ -117,10 +117,11 @@ footer a{color:var(--red-ink)}
 
   <div class="controls" role="search">
     <div class="search">
-      <input id="q" type="search" placeholder="חיפוש: שחקן, סיפור, מילה מהקוד…" aria-label="חיפוש" autocomplete="off">
-      <select id="player" aria-label="שחקן"><option value="">כל השחקנים</option></select>
+      <input id="q" type="search" placeholder="חיפוש: ספורטאי, סיפור, מילה מהקוד…" aria-label="חיפוש" autocomplete="off">
+      <select id="player" aria-label="שחקן"><option value="">כל הספורטאים</option></select>
     </div>
     <div class="row sit" id="row-sit"><span class="lbl">מה קרה בקבוצה?</span></div>
+    <div class="row" id="row-gender"><span class="lbl">בסרטון</span></div>
     <div class="row" id="row-code"><span class="lbl">קוד</span></div>
     <div class="row" id="row-aud"><span class="lbl">למי</span></div>
     <div class="row" id="row-sport"><span class="lbl">ענף</span></div>
@@ -137,7 +138,7 @@ footer a{color:var(--red-ink)}
 (function(){
   var db = JSON.parse(document.getElementById('data').textContent);
   var items = db.items, meta = db.meta;
-  var state = {q:'', sit:'', player:'', code:'', aud:'', sport:''};
+  var state = {q:'', sit:'', player:'', gender:'', code:'', aud:'', sport:''};
   var byId = {}; items.forEach(function(i){ byId[i.id]=i; });
   var sits = {}; (meta.situations||[]).forEach(function(s){ sits[s.label]=s.ids; });
 
@@ -167,6 +168,7 @@ footer a{color:var(--red-ink)}
     });
   }
   if ((meta.situations||[]).length) chips('row-sit','sit', meta.situations.map(function(s){ return s.label; })); else $('row-sit').hidden = true;
+  if ((meta.genders||[]).length) chips('row-gender','gender', meta.genders); else $('row-gender').hidden = true;
   chips('row-code','code', meta.codes);
   chips('row-aud','aud', meta.audiences);
   if (meta.sports.length > 1) chips('row-sport','sport', meta.sports); else $('row-sport').hidden = true;
@@ -207,17 +209,18 @@ footer a{color:var(--red-ink)}
       if (state.code && (!it.code || it.code.name!==state.code)) return false;
       if (state.aud && (it.audience||[]).indexOf(state.aud)<0) return false;
       if (state.sport && it.sport!==state.sport) return false;
+      if (state.gender && it.gender!==state.gender) return false;
       return q.every(function(w){ return it._s.indexOf(w)>=0; });
     });
     $('grid').innerHTML = list.length ? list.map(card).join('') :
       '<p class="empty">לא נמצא סרטון. נסו מילה אחרת או נקו את הסינון.</p>';
     $('count').textContent = list.length===items.length ? items.length+' סרטונים' : list.length+' מתוך '+items.length+' סרטונים';
-    [['row-sit','sit'],['row-code','code'],['row-aud','aud'],['row-sport','sport']].forEach(function(r){
+    [['row-sit','sit'],['row-gender','gender'],['row-code','code'],['row-aud','aud'],['row-sport','sport']].forEach(function(r){
       $(r[0]).querySelectorAll('.chip').forEach(function(b){ b.setAttribute('aria-pressed', String(b.dataset.v===state[r[1]])); });
     });
     $('player').value = state.player;
     if ($('q').value!==state.q) $('q').value = state.q;
-    var active = state.q||state.sit||state.player||state.code||state.aud||state.sport;
+    var active = state.q||state.sit||state.gender||state.player||state.code||state.aud||state.sport;
     $('reset').hidden = !active;
     try {
       var sp = new URLSearchParams();
@@ -282,7 +285,7 @@ footer a{color:var(--red-ink)}
     catch(e) { label.textContent = (e && e.name === 'NotAllowedError') ? 'מוכן · לחצו לשליחה' : 'שליחה'; }
   }
 
-  $('reset').addEventListener('click', function(){ state={q:'',sit:'',player:'',code:'',aud:'',sport:''}; render(); });
+  $('reset').addEventListener('click', function(){ state={q:'',sit:'',player:'',gender:'',code:'',aud:'',sport:''}; render(); });
   var v0 = null;
   try { v0 = new URLSearchParams(location.search).get('v'); } catch(e){}
   render();

@@ -75,6 +75,9 @@ SPORT = {
     "p20261103-kane": "כדורגל",
     "p20261104-redmond": "אתלטיקה",
 }
+# Uri 26/11: split the videos into ספורטאים / ספורטאיות. Women in the videos, by player name.
+WOMEN = {"אנג'ל ריס", "גבי וויליאמס", "נקאסה", "נטלי נקאסה", "ורוניקה ברטון", "קיה סטוקס", "קרי סטראג"}
+
 # Clips where the speaker is a coach -> also useful for coaches
 COACH_VOICE = {"p20261026-125853", "p20261023-nakase", "p20261025-nakase-full",
                "p20261120-redick", "p20261119-vrabel", "p20261118-215856"}
@@ -148,6 +151,7 @@ def studio_items():
             "title": clean(d.get("title")),
             "player": clean(d.get("player")),
             "sport": SPORT.get(pid, "כדורסל"),
+            "gender": "ספורטאיות" if clean(d.get("player")) in WOMEN else "ספורטאים",
             "audience": audience_of(pid, d),
             "code": code_of(d, opt),
             "topic": clean(d.get("topic") or d.get("value")),
@@ -193,12 +197,13 @@ def main():
         print(f"  {label}: {len(hits)}")
     db = {
         "meta": {
-            "title": "ספריית השראה למאמנים",
-            "subtitle": "סרטונים מנטליים קצרים לפי סיפור, שחקן וקוד. בחרו סרטון, הראו לקבוצה, וחזרו על הקוד באימון.",
+            "title": "ספריית השראה לשחקנים",
+            "subtitle": "סרטוני השראה מנטליים לשחקנים ולשחקניות. מחפשים לפי מה שקרה בקבוצה, לפי קוד או לפי ספורטאי, מראים או שולחים, וחוזרים על הקוד באימון.",
             "situations": situations,
             "codes": [n for n in CODES.values() if n in used] + extra_codes + ([OTHER_CODE] if OTHER_CODE in used else []),
             "audiences": ["שחקנים", "הורים", "מאמנים"],
             "updated": max((it.get("added", "") for it in items), default=""),
+            "genders": ["ספורטאים", "ספורטאיות"],
             "sports": sorted({it["sport"] for it in items}, key=lambda s: (s != "כדורסל", s)),
         },
         "items": items,
