@@ -78,6 +78,10 @@ SPORT = {
 # Uri 26/11: split the videos into ספורטאים / ספורטאיות. Women in the videos, by player name.
 WOMEN = {"אנג'ל ריס", "גבי וויליאמס", "נקאסה", "נטלי נקאסה", "ורוניקה ברטון", "קיה סטוקס", "קרי סטראג"}
 
+# Left off the page. Uri 27/11: Nakase appeared twice with the same clip; the longer cut
+# (p20261025-nakase-full, same press conference, same end card) stays.
+SKIP = {"p20261023-nakase"}
+
 # Clips where the speaker is a coach -> also useful for coaches
 COACH_VOICE = {"p20261026-125853", "p20261023-nakase", "p20261025-nakase-full",
                "p20261120-redick", "p20261119-vrabel", "p20261118-215856"}
@@ -133,7 +137,7 @@ def studio_items():
     qfb = quote_fallback()
     for pj in sorted((STUDIO / "projects").glob("p*/project.json")):
         d = json.loads(pj.read_text(encoding="utf-8"))
-        if not d.get("picked"):
+        if not d.get("picked") or d.get("id") in SKIP:
             continue
         pid = d["id"]
         st = d.get("story") if isinstance(d.get("story"), dict) else {}

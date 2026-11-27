@@ -46,10 +46,15 @@ def source_video(pid: str) -> Path | None:
     return None
 
 
+# Poster picked by hand where the studio's first option doesn't show the player
+# (Uri 27/11: "ב-THUMBNAIL של מג'יק לא רואים אותו").
+POSTER = {"p20261119-magic-1984": "thumbs/option2.jpg"}
+
+
 def source_poster(pid: str) -> Path | None:
     d = json.loads((STUDIO / pid / "project.json").read_text(encoding="utf-8"))
     t = d.get("thumbs") or {}
-    files = [t.get("chosen"), t.get("file")] + [o.get("file") for o in t.get("options") or [] if isinstance(o, dict)]
+    files = [POSTER.get(pid), t.get("chosen"), t.get("file")] + [o.get("file") for o in t.get("options") or [] if isinstance(o, dict)]
     for f in files:
         if isinstance(f, str) and (STUDIO / pid / f).is_file():
             return STUDIO / pid / f
